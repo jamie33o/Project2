@@ -1,0 +1,31 @@
+/* clear/set defaults */
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: white;
+}
+
+body {
+    background-image: url(../images/background.jpg);
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+}
+
+.center {
+    text-align: center;
+}
+/*header*/
+#logo {
+   text-align: center;
+   margin: 100px 0 30px 0;
+}
+
+#logo img {
+    width: 200px;
+    height: auto;
+}
+
+
+

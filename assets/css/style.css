@@ -19,6 +19,13 @@ body {
     text-align: center;
 }
 
+.answer_btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
 .button {
     width: 500px;
     height: 50px;
@@ -27,14 +34,6 @@ body {
     margin-top: 10px;
 }
 
-.answer_btns {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-}
-
-  
 /*header:- top of page*/
 #logo {
    text-align: center;
@@ -48,10 +47,8 @@ body {
 
 /*main:- center of page*/
 main {
-    margin-bottom: 55px;
-   
+    margin-bottom: 35px;
 }
-
 
 /*footer:- bottom of page*/
 footer {

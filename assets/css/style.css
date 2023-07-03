@@ -21,15 +21,25 @@ body {
 
 
 /*header:- top of page*/
-#logo {
-   text-align: center;
-   margin: 50px 0 30px 0;
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    margin: 30px 0 30px 0;
 }
 
 #logo img {
     width: 200px;
     height: auto;
 }
+
+.box {
+    border: 2px solid lightblue;
+    border-radius: 10px;
+    width: 250px;
+    padding: 10px;
+}
+
 
 /*game.html */
 ul {

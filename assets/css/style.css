@@ -70,6 +70,9 @@ main {
 }
 
 .question_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: url(../images/question_bg.png) no-repeat center;
     background-size:  90% 100px;
     width: 90%;

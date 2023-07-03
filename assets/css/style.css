@@ -31,13 +31,24 @@ body {
     height: auto;
 }
 
+/*game.html */
+ul {
+    list-style: none;
+    }
+
+
+
 /*main:- center of page*/
 main {
     margin-bottom: 35px;
 }
 
-ul {
-list-style: none;
+.question_box {
+    background: url(../images/long_q_box.png) no-repeat center;
+    background-size:  90% 100px;
+    width: 90%;
+    height: 150px;
+    margin: 20px auto 20px auto;
 }
 
 .answer_btns {

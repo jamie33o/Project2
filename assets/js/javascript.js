@@ -7,6 +7,19 @@ const answerElement_B = document.getElementById("answer_b");
 const answerElement_C = document.getElementById("answer_c");
 const answerElement_D = document.getElementById("answer_d");
 
+
+//Select the buttons elements for the answer's
+const button_A = document.getElementById("answer_a_btn").addEventListener;
+const button_B = document.getElementById("answer_b_btn");
+const button_C = document.getElementById("answer_c_btn");
+const button_D = document.getElementById("answer_d_btn");
+
+
+/**
+ * This function retrievs the question and answers object trough the trivia api 
+ * and then call's the function to load the content to the page
+ * or catch's and display any errors
+ */
 function retrieve_QnA() {
 
 // Fetch the question from the https://the-trivia-api.com/ API
@@ -26,11 +39,12 @@ fetch('https://the-trivia-api.com/v2/questions')
     update_QnA_content(questionText,wrongAnswers,correctAnswer);
   })
   .catch(error => {
-    console.error("Error fetching question:", error);
+    questionElement.textContent = `Error fetching question: ${error}`
   });
 
 }
 
+//call retrieve qna so the first question and answer get loaded
 retrieve_QnA();
 
 // Array shuffling function using Fisher-Yates algorithm from stack-overflow 
@@ -41,6 +55,7 @@ function shuffleArray(array) {
     }
     return array;
   }
+
 
 //update the question and answers elements with content
 function update_QnA_content(questionText, wrongAnswers, correctAnswer) {
@@ -59,3 +74,5 @@ function update_QnA_content(questionText, wrongAnswers, correctAnswer) {
     questionElement.textContent = questionText;
 
 }
+
+

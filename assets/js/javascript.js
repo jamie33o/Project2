@@ -1,25 +1,19 @@
     // Select the <p> element with the ID "question"
 const questionElement = document.getElementById("question");
 
-//Select the <p> element for answers A,B,C,D
-const answerElement_A = document.getElementById("answer_a");
-const answerElement_B = document.getElementById("answer_b");
-const answerElement_C = document.getElementById("answer_c");
-const answerElement_D = document.getElementById("answer_d");
-
 
 //Select the buttons elements for the answer's and add an event listener to triger checkanswer function
-const button_A = document.getElementById("answer_a_btn")
-.addEventListener("click", (evt) => checkAnswer(answerElement_A.textContent));
+const button_A = document.getElementById("answer_a_btn");
+button_A.addEventListener("click", (evt) => checkAnswer(answerElement_A.textContent));
 
-const button_B = document.getElementById("answer_b_btn")
-.addEventListener("click", (evt) => checkAnswer(answerElement_B.textContent));
+const button_B = document.getElementById("answer_b_btn");
+button_B.addEventListener("click", (evt) => checkAnswer(answerElement_B.textContent));
 
-const button_C = document.getElementById("answer_c_btn")
-.addEventListener("click", (evt) => checkAnswer(answerElement_C.textContent));
+const button_C = document.getElementById("answer_c_btn");
+button_C.addEventListener("click", (evt) => checkAnswer(answerElement_C.textContent));
 
-const button_D = document.getElementById("answer_d_btn")
-.addEventListener("click", (evt) => checkAnswer(answerElement_D.textContent));
+const button_D = document.getElementById("answer_d_btn");
+button_D.addEventListener("click", (evt) => checkAnswer(answerElement_D.textContent));
 
 //store the question and answer's object retrieved from the api 
 let qnaObjectArray;
@@ -93,10 +87,10 @@ function update_QnA_content(questionText, wrongAnswers, correctAnswer) {
     const shuffledAnswers = shuffleArray(answersArray);
 
     //update the content of the <p> elements for the answers a,b,c,d
-    answerElement_A.textContent = shuffledAnswers[0];
-    answerElement_B.textContent = shuffledAnswers[1];
-    answerElement_C.textContent = shuffledAnswers[2];
-    answerElement_D.textContent = shuffledAnswers[3];
+    button_A.textContent = shuffledAnswers[0];
+    button_B.textContent = shuffledAnswers[1];
+    button_C.textContent = shuffledAnswers[2];
+    button_D.textContent = shuffledAnswers[3];
 
     // Update the content of the <p> element with the question id
     questionElement.textContent = questionText;

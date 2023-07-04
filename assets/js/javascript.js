@@ -7,7 +7,7 @@ const answerElement_B = document.getElementById("answer_b");
 const answerElement_C = document.getElementById("answer_c");
 const answerElement_D = document.getElementById("answer_d");
 
-function questionAnswers() {
+function retrieve_QnA() {
 
 // Fetch the question from the https://the-trivia-api.com/ API
 fetch('https://the-trivia-api.com/v2/questions')
@@ -23,14 +23,7 @@ fetch('https://the-trivia-api.com/v2/questions')
     //extract the correct answer from the the response data
     const correctAnswer = qNaObject.correctAnswer;
 
-    //update the content of the <p> elements for the answers a,b,c,d
-    answerElement_A.textContent = wrongAnswers[0];
-    answerElement_B.textContent = wrongAnswers[1];
-    answerElement_C.textContent = wrongAnswers[2];
-    answerElement_D.textContent = correctAnswer;
-
-    // Update the content of the <p> element with the question id
-    questionElement.textContent = questionText;
+    update_QnA_content(questionText,wrongAnswers,correctAnswer);
   })
   .catch(error => {
     console.error("Error fetching question:", error);
@@ -38,4 +31,31 @@ fetch('https://the-trivia-api.com/v2/questions')
 
 }
 
-questionAnswers();
+retrieve_QnA();
+
+// Array shuffling function using Fisher-Yates algorithm from stack-overflow 
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+//update the question and answers elements with content
+function update_QnA_content(questionText, wrongAnswers, correctAnswer) {
+
+    const answersArray = [wrongAnswers[0],wrongAnswers[1],wrongAnswers[2],correctAnswer];
+
+    const shuffledAnswers = shuffleArray(answersArray);
+
+    //update the content of the <p> elements for the answers a,b,c,d
+    answerElement_A.textContent = shuffledAnswers[0];
+    answerElement_B.textContent = shuffledAnswers[1];
+    answerElement_C.textContent = shuffledAnswers[2];
+    answerElement_D.textContent = shuffledAnswers[3];
+
+    // Update the content of the <p> element with the question id
+    questionElement.textContent = questionText;
+
+}

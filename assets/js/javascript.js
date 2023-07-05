@@ -22,13 +22,21 @@ let qnaObjectArray;
 let questionCounter = 0;
 //store the correct answer of each question
 let correctAnswer;
-
+let prizeCounter;
 let prize;
 /*
+check if previously stored prize count 
 increment up each time answer
  is correct to change color of prize background
  */
-let prizeCounter = 13;
+// Retrieve data from local storage
+var data = localStorage.getItem("prizeCounter");
+if (data != null){
+     prizeCounter = data;
+}else {
+     prizeCounter = 13;
+
+}
 // Select the <p> element with the ID "question"
 const questionElement = document.getElementById("question");
 
@@ -167,7 +175,25 @@ function incrementPrize() {
 }
 
 function takePrizeOrContinue() {
+    
+    let popUp = document.getElementById("pop_up");
+    popUp.style.display = "flex";
 
- confirm(prize);
+    popUp.querySelector("h2").textContent = `WELL DONE!!!`;
+
+    popUp.querySelector("p").textContent = `You have reached ${prize} would you like to continue or save your progress and come back later
+    ?`;
+
+    popUp.querySelector("#continue").addEventListener('click',  function() {
+        popUp.style.display = "none";
+      });
+      popUp.querySelector("#save").addEventListener('click',  function() {
+        // Save data to local storage
+        localStorage.setItem("prizeCounter", prizeCounter);
+        // Navigate to a new page, replacing the current page in the browser history
+        window.location.replace("index.html");
+
+       
+      });
 
 }

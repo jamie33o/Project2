@@ -1,6 +1,5 @@
-    // Select the <p> element with the ID "question"
-const questionElement = document.getElementById("question");
 
+//--------Global variables with event listenerers------
 
 //Select the buttons elements for the answer's and add an event listener to triger checkanswer function
 const button_A = document.getElementById("answer_a_btn");
@@ -15,20 +14,28 @@ button_C.addEventListener("click", (evt) => checkAnswer(button_C.textContent));
 const button_D = document.getElementById("answer_d_btn");
 button_D.addEventListener("click", (evt) => checkAnswer(button_D.textContent));
 
-//----Global variables----
+//---------Global variables----------
+
 //store the question and answer's object retrieved from the api 
 let qnaObjectArray;
 //counter used to increment trough the question's
-let counter = 0;
+let questionCounter = 0;
 //store the correct answer of each question
 let correctAnswer;
 
-//increment up each time answer
-// is correct to change color of prize background
+let prize;
+/*
+increment up each time answer
+ is correct to change color of prize background
+ */
 let prizeCounter = 13;
+// Select the <p> element with the ID "question"
+const questionElement = document.getElementById("question");
 
-
-//--------functions for question and answers -----------
+// Select the <li> element you want to update
+const liElement = document.querySelectorAll("#prizes ul li");
+   
+//--------functions for question and answers section-----------
 
 /**
  * This function retrievs the question and answers object trough the trivia api 
@@ -60,7 +67,7 @@ retrieve_QnA();
  */
 function nextQuestion() {
     // Extract the question from the response data
-    const qNaObject = qnaObjectArray[counter];
+    const qNaObject = qnaObjectArray[questionCounter];
     const questionText = qNaObject.question.text;
 
     //extract the 3 incorrect Answers from the response data
@@ -70,7 +77,7 @@ function nextQuestion() {
     correctAnswer = qNaObject.correctAnswer;
 
     update_QnA_content(questionText,wrongAnswers,correctAnswer);
-    counter++;
+    questionCounter++;
 }
 
 /**
@@ -111,43 +118,56 @@ function update_QnA_content(questionText, wrongAnswers, correctAnswer) {
  */
 function checkAnswer(buttonText) {
     if (buttonText === correctAnswer){
-        nextQuestion();
+        if (questionCounter <= 9){
+            nextQuestion();       
+        }else {
+            counter = 0;
+            retrieve_QnA();
+        }
+        
         incrementPrize();
     }
 }
 //------------functions for prize section -------------
 
 /**
- * changes the prize that the user is on  to green 
+ * changes the prize that the user is on to green and checks if 
+ * the user has reached any of the take home prizes
  */
 function incrementPrize() {
-    // Select the <li> element you want to update
-    const liElement = document.querySelectorAll("#prizes ul li");
-   
+    //counter for the previous prize li element
+    let previousPrizeLi = prizeCounter; 
+    // Access the <p> element within the <li>
+    let paragraph = liElement[prizeCounter].querySelector("p");
+
+    // Retrieve the text content of the <p> element
+    prize = paragraph.textContent;
+
     //change background image of the prize li
     liElement[prizeCounter].style.backgroundImage = "url('assets/images/green_answer_box.png')";
     //if its not on the first prize then change 
-    //the prize before it back to original colour black
+    //the prize bg before it back to original colour black
+   
     if (prizeCounter < 13){
-        let previousPrizeLi = prizeCounter;
         previousPrizeLi++;
         liElement[previousPrizeLi].style.backgroundImage = "url('assets/images/answer_box.png')";
+        //get the p element from the previous prize and then change its color
+        var previosParagraph = liElement[previousPrizeLi].querySelector("p");
+        previosParagraph.style.color = "grey";
+    }else if (prizeCounter === 0){
+        //you win code
     }
 
+   //checks if user reaches a take home prize
+    if(prize === "€5,000" || prize ==="€50,000" || prize ==="€1 million" ) {
+        takePrizeOrContinue();
+      }
     //decrement counter after updating the image
     prizeCounter--;
-   
 }
 
+function takePrizeOrContinue() {
 
-const liElements = document.querySelectorAll("#prizes ul li");
+ confirm(prize);
 
-liElements.forEach(function(liElement) {
-  // Access the <p> element within the <li>
-  var paragraph = liElement.querySelector("p");
-
-  // Retrieve the text content of the <p> element
-  var prize = paragraph.textContent;
-
-  console.log(prize);
-});
+}

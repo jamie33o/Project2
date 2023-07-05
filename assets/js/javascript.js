@@ -4,23 +4,31 @@ const questionElement = document.getElementById("question");
 
 //Select the buttons elements for the answer's and add an event listener to triger checkanswer function
 const button_A = document.getElementById("answer_a_btn");
-button_A.addEventListener("click", (evt) => checkAnswer(answerElement_A.textContent));
+button_A.addEventListener("click", (evt) => checkAnswer(button_A.textContent));
 
 const button_B = document.getElementById("answer_b_btn");
-button_B.addEventListener("click", (evt) => checkAnswer(answerElement_B.textContent));
+button_B.addEventListener("click", (evt) => checkAnswer(button_B.textContent));
 
 const button_C = document.getElementById("answer_c_btn");
-button_C.addEventListener("click", (evt) => checkAnswer(answerElement_C.textContent));
+button_C.addEventListener("click", (evt) => checkAnswer(button_C.textContent));
 
 const button_D = document.getElementById("answer_d_btn");
-button_D.addEventListener("click", (evt) => checkAnswer(answerElement_D.textContent));
+button_D.addEventListener("click", (evt) => checkAnswer(button_D.textContent));
 
+//----Global variables----
 //store the question and answer's object retrieved from the api 
 let qnaObjectArray;
 //counter used to increment trough the question's
 let counter = 0;
-
+//store the correct answer of each question
 let correctAnswer;
+
+//increment up each time answer
+// is correct to change color of prize background
+let prizeCounter = 13;
+
+
+//--------functions for question and answers -----------
 
 /**
  * This function retrievs the question and answers object trough the trivia api 
@@ -104,10 +112,42 @@ function update_QnA_content(questionText, wrongAnswers, correctAnswer) {
 function checkAnswer(buttonText) {
     if (buttonText === correctAnswer){
         nextQuestion();
+        incrementPrize();
     }
+}
+//------------functions for prize section -------------
+
+/**
+ * changes the prize that the user is on  to green 
+ */
+function incrementPrize() {
+    // Select the <li> element you want to update
+    const liElement = document.querySelectorAll("#prizes ul li");
+   
+    //change background image of the prize li
+    liElement[prizeCounter].style.backgroundImage = "url('assets/images/green_answer_box.png')";
+    //if its not on the first prize then change 
+    //the prize before it back to original colour black
+    if (prizeCounter < 13){
+        let previousPrizeLi = prizeCounter;
+        previousPrizeLi++;
+        liElement[previousPrizeLi].style.backgroundImage = "url('assets/images/answer_box.png')";
+    }
+
+    //decrement counter after updating the image
+    prizeCounter--;
+   
 }
 
 
+const liElements = document.querySelectorAll("#prizes ul li");
 
+liElements.forEach(function(liElement) {
+  // Access the <p> element within the <li>
+  var paragraph = liElement.querySelector("p");
 
+  // Retrieve the text content of the <p> element
+  var prize = paragraph.textContent;
 
+  console.log(prize);
+});

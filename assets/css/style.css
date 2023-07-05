@@ -58,13 +58,16 @@ header {
     margin: 5px 0 0 5px ;
 }
 
+#prizes li:nth-child(10), #prizes li:nth-child(1), #prizes li:nth-child(5) {
+    background: url(../images/orange_answer_box.png) no-repeat center;
+    background-size: contain;
+    margin: 5px 0 0 5px ;
+}
 
 /*game.html */
 ul {
     list-style: none;
     }
-
-
 
 /*main:- center of page*/
 main {

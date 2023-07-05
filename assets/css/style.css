@@ -22,7 +22,7 @@ body {
 header {
     display: flex;
     flex-direction: row;
-    justify-content:space-around;
+    justify-content: center;
     margin: 30px 0 30px 0;
 }
 
@@ -31,6 +31,7 @@ header {
     border-radius: 10px;
     width: 250px;
     padding: 10px;
+    margin: 0 40px 0 40px;
 }
 
 #life_lines img {
@@ -49,11 +50,12 @@ header {
 
 #prizes {
     text-align: center;
+   padding: 20px;
 }
 #prizes li {
-    list-style-type: circle;
-    margin-left: 20px;
-    
+    background: url(../images/answer_box.png) no-repeat center;
+    background-size: contain;
+    margin: 5px 0 0 5px ;
 }
 
 
@@ -76,14 +78,19 @@ main {
     background: url(../images/question_bg.png) no-repeat center;
     background-size:  90% 100px;
     width: 90%;
-    height: 150px;
+    height: 100px;
     margin: 20px auto 20px auto;
+    text-align: center;
+}
+
+#question {
+    width: 70%;
 }
 
 .answer_btns {
     display: flex;
     flex-direction: row;
-    align-content: center;
+    align-items: center;
     margin: 10px auto 10px auto;
     flex-wrap: wrap;
     justify-content: center;
@@ -97,10 +104,11 @@ main {
     width: 500px;
     height: 50px;
     background: url(../images/answer_box.png) no-repeat center /cover;
-    background-size: 500px 50px;
+    background-size: 95% 50px;
     margin-top: 10px;
     text-decoration: none;
     text-align: center;
+    padding: 0 50px 0 50px;
 }
 .button:hover {
     background-image: url(../images/orange_answer_box.png);

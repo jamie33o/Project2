@@ -116,6 +116,21 @@ main {
 .button:hover {
     background-image: url(../images/orange_answer_box.png);
 }
+/*pop up window*/
+#pop_up {
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: absolute;
+    width: 90%;
+    height: 45%;
+    background-color: rgb(7, 7, 67);
+    text-align: center;
+}
+
+
+
 
 /*footer:- bottom of page*/
 footer {

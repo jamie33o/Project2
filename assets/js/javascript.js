@@ -24,25 +24,43 @@ let questionCounter = 0;
 let correctAnswer;
 let prizeCounter;
 let prize;
-/*
-check if previously stored prize count 
-increment up each time answer
- is correct to change color of prize background
- */
-// Retrieve data from local storage
-var data = localStorage.getItem("prizeCounter");
-if (data != null){
-     prizeCounter = data;
-}else {
-     prizeCounter = 13;
 
-}
 // Select the <p> element with the ID "question"
 const questionElement = document.getElementById("question");
 
 // Select the <li> element you want to update
 const liElement = document.querySelectorAll("#prizes ul li");
+  
+
+// Retrieve data from local storage
+let storedCount = localStorage.getItem("prizeCounter");
+/*
+check if there is a previously stored prize  
+set prize counter to it then change all previous
+prize amounts to gray and set background of current prize amount to green
+ */
+if (storedCount != null){
    
+     prizeCounter = storedCount;
+     //change background image of the prize li
+     liElement[prizeCounter].style.backgroundImage = "url('assets/images/green_answer_box.png')";
+  
+     for (let i = prizeCounter; i < liElement.length; i++){
+       if (i === prizeCounter){
+        continue;
+       }
+        let prizeAmount = liElement[i].querySelector("p");
+        prizeAmount.style.color = "grey";
+        if (prizeAmount.textContent === "€5,000" || prizeAmount.textContent === "€50,000") {
+            liElement[i].style.backgroundImage = "url('assets/images/answer_box.png')";
+        }
+
+    }
+    
+}else {
+     prizeCounter = 13;
+}
+
 //--------functions for question and answers section-----------
 
 /**
@@ -122,8 +140,9 @@ function update_QnA_content(questionText, wrongAnswers, correctAnswer) {
 
 /**
  * function triggered by any answer button pressed check's if the answer is correct
- * and then goes to next question
+ * and then goes to next question or gets new qna object array if reaches 9
  */
+
 function checkAnswer(buttonText) {
     if (buttonText === correctAnswer){
         if (questionCounter <= 9){
@@ -132,7 +151,6 @@ function checkAnswer(buttonText) {
             counter = 0;
             retrieve_QnA();
         }
-        
         incrementPrize();
     }
 }
@@ -143,8 +161,20 @@ function checkAnswer(buttonText) {
  * the user has reached any of the take home prizes
  */
 function incrementPrize() {
+    //decrement counter after updating the image
+    prizeCounter--;
     //counter for the previous prize li element
     let previousPrizeLi = prizeCounter; 
+    
+    if (prize === "€1 million"){
+        winner();
+    }else if (prizeCounter < 13){
+        previousPrizeLi++;
+        liElement[previousPrizeLi].style.backgroundImage = "url('assets/images/answer_box.png')";
+        //get the p element from the previous prize and then change its color
+        let previosParagraph = liElement[previousPrizeLi].querySelector("p");
+        previosParagraph.style.color = "grey";
+    }
     // Access the <p> element within the <li>
     let paragraph = liElement[prizeCounter].querySelector("p");
 
@@ -156,25 +186,18 @@ function incrementPrize() {
     //if its not on the first prize then change 
     //the prize bg before it back to original colour black
    
-    if (prizeCounter < 13){
-        previousPrizeLi++;
-        liElement[previousPrizeLi].style.backgroundImage = "url('assets/images/answer_box.png')";
-        //get the p element from the previous prize and then change its color
-        var previosParagraph = liElement[previousPrizeLi].querySelector("p");
-        previosParagraph.style.color = "grey";
-    }else if (prizeCounter === 0){
-        //you win code
-    }
+    
+    
+  
 
    //checks if user reaches a take home prize
-    if(prize === "€5,000" || prize ==="€50,000" || prize ==="€1 million" ) {
-        takePrizeOrContinue();
+    if(prize === "€5,000" || prize ==="€50,000") {
+        saveOrContinue();
       }
-    //decrement counter after updating the image
-    prizeCounter--;
+   
 }
 
-function takePrizeOrContinue() {
+function saveOrContinue() {
     
     let popUp = document.getElementById("pop_up");
     popUp.style.display = "flex";
@@ -196,4 +219,11 @@ function takePrizeOrContinue() {
        
       });
 
+}
+
+
+function winner() {
+
+    localStorage.setItem("prizeCounter", 13);
+    
 }

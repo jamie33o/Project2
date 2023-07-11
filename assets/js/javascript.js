@@ -24,6 +24,9 @@ let questionCounter = 0;
 let correctAnswer;
 let prizeCounter;
 let prize;
+//boolean to restart timer
+let restartTimer;
+
 
 // Select the <p> element with the ID "question"
 const questionElement = document.getElementById("question");
@@ -153,6 +156,7 @@ function checkAnswer(buttonText) {
             retrieve_QnA();
         }
         incrementPrize();
+        restartTimer = true;
     }
 }
 //------------functions for prize section-------------
@@ -161,7 +165,6 @@ function checkAnswer(buttonText) {
  * changes the prize that the user is on to green and checks if 
  * the user has reached any of the take home prizes
  */
-
 function incrementPrize() {
     //decrement counter after updating the image
     prizeCounter--;
@@ -169,7 +172,7 @@ function incrementPrize() {
     let previousPrizeLi = prizeCounter; 
     
     if (prize === "€500,000"){
-        popUp(`Congradulations!!!`, `You have reached WON!! Congradulations you are a millionaire`, "Play Again", "Quit");
+        popUp(`Congratulations!!!`, `You have reached WON!! Congradulations you are a millionaire`, "PLAY AGAIN", "Quit");
     }else if (prizeCounter < 13){
         previousPrizeLi++;
         liElement[previousPrizeLi].style.backgroundImage = "url('assets/images/answer_box.png')";
@@ -196,6 +199,8 @@ function incrementPrize() {
       }
    
 }
+
+//---------pop up-----------
 /**
  * This function generates a re-useable pop up window to notify user of progress it has two buttons 
  * and when its called you pass in the text for the h2, paragraph, button 1 and button 2, btn1 will make the pop up dissapear
@@ -218,9 +223,13 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
     popUp_element.querySelector("#btn2").textContent = btn2Text;
  
     popUp_element.querySelector("#btn1").addEventListener('click',  function() {
-        if (btn1Text === "Play Again") {
+        if (btn1Text === "PLAY AGAIN") {
             location.reload();
         }
+        
+        restartTimer = true;
+        timer();
+        
         popUp_element.style.display = "none";
     });
 
@@ -235,30 +244,44 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
                 
             }
         window.location.replace("index.html");
-      
     }); 
-    
 }
-
-
 
 //-----------Timer function section-----------
   
 function timer() {
     let number = document.getElementById("number");
-    let timerCount = 10;
-    setInterval(() => {
-        if (timerCount === 0){
-            clearInterval();
+    let timerCount = 30;
+    const element = document.querySelector("circle");
+
+    let timer = setInterval(() => {
+        if (restartTimer){
+            clearInterval(timer);
+            number.innerHTML = 30;
+            const animation = element.animate(
+              { strokeDashoffset: [0, -472] },
+              { duration: 32000, easing: 'linear', fill: 'forwards' }
+            );
+          
+            // Restart the animation
+            animation.play();
+ 
+              // Set the animation back to its original value
+            restartTimer = false;
+
+        }else if(timerCount === 0){
+            clearInterval(timer);
+            element.style.animation = "paused";
+            gameOver();
         }else{
             timerCount--;
             number.innerHTML = timerCount;
         }
-        
-    },900)
-
-
-
+    },970)
 }
      
+function gameOver() {
+popUp("Game Over!!!", `Hard luck the correct answer was "${correctAnswer}"...Would you like to try again?`, "PLAY AGAIN", "QUIT" )
+
+}
 

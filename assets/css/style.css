@@ -52,11 +52,11 @@ header {
 /*timer*/
 #timer {
     margin: auto;
-   
     width: 140px;
     height: 140px;
     position: relative;
 }
+
 .outer {
     display: flex;
     justify-content: center;
@@ -87,14 +87,14 @@ header {
     color: white;
 }
 
-circle {
-    
+circle {  
     fill: none;
     stroke: url(#GradientColor);
     stroke-width: 20px;
     stroke-dasharray: 472;
     stroke-dashoffset: 0;  
-    animation: anim 10s linear forwards;  
+    animation: anim 32s linear forwards;
+      
 }
 
 svg {

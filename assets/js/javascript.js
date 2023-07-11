@@ -164,7 +164,7 @@ function incrementPrize() {
     //counter for the previous prize li element
     let previousPrizeLi = prizeCounter; 
     
-    if (prize === "€1 million"){
+    if (prize === "€500,000"){
         popUp(`Congradulations!!!`, `You have reached WON!! Congradulations you are a millionaire`, "Play Again", "Quit");
     }else if (prizeCounter < 13){
         previousPrizeLi++;
@@ -174,7 +174,7 @@ function incrementPrize() {
         previosParagraph.style.color = "grey";
     }
     // Access the <p> element within the <li>
-    let paragraph = liElement[prizeCounter].querySelector("p");
+    let paragraph = liElement[previousPrizeLi].querySelector("p");
 
     // Retrieve the text content of the <p> element
     prize = paragraph.textContent;
@@ -186,7 +186,7 @@ function incrementPrize() {
    
 
    //checks if user reaches a take home prize
-    if(prize === "€7,000" || prize ==="€100,000") {
+    if(prize === "€5,000" || prize ==="€50,000") {
         popUp(`WELL DONE!!!`, `You have reached ${prize} would you like to continue or save your progress and come back later
         ?`, "CONTINUE", "SAVE");
       }
@@ -222,11 +222,12 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
                 
             }
         window.location.replace("index.html");
+      
+    }); 
+    
+}
 
-        });
 
-       
-    }
 
    
      

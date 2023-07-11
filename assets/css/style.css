@@ -44,8 +44,70 @@ header {
 }
 
 #logo img {
-    width: 200px;
+    width: 180px;
     height: auto;
+    margin-bottom: 20px;
+}
+
+/*timer*/
+#timer {
+    margin: auto;
+   
+    width: 140px;
+    height: 140px;
+    position: relative;
+}
+.outer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 130px;
+    width: 130px;
+    padding: 15px;
+    border-radius: 50%;
+    box-shadow: 6px  6px 6px 6px rgba(248, 248, 249, 0.7),
+               -6px -6px 6px 6px rgba(248, 248, 249, 0.7);
+}
+.inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    box-shadow: inset 6px  6px 6px 6px rgba(248, 248, 249, 0.7),
+               inset -6px -6px 6px 6px rgba(248, 248, 249, 0.7);
+
+}
+
+
+#number {
+    font-weight: 900;
+    font-size: 50px;
+    color: white;
+}
+
+circle {
+    
+    fill: none;
+    stroke: url(#GradientColor);
+    stroke-width: 20px;
+    stroke-dasharray: 472;
+    stroke-dashoffset: 0;  
+    animation: anim 10s linear forwards;  
+}
+
+svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+@keyframes anim {
+    100%{
+        stroke-dashoffset: -472;
+    }
+    
 }
 
 #prizes {

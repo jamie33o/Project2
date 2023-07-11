@@ -103,6 +103,7 @@ function nextQuestion() {
 
     update_QnA_content(questionText,wrongAnswers,correctAnswer);
     questionCounter++;
+    
 }
 
 /**
@@ -134,6 +135,8 @@ function update_QnA_content(questionText, wrongAnswers, correctAnswer) {
 
     // Update the content of the <p> element with the question id
     questionElement.textContent = questionText;
+
+    timer();
 }
 
 /**
@@ -152,12 +155,13 @@ function checkAnswer(buttonText) {
         incrementPrize();
     }
 }
-//------------functions for prize section -------------
+//------------functions for prize section-------------
 
 /**
  * changes the prize that the user is on to green and checks if 
  * the user has reached any of the take home prizes
  */
+
 function incrementPrize() {
     //decrement counter after updating the image
     prizeCounter--;
@@ -192,6 +196,15 @@ function incrementPrize() {
       }
    
 }
+/**
+ * This function generates a re-useable pop up window to notify user of progress it has two buttons 
+ * and when its called you pass in the text for the h2, paragraph, button 1 and button 2, btn1 will make the pop up dissapear
+ * while btn2 will save progress and bring user back to homepage
+ * @param {text} h2_text - text for the h2 element
+ * @param {text} p_text - text for the p element
+ * @param {text} btn1Text - text for button element
+ * @param {text} btn2Text - text for button element
+ */
 
 function popUp(h2_text, p_text, btn1Text, btn2Text) {
     
@@ -229,6 +242,23 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
 
 
 
-   
+//-----------Timer function section-----------
+  
+function timer() {
+    let number = document.getElementById("number");
+    let timerCount = 10;
+    setInterval(() => {
+        if (timerCount === 0){
+            clearInterval();
+        }else{
+            timerCount--;
+            number.innerHTML = timerCount;
+        }
+        
+    },900)
+
+
+
+}
      
 

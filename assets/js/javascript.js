@@ -40,21 +40,20 @@ set prize counter to it then change all previous
 prize amounts to gray and set background of current prize amount to green
  */
 if (storedCount != null){
-   
-     prizeCounter = storedCount;
+    prizeCounter = storedCount;
      //change background image of the prize li
-     liElement[prizeCounter].style.backgroundImage = "url('assets/images/green_answer_box.png')";
+    liElement[prizeCounter].style.backgroundImage = "url('assets/images/green_answer_box.png')";
   
-     for (let i = prizeCounter; i < liElement.length; i++){
+    for (let i = prizeCounter; i < liElement.length; i++){
        if (i === prizeCounter){
         continue;
        }
+        
         let prizeAmount = liElement[i].querySelector("p");
         prizeAmount.style.color = "grey";
         if (prizeAmount.textContent === "€5,000" || prizeAmount.textContent === "€50,000") {
             liElement[i].style.backgroundImage = "url('assets/images/answer_box.png')";
         }
-
     }
     
 }else {
@@ -135,7 +134,6 @@ function update_QnA_content(questionText, wrongAnswers, correctAnswer) {
 
     // Update the content of the <p> element with the question id
     questionElement.textContent = questionText;
-
 }
 
 /**
@@ -167,7 +165,7 @@ function incrementPrize() {
     let previousPrizeLi = prizeCounter; 
     
     if (prize === "€1 million"){
-        winner();
+        popUp(`Congradulations!!!`, `You have reached WON!! Congradulations you are a millionaire`, "Play Again", "Quit");
     }else if (prizeCounter < 13){
         previousPrizeLi++;
         liElement[previousPrizeLi].style.backgroundImage = "url('assets/images/answer_box.png')";
@@ -186,44 +184,50 @@ function incrementPrize() {
     //if its not on the first prize then change 
     //the prize bg before it back to original colour black
    
-    
-    
-  
 
    //checks if user reaches a take home prize
-    if(prize === "€5,000" || prize ==="€50,000") {
-        saveOrContinue();
+    if(prize === "€7,000" || prize ==="€100,000") {
+        popUp(`WELL DONE!!!`, `You have reached ${prize} would you like to continue or save your progress and come back later
+        ?`, "CONTINUE", "SAVE");
       }
    
 }
 
-function saveOrContinue() {
+function popUp(h2_text, p_text, btn1Text, btn2Text) {
     
-    let popUp = document.getElementById("pop_up");
-    popUp.style.display = "flex";
+    let popUp_element = document.getElementById("pop_up");
+    popUp_element.style.display = "flex";
 
-    popUp.querySelector("h2").textContent = `WELL DONE!!!`;
+    popUp_element.querySelector("h2").textContent = h2_text;
 
-    popUp.querySelector("p").textContent = `You have reached ${prize} would you like to continue or save your progress and come back later
-    ?`;
+    popUp_element.querySelector("p").textContent = p_text;
+    popUp_element.querySelector("#btn1").textContent = btn1Text;
+    popUp_element.querySelector("#btn2").textContent = btn2Text;
+ 
+    popUp_element.querySelector("#btn1").addEventListener('click',  function() {
+        if (btn1Text === "Play Again") {
+            location.reload();
+        }
+        popUp_element.style.display = "none";
+    });
 
-    popUp.querySelector("#continue").addEventListener('click',  function() {
-        popUp.style.display = "none";
-      });
-      popUp.querySelector("#save").addEventListener('click',  function() {
-        // Save data to local storage
-        localStorage.setItem("prizeCounter", prizeCounter);
-        // Navigate to a new page, replacing the current page in the browser history
+    popUp_element.querySelector("#btn2").addEventListener('click',  function() {
+           
+        if (btn2Text === "Quit") {    
+                // Navigate to a new page, replacing the current page in the browser history
+                localStorage.setItem("prizeCounter", 13);
+            } else {
+                    // Save data to local storage
+                localStorage.setItem("prizeCounter", prizeCounter);
+                
+            }
         window.location.replace("index.html");
 
+        });
+
        
-      });
+    }
 
-}
+   
+     
 
-
-function winner() {
-
-    localStorage.setItem("prizeCounter", 13);
-    
-}

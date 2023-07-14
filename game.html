@@ -17,14 +17,20 @@
 </head>
 <body>
     <header>
-        
+        <!--this is life line section has 3 different line line to help the user answer a question-->
         <section id="life_lines"class="box">
           
             <button id="fiftyFifty"><img src="assets/images/50_50_img.png" alt="fifty fifty life line"></button>
             <button id="phoneAfriend"><img src="assets/images/phone_a_friend_img.png" alt="phone a friend life line"></button>
             <button id="askAudience"><img src="assets/images/ask_the_audience_img.png" alt="ask the audience life line"></button>
 
+            <div id="life_line_results">
+                
+            </div>
+            
+
         </section>
+
 
         <div id="logo">
             <img src="assets/images/wwtbam_logo.png" alt="who wants to be a millionaire logo">          
@@ -36,6 +42,7 @@
                         </div>
                     </div>
                 </div>
+                <!--this is the svg for the timer animation-->
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
                     <defs>
                         <linearGradient id="GradientColor">
@@ -48,6 +55,7 @@
             </div>
         </div> 
 
+        <!--this is a pop up that displays at certain milestones in the game-->
         <div id="pop_up" class="box">
             
                 <h2></h2>
@@ -56,6 +64,7 @@
                 <button id="btn2" class="button"></button>
 
         </div>
+        <!--these are the prizes the user can win-->
         <section id="prizes" class="box">
             <ul > 
                 <li>
@@ -107,6 +116,7 @@
     </header>
 
     <main>      
+        <!--this is the section where the question and 4 answer will be display with js-->
         <section>
             <div class="question_box">
                 <p id="question"></p>
@@ -126,6 +136,7 @@
        
     </main>
 
+    <!--the footer section holds instrucions for the game-->
     <footer>
         <p class="center">Instructions for buttons to press</p>
     </footer>

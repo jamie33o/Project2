@@ -14,6 +14,16 @@ button_C.addEventListener("click", (evt) => checkAnswer(button_C.textContent));
 const button_D = document.getElementById("answer_d_btn");
 button_D.addEventListener("click", (evt) => checkAnswer(button_D.textContent));
 
+//event listeners for the lifeline buttons 
+const fiftyFifty_btn = document.getElementById("fiftyFifty");
+fiftyFifty_btn.addEventListener("click", (evt) => fiftyFifty());
+
+const phoneAfriend_btn = document.getElementById("phoneAfriend");
+phoneAfriend_btn.addEventListener("click", (evt) => phoneAfriend());
+
+const askAudience_btn = document.getElementById("askAudience");
+askAudience_btn.addEventListener("click", (evt) => askAudience());
+
 //---------Global variables----------
 
 //store the question and answer's object retrieved from the api 
@@ -26,7 +36,7 @@ let prizeCounter;
 let prize;
 //boolean to restart timer
 let restartTimer;
-
+let stopTimer = false;
 
 // Select the <p> element with the ID "question"
 const questionElement = document.getElementById("question");
@@ -120,7 +130,6 @@ function shuffleArray(array) {
     return array;
   }
 
-
 /**
  * Shufle the anwers and update the question and answers elements with content
  */
@@ -142,6 +151,8 @@ function update_QnA_content(questionText, wrongAnswers, correctAnswer) {
     timer();
 }
 
+
+
 /**
  * function triggered by any answer button pressed check's if the answer is correct
  * and then goes to next question or gets new qna object array if reaches 9
@@ -157,8 +168,12 @@ function checkAnswer(buttonText) {
         }
         incrementPrize();
         restartTimer = true;
+    }else {
+        //gameOver();
     }
 }
+
+
 //------------functions for prize section-------------
 
 /**
@@ -216,6 +231,8 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
     let popUp_element = document.getElementById("pop_up");
     popUp_element.style.display = "flex";
 
+    stopTimer = true;
+
     popUp_element.querySelector("h2").textContent = h2_text;
 
     popUp_element.querySelector("p").textContent = p_text;
@@ -253,26 +270,28 @@ function timer() {
     let number = document.getElementById("number");
     let timerCount = 30;
     const element = document.querySelector("circle");
-
+ 
+    const animation = element.animate(
+              { strokeDashoffset: [0, -472] },
+              { duration: 32000, easing: 'linear', fill: 'forwards' }
+            );
     let timer = setInterval(() => {
         if (restartTimer){
             clearInterval(timer);
             number.innerHTML = 30;
-            const animation = element.animate(
-              { strokeDashoffset: [0, -472] },
-              { duration: 32000, easing: 'linear', fill: 'forwards' }
-            );
-          
             // Restart the animation
             animation.play();
- 
-              // Set the animation back to its original value
+            // Set the animation back to its original value
             restartTimer = false;
 
         }else if(timerCount === 0){
             clearInterval(timer);
-            element.style.animation = "paused";
+            animation.pause();
             gameOver();
+        }else if (stopTimer) {
+            clearInterval(timer);
+            animation.pause();
+            stopTimer = false;
         }else{
             timerCount--;
             number.innerHTML = timerCount;
@@ -281,7 +300,28 @@ function timer() {
 }
      
 function gameOver() {
-popUp("Game Over!!!", `Hard luck the correct answer was "${correctAnswer}"...Would you like to try again?`, "PLAY AGAIN", "QUIT" )
+popUp("Game Over!!!", `Hard luck the correct answer was "${correctAnswer}"...Would you like to play again?`, "PLAY AGAIN", "QUIT" )
+}
+
+//---------------life lines sections----------------
+
+function phoneAfriend() {
+    
+   const fiftyFiftyImage = fiftyFifty_btn.querySelector("#life_lines img");
+   fiftyFiftyImage.style.display = 'none';
+
+   const askAudienceImage = askAudience_btn.querySelector("#life_lines img");
+   askAudienceImage.style.display = 'none';
+
+   const phoneAfriendImage = phoneAfriend_btn.querySelector("img");
+   phoneAfriendImage.src = 'assets/images/green_phone_friend.png';
 
 }
 
+function askAudience() {
+
+}
+
+function fiftyFifty() {
+
+}

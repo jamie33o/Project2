@@ -35,6 +35,7 @@ header {
 }
 
 #life_lines img {
+    display: flex;
     width: 80px;
     height: auto;
 }

@@ -30,13 +30,16 @@ askAudience_btn.addEventListener("click", (evt) => askAudience());
 let qnaObjectArray;
 //counter used to increment trough the question's
 let questionCounter = 0;
-//store the correct answer of each question
+//store the answer of each question
 let correctAnswer;
+let wrongAnswers;
 let prizeCounter;
 let prize;
 //boolean to restart timer
 let restartTimer;
 let stopTimer = false;
+
+
 
 // Select the <p> element with the ID "question"
 const questionElement = document.getElementById("question");
@@ -109,7 +112,7 @@ function nextQuestion() {
     const questionText = qNaObject.question.text;
 
     //extract the 3 incorrect Answers from the response data
-    const wrongAnswers = qNaObject.incorrectAnswers;
+    wrongAnswers = qNaObject.incorrectAnswers;
 
     //extract the correct answer from the the response data
     correctAnswer = qNaObject.correctAnswer;
@@ -171,6 +174,8 @@ function checkAnswer(buttonText) {
     }else {
         //gameOver();
     }
+
+
 }
 
 
@@ -300,21 +305,29 @@ function timer() {
 }
      
 function gameOver() {
-popUp("Game Over!!!", `Hard luck the correct answer was "${correctAnswer}"...Would you like to play again?`, "PLAY AGAIN", "QUIT" )
+    popUp("Game Over!!!", `Hard luck the correct answer was "${correctAnswer}"...Would you like to play again?`, "PLAY AGAIN", "QUIT" )
 }
 
 //---------------life lines sections----------------
+const lifeLineResults = document.getElementById("life_line_results");
 
 function phoneAfriend() {
-    
-   const fiftyFiftyImage = fiftyFifty_btn.querySelector("#life_lines img");
-   fiftyFiftyImage.style.display = 'none';
 
-   const askAudienceImage = askAudience_btn.querySelector("#life_lines img");
-   askAudienceImage.style.display = 'none';
+   const randomNumber = Math.floor(Math.random() * 100) + 1;
 
+
+   let answer = randomNumber > 50 ? correctAnswer : wrongAnswers[0];
    const phoneAfriendImage = phoneAfriend_btn.querySelector("img");
    phoneAfriendImage.src = 'assets/images/green_phone_friend.png';
+
+   lifeLineResults.innerHTML = `<p style="text-align:center">Hi im ${randomNumber}% the answer is "${answer}"</p>`;
+   let resultsDissapear = setInterval(() => {
+    lifeLineResults.style.display = "none";
+    
+    clearInterval(resultsDissapear);
+   },20000);
+
+   
 
 }
 

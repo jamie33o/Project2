@@ -315,23 +315,28 @@ function phoneAfriend() {
 
    const randomNumber = Math.floor(Math.random() * 100) + 1;
 
-
    let answer = randomNumber > 50 ? correctAnswer : wrongAnswers[0];
-   const phoneAfriendImage = phoneAfriend_btn.querySelector("img");
-   phoneAfriendImage.src = 'assets/images/green_phone_friend.png';
+   
+   phoneAfriend_btn.style.backgroundImage = `url('assets/images/green_phone_friend.png')`;
 
-   lifeLineResults.innerHTML = `<p style="text-align:center">Hi im ${randomNumber}% the answer is "${answer}"</p>`;
+   lifeLineResults.innerHTML = `<p style="text-align:center">Hi im ${randomNumber}% sure the answer is "${answer}"</p>`;
    let resultsDissapear = setInterval(() => {
     lifeLineResults.style.display = "none";
-    
+    phoneAfriend_btn.style.display = "none"
+
     clearInterval(resultsDissapear);
    },20000);
-
-   
-
 }
 
 function askAudience() {
+
+    for (let i = 0; i < 40; i++) {
+        const divElement = document.createElement('div');
+        divElement.classList.add('grid-item');
+        divElement.innerHTML = '2';
+      
+        lifeLineResults.appendChild(divElement);
+      }
 
 }
 

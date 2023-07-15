@@ -329,16 +329,33 @@ function phoneAfriend() {
 }
 
 function askAudience() {
+    const grid = document.querySelector(".grid");
+    const bars = document.querySelector(".bars");
 
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 100; i++) {
         const divElement = document.createElement('div');
         divElement.classList.add('grid-item');
-        divElement.innerHTML = '2';
-      
-        lifeLineResults.appendChild(divElement);
+        divElement.dat      
+        grid.appendChild(divElement);
       }
 
-}
+      const liElements = document.querySelectorAll('.bars li');
+      
+        for (let i = 0; i < 4; i++) {
+        const liElement = liElements[i];
+        let ranNum = Math.floor(Math.random() * 200)+1;
+        liElement.style.animation = `barchart${i} 2s linear forwards`;
+         
+        let style = document.createElement('style');
+        style.innerHTML = `@keyframes barchart${i} { 0% { height: 0; } 100% { height: ${ranNum}px; } }`;
+        document.head.appendChild(style);
+    }
+
+    
+       
+      }
+        // Create the @keyframes animation dynamically
+
 
 function fiftyFifty() {
 

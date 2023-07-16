@@ -30,16 +30,22 @@ askAudience_btn.addEventListener("click", (evt) => askAudience());
 let qnaObjectArray;
 //counter used to increment trough the question's
 let questionCounter = 0;
-//store the answer of each question
+/**store the answer of each question*/
 let correctAnswer;
+/**array of wrong answers */
 let wrongAnswers;
+/**counter for prize li elements */
 let prizeCounter;
+/**stores prize text */
 let prize;
-//boolean to restart timer
+/**boolean to restart timer*/
 let restartTimer;
+/**boolean to stop the timer */
 let stopTimer = false;
 
-
+//array of wrong and correct answer so correct 
+//answer not always in same place e
+let shuffledAnswers = [];
 
 // Select the <p> element with the ID "question"
 const questionElement = document.getElementById("question");
@@ -140,7 +146,7 @@ function update_QnA_content(questionText, wrongAnswers, correctAnswer) {
 
     const answersArray = [wrongAnswers[0],wrongAnswers[1],wrongAnswers[2],correctAnswer];
 
-    const shuffledAnswers = shuffleArray(answersArray);
+    shuffledAnswers = shuffleArray(answersArray);
 
     //update the content of the <p> elements for the answers a,b,c,d
     button_A.textContent = shuffledAnswers[0];
@@ -172,7 +178,7 @@ function checkAnswer(buttonText) {
         incrementPrize();
         restartTimer = true;
     }else {
-        //gameOver();
+        gameOver();
     }
 
 
@@ -271,6 +277,10 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
 
 //-----------Timer function section-----------
   
+/**
+ * This function creates a 30second timer that restarts each time the user
+ * answers a question if it goes to 0 its game over
+ */
 function timer() {
     let number = document.getElementById("number");
     let timerCount = 30;
@@ -304,6 +314,10 @@ function timer() {
     },970)
 }
      
+/**
+ * This function generates pop up to inform user game is over
+ * and ask if they would like to play again or quit
+ */
 function gameOver() {
     popUp("Game Over!!!", `Hard luck the correct answer was "${correctAnswer}"...Would you like to play again?`, "PLAY AGAIN", "QUIT" )
 }
@@ -311,27 +325,55 @@ function gameOver() {
 //---------------life lines sections----------------
 const lifeLineResults = document.getElementById("life_line_results");
 
+/**
+ * This function makes the lifeline results and the button of
+ * the selected life line dissapear
+ * @param {- button will dissapear that was pressed} button 
+ */
+function hideResults(button, interval) {
+let resultsDissapear = setInterval(() => {
+    lifeLineResults.style.display = "none";
+    button.style.display = "none";
+    clearInterval(resultsDissapear);
+   },interval);
+}
+
+/**
+ * This function is for the phone a friend life line 
+ * when the button is pressed this will show a line of 
+ * text which includes an answer there is a random number
+ * to show the percentage of how sure the "caller" is and
+ * shows in the line of text if the number is over 50 its the correct answer
+ * if not its the wrong answer
+ * then the hide results function is called to hide the button and results
+ */
 function phoneAfriend() {
 
    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    //show the life line div again after display none
+   lifeLineResults.style.display = "flex";
 
    let answer = randomNumber > 50 ? correctAnswer : wrongAnswers[0];
    
    phoneAfriend_btn.style.backgroundImage = `url('assets/images/green_phone_friend.png')`;
 
-   lifeLineResults.innerHTML = `<p style="text-align:center">Hi im ${randomNumber}% sure the answer is "${answer}"</p>`;
-   let resultsDissapear = setInterval(() => {
-    lifeLineResults.style.display = "none";
-    phoneAfriend_btn.style.display = "none"
+   lifeLineResults.innerHTML = `<p style="text-align:center">Hi im ${randomNumber}% sure the answer is "${answer}"</p>`;   
 
-    clearInterval(resultsDissapear);
-   },20000);
+    hideResults(phoneAfriend_btn,10000);
 }
 
+/**
+ * This function is for the ask the audience button when its pressed
+ * it shows a bar chart of representing the audience answers
+ * then hide results is called again to hide the button and the results
+ */
 function askAudience() {
     const grid = document.querySelector(".grid");
-    const bars = document.querySelector(".bars");
+    //show the life line div again after display none
+    lifeLineResults.style.display = "flex";
 
+    askAudience_btn.style.backgroundImage = `url('assets/images/green_ask_audience.png')`;
+    //for loop creates divs for the grid
     for (let i = 0; i < 100; i++) {
         const divElement = document.createElement('div');
         divElement.classList.add('grid-item');
@@ -339,24 +381,52 @@ function askAudience() {
         grid.appendChild(divElement);
       }
 
+      let barchartAddHeight = 0;
+     
       const liElements = document.querySelectorAll('.bars li');
-      
-        for (let i = 0; i < 4; i++) {
+    //for loop adds the keyframe to the bars in the bar chart
+    for (let i = 0; i < 4; i++) {
         const liElement = liElements[i];
-        let ranNum = Math.floor(Math.random() * 200)+1;
+        let ranNum = Math.floor(Math.random() * 140)+1;
         liElement.style.animation = `barchart${i} 2s linear forwards`;
-         
+        
+        if(correctAnswer === shuffledAnswers[i]){
+            barchartAddHeight = 60;
+        }
+        // Create the @keyframes animation dynamically
         let style = document.createElement('style');
-        style.innerHTML = `@keyframes barchart${i} { 0% { height: 0; } 100% { height: ${ranNum}px; } }`;
+        style.innerHTML = `@keyframes barchart${i} { 0% { height: 0; } 100% { height: ${ranNum+barchartAddHeight}px; } }`;
+        console.log(barchartAddHeight);
+        barchartAddHeight = 0;
         document.head.appendChild(style);
+
     }
 
-    
+    hideResults(askAudience_btn, 15000);
        
-      }
-        // Create the @keyframes animation dynamically
+}
 
 
 function fiftyFifty() {
+    //show the life line div again after hideResults()
+    for(let i = 0;i <= 1;i++){
+        switch(wrongAnswers[i]){
+            case button_A.textContent:
+                button_A.style.display = "none";
+                break;
+            case button_B.textContent:
+                button_B.style.display = "none";
+                break;
+            case button_C.textContent:
+                button_C.style.display = "none";
+                break;
+            case button_D.textContent:
+                button_D.style.display = "none";
+                break;
+        }
+    }
+
+
+    hideResults(fiftyFifty_btn, 1000);
 
 }

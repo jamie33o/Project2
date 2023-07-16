@@ -63,6 +63,12 @@ header {
       }  
 }  
 
+
+/*life line results */
+#life_line_results {
+    display: none;
+}
+
 .grid {
     position: relative;
     display: grid;

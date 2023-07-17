@@ -56,6 +56,8 @@ const liElement = document.querySelectorAll("#prizes ul li");
   
 // Retrieve data from local storage
 let storedCount = localStorage.getItem("prizeCounter");
+
+let hideResultsBool;
 /*
 check if there is a previously stored prize  
 set prize counter to it then change all previous
@@ -145,8 +147,9 @@ function checkAnswer(buttonText) {
             incrementPrize();
             restartTimer = true;
         }else {
-        // gameOver();
+         gameOver();
         }
+        hideResultsBool = true;
     }
     
 }
@@ -179,8 +182,6 @@ function update_QnA_content(questionText, wrongAnswers, correctAnswer) {
 
     // Update the content of the <p> element with the question id
     questionElement.textContent = questionText;
-    
-    
 }
 
 //------------functions for prize section-------------
@@ -300,6 +301,9 @@ function timer() {
     },970)
 }
      
+/**
+ * This function is for the timer circle animation
+ */
 function restartAnimation () {
     const element = document.querySelector("circle");
     element.animate(
@@ -318,19 +322,29 @@ function gameOver() {
 
 //---------------life lines sections----------------
 const lifeLineResults = document.getElementById("life_line_results");
+const grid = document.querySelector(".grid");
+let phoneAfriendResults = document.querySelector(".phoneAfriendResults");
 
 /**
  * This function makes the lifeline results and the button of
  * the selected life line dissapear
  * @param {- button will dissapear that was pressed} button 
  */
-function hideResults(button, interval) {
+function hideResults(button) {
 let resultsDissapear = setInterval(() => {
-    lifeLineResults.innerHTML = null;
-    lifeLineResults.style.display = "none";
-    button.style.display = "none";
-    clearInterval(resultsDissapear);
-   },interval);
+    if(hideResultsBool){
+        if(button === askAudience_btn){
+            grid.style.display = "none";
+        }else if(button === fiftyFifty_btn){
+            fiftyFifty_btn.style.display = "none";
+        }else {
+            phoneAfriendResults.style.display = "none";
+        }
+        button.style.display = "none";
+        clearInterval(resultsDissapear);
+        hideResultsBool = false;
+}
+   },1000);
 }
 
 /**
@@ -346,15 +360,16 @@ function phoneAfriend() {
 
    const randomNumber = Math.floor(Math.random() * 100) + 1;
     //show the life line div again after display none
-   lifeLineResults.style.display = "flex";
+    
 
    let answer = randomNumber > 50 ? correctAnswer : wrongAnswers[0];
    
    phoneAfriend_btn.style.backgroundImage = `url('assets/images/green_phone_friend.png')`;
 
-   lifeLineResults.innerHTML = `<p style="text-align:center">Hi im ${randomNumber}% sure the answer is "${answer}"</p>`;   
+   phoneAfriendResults.innerHTML = `Hi im ${randomNumber}% sure the answer is "${answer}"`;   
 
-    hideResults(phoneAfriend_btn,5000);
+    hideResults(phoneAfriend_btn);
+    phoneAfriend_btn.disabled = true;
 }
 
 /**
@@ -364,9 +379,7 @@ function phoneAfriend() {
  */
 function askAudience() {
     
-    lifeLineResults.style.display = "flex";
-    const grid = document.querySelector(".grid");
-    
+    grid.style.display = "grid";
     //show the life line div again after display none
     askAudience_btn.style.backgroundImage = `url('assets/images/green_ask_audience.png')`;
     //for loop creates divs for the grid
@@ -384,24 +397,25 @@ function askAudience() {
         const liElement = liElements[i];
         let ranNum = Math.floor(Math.random() * 140)+1;
         liElement.style.animation = `barchart${i} 2s linear forwards`;
-        
+        // add some extra hite to the bar on chart that matches the right question
         if(correctAnswer === shuffledAnswers[i]){
             barchartAddHeight = 60;
         }
         // Create the @keyframes animation dynamically
         let style = document.createElement('style');
         style.innerHTML = `@keyframes barchart${i} { 0% { height: 0; } 100% { height: ${ranNum+barchartAddHeight}px; } }`;
-        console.log(barchartAddHeight);
         barchartAddHeight = 0;
         document.head.appendChild(style);
 
     }
 
-    hideResults(askAudience_btn, 15000);
-       
+    hideResults(askAudience_btn);
+       askAudience_btn.disabled = true;
 }
 
-
+/**This function is for the 50/50 lifeline button
+ * it gets rid of two wrong questions
+ */
 function fiftyFifty() {
     //show the life line div again after hideResults()
     for(let i = 0;i <= 1;i++){
@@ -421,8 +435,8 @@ function fiftyFifty() {
         }
     }
 
+    hideResults(fiftyFifty_btn);
 
-    fiftyFifty_btn.style.display = "none";
-
+    fiftyFifty_btn.disabled = true;
 }
 

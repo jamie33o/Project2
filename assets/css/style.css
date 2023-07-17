@@ -65,13 +65,11 @@ header {
 
 
 /*life line results */
-#life_line_results {
-    display: none;
-}
+
 
 .grid {
     position: relative;
-    display: grid;
+    display: none;
     grid-template-columns: repeat(9, 20px);  
     grid-template-rows: repeat(10, 20px);
     padding: 5px;

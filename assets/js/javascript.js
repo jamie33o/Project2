@@ -42,6 +42,8 @@ let prize;
 let restartTimer;
 /**boolean to stop the timer */
 let stopTimer = false;
+/**stop user from pressing button when pop up active */
+let popUpActive = false;
 
 //array of wrong and correct answer so correct 
 //answer not always in same place e
@@ -53,7 +55,6 @@ const questionElement = document.getElementById("question");
 // Select the <li> element you want to update
 const liElement = document.querySelectorAll("#prizes ul li");
   
-
 // Retrieve data from local storage
 let storedCount = localStorage.getItem("prizeCounter");
 /*
@@ -108,6 +109,7 @@ fetch('https://the-trivia-api.com/v2/questions')
 
 //call retrieve qna so the first question and answer get loaded
 retrieve_QnA();
+
 
 /**
  * go to next question in the object array 
@@ -168,20 +170,21 @@ function update_QnA_content(questionText, wrongAnswers, correctAnswer) {
  */
 
 function checkAnswer(buttonText) {
-    if (buttonText === correctAnswer){
-        if (questionCounter <= 9){
-            nextQuestion();       
+    if(!popUpActive){
+        if (buttonText === correctAnswer){
+            if (questionCounter <= 9){
+                nextQuestion();       
+            }else {
+                questionCounter = 0;
+                retrieve_QnA();
+            }
+            incrementPrize();
+            restartTimer = true;
         }else {
-            counter = 0;
-            retrieve_QnA();
+        /// gameOver();
         }
-        incrementPrize();
-        restartTimer = true;
-    }else {
-        gameOver();
+
     }
-
-
 }
 
 
@@ -197,9 +200,7 @@ function incrementPrize() {
     //counter for the previous prize li element
     let previousPrizeLi = prizeCounter; 
     
-    if (prize === "€500,000"){
-        popUp(`Congratulations!!!`, `You have reached WON!! Congradulations you are a millionaire`, "PLAY AGAIN", "Quit");
-    }else if (prizeCounter < 13){
+    if (prizeCounter < 13){
         previousPrizeLi++;
         liElement[previousPrizeLi].style.backgroundImage = "url('assets/images/answer_box.png')";
         //get the p element from the previous prize and then change its color
@@ -211,18 +212,20 @@ function incrementPrize() {
 
     // Retrieve the text content of the <p> element
     prize = paragraph.textContent;
-
+    //checks if user reaches a take home prize
+    if(prize === "€5,000" || prize ==="€50,000") {
+        popUp(`WELL DONE!!!`, `You have reached ${prize} would you like to continue or save your progress and come back later
+        ?`, "CONTINUE", "SAVE");
+      }else if (prize === "€1 million"){
+        popUp(`Congratulations!!!`, `You have WON!! Congradulations you are a millionaire`, "PLAY AGAIN", "Quit");
+    }
+    if(prize != "€1 million"){
     //change background image of the prize li
     liElement[prizeCounter].style.backgroundImage = "url('assets/images/green_answer_box.png')";
     //if its not on the first prize then change 
     //the prize bg before it back to original colour black
+   }
    
-
-   //checks if user reaches a take home prize
-    if(prize === "€5,000" || prize ==="€50,000") {
-        popUp(`WELL DONE!!!`, `You have reached ${prize} would you like to continue or save your progress and come back later
-        ?`, "CONTINUE", "SAVE");
-      }
    
 }
 
@@ -238,12 +241,12 @@ function incrementPrize() {
  */
 
 function popUp(h2_text, p_text, btn1Text, btn2Text) {
-    
+    popUpActive = true;
     let popUp_element = document.getElementById("pop_up");
     popUp_element.style.display = "flex";
 
     stopTimer = true;
-
+    restartTimer = true;
     popUp_element.querySelector("h2").textContent = h2_text;
 
     popUp_element.querySelector("p").textContent = p_text;
@@ -254,10 +257,8 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
         if (btn1Text === "PLAY AGAIN") {
             location.reload();
         }
-        
-        restartTimer = true;
+        popUpActive = false;
         timer();
-        
         popUp_element.style.display = "none";
     });
 
@@ -293,12 +294,9 @@ function timer() {
     let timer = setInterval(() => {
         if (restartTimer){
             clearInterval(timer);
-            number.innerHTML = 30;
-            // Restart the animation
-            animation.play();
+            number.innerHTML = 30;         
             // Set the animation back to its original value
             restartTimer = false;
-
         }else if(timerCount === 0){
             clearInterval(timer);
             animation.pause();
@@ -332,6 +330,7 @@ const lifeLineResults = document.getElementById("life_line_results");
  */
 function hideResults(button, interval) {
 let resultsDissapear = setInterval(() => {
+    lifeLineResults.innerHTML = null;
     lifeLineResults.style.display = "none";
     button.style.display = "none";
     clearInterval(resultsDissapear);
@@ -359,7 +358,7 @@ function phoneAfriend() {
 
    lifeLineResults.innerHTML = `<p style="text-align:center">Hi im ${randomNumber}% sure the answer is "${answer}"</p>`;   
 
-    hideResults(phoneAfriend_btn,10000);
+    hideResults(phoneAfriend_btn,5000);
 }
 
 /**
@@ -368,16 +367,16 @@ function phoneAfriend() {
  * then hide results is called again to hide the button and the results
  */
 function askAudience() {
-    const grid = document.querySelector(".grid");
-    //show the life line div again after display none
+    
     lifeLineResults.style.display = "flex";
-
+    const grid = document.querySelector(".grid");
+    
+    //show the life line div again after display none
     askAudience_btn.style.backgroundImage = `url('assets/images/green_ask_audience.png')`;
     //for loop creates divs for the grid
     for (let i = 0; i < 100; i++) {
         const divElement = document.createElement('div');
-        divElement.classList.add('grid-item');
-        divElement.dat      
+        divElement.classList.add('grid-item');           
         grid.appendChild(divElement);
       }
 
@@ -427,6 +426,7 @@ function fiftyFifty() {
     }
 
 
-    hideResults(fiftyFifty_btn, 1000);
+    fiftyFifty_btn.style.display = "none";
 
 }
+

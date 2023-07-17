@@ -332,18 +332,22 @@ let phoneAfriendResults = document.querySelector(".phoneAfriendResults");
  */
 function hideResults(button) {
 let resultsDissapear = setInterval(() => {
-    if(hideResultsBool){
-        if(button === askAudience_btn){
-            grid.style.display = "none";
-        }else if(button === fiftyFifty_btn){
-            fiftyFifty_btn.style.display = "none";
-        }else {
-            phoneAfriendResults.style.display = "none";
+        if(hideResultsBool){
+            if(button === askAudience_btn){
+                grid.style.display = "none";
+            }else if(button === fiftyFifty_btn){
+                fiftyFifty_btn.style.display = "none";
+            }else {
+                phoneAfriendResults.style.display = "none";
+
+            }
+            button.style.display = "none";
+            clearInterval(resultsDissapear);
+            hideResultsBool = false;
+            phoneAfriend_btn.disabled = false;
+            fiftyFifty_btn.disabled = false;
+            askAudience_btn.disabled = false;
         }
-        button.style.display = "none";
-        clearInterval(resultsDissapear);
-        hideResultsBool = false;
-}
    },1000);
 }
 
@@ -370,6 +374,9 @@ function phoneAfriend() {
 
     hideResults(phoneAfriend_btn);
     phoneAfriend_btn.disabled = true;
+    fiftyFifty_btn.disabled = true;
+    askAudience_btn.disabled = true;
+
 }
 
 /**
@@ -411,26 +418,32 @@ function askAudience() {
 
     hideResults(askAudience_btn);
        askAudience_btn.disabled = true;
+       phoneAfriend_btn.disabled = true;
+       fiftyFifty_btn.disabled = true;
+
 }
 
 /**This function is for the 50/50 lifeline button
  * it gets rid of two wrong questions
  */
 function fiftyFifty() {
-    //show the life line div again after hideResults()
+    
+    fiftyFifty_btn.style.backgroundImage = `url('assets/images/green_50_50.png')`;
+
+
     for(let i = 0;i <= 1;i++){
         switch(wrongAnswers[i]){
             case button_A.textContent:
-                button_A.style.display = "none";
+                button_A.textContent = "";
                 break;
             case button_B.textContent:
-                button_B.style.display = "none";
+                button_B.textContent = "";
                 break;
             case button_C.textContent:
-                button_C.style.display = "none";
+                button_C.textContent = "";
                 break;
             case button_D.textContent:
-                button_D.style.display = "none";
+                button_D.textContent = "";
                 break;
         }
     }
@@ -438,5 +451,8 @@ function fiftyFifty() {
     hideResults(fiftyFifty_btn);
 
     fiftyFifty_btn.disabled = true;
+    phoneAfriend_btn.disabled = true;
+    askAudience_btn.disabled = true;
+
 }
 

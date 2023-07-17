@@ -28,9 +28,9 @@ askAudience_btn.addEventListener("click", (evt) => askAudience());
 
 //store the question and answer's object retrieved from the api 
 let qnaObjectArray;
-//counter used to increment trough the question's
+/**counter used to increment trough the question's object from api*/
 let questionCounter = 0;
-/**store the answer of each question*/
+/**store the correct answer of each question*/
 let correctAnswer;
 /**array of wrong answers */
 let wrongAnswers;
@@ -57,10 +57,19 @@ const liElement = document.querySelectorAll("#prizes ul li");
 // Retrieve data from local storage
 let storedCount = localStorage.getItem("prizeCounter");
 
+//boolean that is set to trough when correct 
+//answer is clicked to hide the results of the lifeline
 let hideResultsBool;
+
+//call retrieve qna to get the qna object from api so the first question and answer get loaded
+retrieve_QnA();
+
+//start the timer 
+timer();
+
 /*
 check if there is a previously stored prize  
-set prize counter to it then change all previous
+set prize counter to it then changes all previous
 prize amounts to gray and set background of current prize amount to green
  */
 if (storedCount != null){
@@ -70,7 +79,7 @@ if (storedCount != null){
   
     for (let i = prizeCounter; i < liElement.length; i++){
        if (i === prizeCounter){
-        continue;
+            continue;
        }     
         let prizeAmount = liElement[i].querySelector("p");
         prizeAmount.style.color = "grey";
@@ -93,24 +102,17 @@ if (storedCount != null){
 function retrieve_QnA() {
 
 // Fetch the question from the https://the-trivia-api.com/ API
-fetch('https://the-trivia-api.com/v2/questions')
-  .then(response => response.json()) // Parse the response as JSON
-  .then(data => {
-
-    qnaObjectArray = data;
-    nextQuestion();
-
-  })
-  .catch(error => {
-    questionElement.textContent = `Error fetching question: ${error}`
-  });
+    fetch('https://the-trivia-api.com/v2/questions')
+    .then(response => response.json()) // Parse the response as JSON
+    .then(data => {
+        qnaObjectArray = data;
+        nextQuestion();
+    })
+    .catch(error => {
+        questionElement.textContent = `Error fetching question: ${error}`
+    });
 
 }
-
-//call retrieve qna so the first question and answer get loaded
-retrieve_QnA();
-timer();
-
 
 /**
  * go to next question in the object array 
@@ -147,7 +149,7 @@ function checkAnswer(buttonText) {
             incrementPrize();
             restartTimer = true;
         }else {
-         gameOver();
+            gameOver();
         }
         hideResultsBool = true;
     }
@@ -215,6 +217,7 @@ function incrementPrize() {
       }else if (prize === "€1 million"){
         popUp(`Congratulations!!!`, `You have WON!! Congradulations you are a millionaire`, "PLAY AGAIN", "Quit");
     }
+
     if(prize != "€1 million"){
     //change background image of the prize li
     liElement[prizeCounter].style.backgroundImage = "url('assets/images/green_answer_box.png')";
@@ -234,15 +237,11 @@ function incrementPrize() {
  * @param {text} btn1Text - text for button element
  * @param {text} btn2Text - text for button element
  */
-
 function popUp(h2_text, p_text, btn1Text, btn2Text) {
     popUpActive = true;
     let popUp_element = document.getElementById("pop_up");
     popUp_element.style.display = "flex";
- 
-    
     popUp_element.querySelector("h2").textContent = h2_text;
-
     popUp_element.querySelector("p").textContent = p_text;
     popUp_element.querySelector("#btn1").textContent = btn1Text;
     popUp_element.querySelector("#btn2").textContent = btn2Text;
@@ -285,14 +284,12 @@ function timer() {
             if (restartTimer){
                 timerCount = 30;
                 number.innerHTML = 30; 
-                restartAnimation();
-                //animation.pause();
                 // Set the animation back to its original value
+                restartAnimation();
                 restartTimer = false;
             }else if(timerCount === 0){
                 clearInterval(timer);
                 gameOver();
-                stopTimer = false;
             }else{
                 timerCount--;
                 number.innerHTML = timerCount;
@@ -331,23 +328,23 @@ let phoneAfriendResults = document.querySelector(".phoneAfriendResults");
  * @param {- button will dissapear that was pressed} button 
  */
 function hideResults(button) {
-let resultsDissapear = setInterval(() => {
-        if(hideResultsBool){
-            if(button === askAudience_btn){
-                grid.style.display = "none";
-            }else if(button === fiftyFifty_btn){
-                fiftyFifty_btn.style.display = "none";
-            }else {
-                phoneAfriendResults.style.display = "none";
+    let resultsDissapear = setInterval(() => {
+    if(hideResultsBool){
+        if(button === askAudience_btn){
+            grid.style.display = "none";
+        }else if(button === fiftyFifty_btn){
+            fiftyFifty_btn.style.display = "none";
+        }else {
+            phoneAfriendResults.style.display = "none";
 
-            }
-            button.style.display = "none";
-            clearInterval(resultsDissapear);
-            hideResultsBool = false;
-            phoneAfriend_btn.disabled = false;
-            fiftyFifty_btn.disabled = false;
-            askAudience_btn.disabled = false;
         }
+        button.style.display = "none";
+        clearInterval(resultsDissapear);
+        hideResultsBool = false;
+        phoneAfriend_btn.disabled = false;
+        fiftyFifty_btn.disabled = false;
+        askAudience_btn.disabled = false;
+    }
    },1000);
 }
 
@@ -362,15 +359,10 @@ let resultsDissapear = setInterval(() => {
  */
 function phoneAfriend() {
 
-   const randomNumber = Math.floor(Math.random() * 100) + 1;
-    //show the life line div again after display none
-    
-
-   let answer = randomNumber > 50 ? correctAnswer : wrongAnswers[0];
-   
-   phoneAfriend_btn.style.backgroundImage = `url('assets/images/green_phone_friend.png')`;
-
-   phoneAfriendResults.innerHTML = `Hi im ${randomNumber}% sure the answer is "${answer}"`;   
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    let answer = randomNumber > 50 ? correctAnswer : wrongAnswers[0];
+    phoneAfriend_btn.style.backgroundImage = `url('assets/images/green_phone_friend.png')`;
+    phoneAfriendResults.innerHTML = `Hi im ${randomNumber}% sure the answer is "${answer}"`;   
 
     hideResults(phoneAfriend_btn);
     phoneAfriend_btn.disabled = true;
@@ -429,7 +421,6 @@ function askAudience() {
 function fiftyFifty() {
     
     fiftyFifty_btn.style.backgroundImage = `url('assets/images/green_50_50.png')`;
-
 
     for(let i = 0;i <= 1;i++){
         switch(wrongAnswers[i]){

@@ -40,8 +40,7 @@ let prizeCounter;
 let prize;
 /**boolean to restart timer*/
 let restartTimer;
-/**boolean to stop the timer */
-let stopTimer = false;
+
 /**stop user from pressing button when pop up active */
 let popUpActive = false;
 
@@ -70,8 +69,7 @@ if (storedCount != null){
     for (let i = prizeCounter; i < liElement.length; i++){
        if (i === prizeCounter){
         continue;
-       }
-        
+       }     
         let prizeAmount = liElement[i].querySelector("p");
         prizeAmount.style.color = "grey";
         if (prizeAmount.textContent === "€5,000" || prizeAmount.textContent === "€50,000") {
@@ -109,6 +107,7 @@ fetch('https://the-trivia-api.com/v2/questions')
 
 //call retrieve qna so the first question and answer get loaded
 retrieve_QnA();
+timer();
 
 
 /**
@@ -127,6 +126,28 @@ function nextQuestion() {
 
     update_QnA_content(questionText,wrongAnswers,correctAnswer);
     questionCounter++;
+    
+}
+/**
+ * function triggered by any answer button pressed check's if the answer is correct
+ * and then goes to next question or gets new qna object array if reaches 9
+ */
+
+function checkAnswer(buttonText) {
+    if(!popUpActive){
+        if (buttonText === correctAnswer){
+            if (questionCounter <= 9){
+                nextQuestion();       
+            }else {
+                questionCounter = 0;
+                retrieve_QnA();
+            }
+            incrementPrize();
+            restartTimer = true;
+        }else {
+        // gameOver();
+        }
+    }
     
 }
 
@@ -158,35 +179,9 @@ function update_QnA_content(questionText, wrongAnswers, correctAnswer) {
 
     // Update the content of the <p> element with the question id
     questionElement.textContent = questionText;
-
-    timer();
+    
+    
 }
-
-
-
-/**
- * function triggered by any answer button pressed check's if the answer is correct
- * and then goes to next question or gets new qna object array if reaches 9
- */
-
-function checkAnswer(buttonText) {
-    if(!popUpActive){
-        if (buttonText === correctAnswer){
-            if (questionCounter <= 9){
-                nextQuestion();       
-            }else {
-                questionCounter = 0;
-                retrieve_QnA();
-            }
-            incrementPrize();
-            restartTimer = true;
-        }else {
-        /// gameOver();
-        }
-
-    }
-}
-
 
 //------------functions for prize section-------------
 
@@ -226,7 +221,6 @@ function incrementPrize() {
     //the prize bg before it back to original colour black
    }
    
-   
 }
 
 //---------pop up-----------
@@ -244,9 +238,8 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
     popUpActive = true;
     let popUp_element = document.getElementById("pop_up");
     popUp_element.style.display = "flex";
-
-    stopTimer = true;
-    restartTimer = true;
+ 
+    
     popUp_element.querySelector("h2").textContent = h2_text;
 
     popUp_element.querySelector("p").textContent = p_text;
@@ -258,7 +251,7 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
             location.reload();
         }
         popUpActive = false;
-        timer();
+        
         popUp_element.style.display = "none";
     });
 
@@ -277,7 +270,7 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
 }
 
 //-----------Timer function section-----------
-  
+
 /**
  * This function creates a 30second timer that restarts each time the user
  * answers a question if it goes to 0 its game over
@@ -285,33 +278,36 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
 function timer() {
     let number = document.getElementById("number");
     let timerCount = 30;
-    const element = document.querySelector("circle");
- 
-    const animation = element.animate(
-              { strokeDashoffset: [0, -472] },
-              { duration: 32000, easing: 'linear', fill: 'forwards' }
-            );
+    restartAnimation();
     let timer = setInterval(() => {
-        if (restartTimer){
-            clearInterval(timer);
-            number.innerHTML = 30;         
-            // Set the animation back to its original value
-            restartTimer = false;
-        }else if(timerCount === 0){
-            clearInterval(timer);
-            animation.pause();
-            gameOver();
-        }else if (stopTimer) {
-            clearInterval(timer);
-            animation.pause();
-            stopTimer = false;
-        }else{
-            timerCount--;
-            number.innerHTML = timerCount;
+        if(!popUpActive) {
+            if (restartTimer){
+                timerCount = 30;
+                number.innerHTML = 30; 
+                restartAnimation();
+                //animation.pause();
+                // Set the animation back to its original value
+                restartTimer = false;
+            }else if(timerCount === 0){
+                clearInterval(timer);
+                gameOver();
+                stopTimer = false;
+            }else{
+                timerCount--;
+                number.innerHTML = timerCount;
+            }
         }
     },970)
 }
      
+function restartAnimation () {
+    const element = document.querySelector("circle");
+    element.animate(
+              { strokeDashoffset: [0, -472] },
+              { duration: 32000, easing: 'linear', fill: 'forwards' }
+            );
+}
+
 /**
  * This function generates pop up to inform user game is over
  * and ask if they would like to play again or quit

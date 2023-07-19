@@ -11,18 +11,23 @@ body {
     background-repeat: repeat-x;
     display: flex;
     flex-direction: column;
+   
+    background-size: 70% 100%;
 }
 
 .center {
     text-align: center;
 }
 
+p ,button{
+    font-size: 1.2em;
+}
 
 /*header:- top of page*/
 header {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
     margin: 30px 0 30px 0;
 }
 
@@ -30,15 +35,22 @@ header {
 .box {
     border: 2px solid lightblue;
     border-radius: 10px;
-    width: 250px;
+    width: 200px;
     padding: 10px;
-    margin: 0 40px 0 40px;
+    margin: 0 10px;
 }
+
 /*lifelines buttons*/
+.lf-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
 #life_lines button{
     background-color: transparent;
-    width: 80px;
-    height: 70px;
+    width: 60px;
+    height: 50px;
     background-size: contain;
 }
 
@@ -56,6 +68,7 @@ header {
         background-image: url(../images/orange_phone_friend.png);
       }  
 }  
+
 #askAudience {
     background: url(../images/ask_the_audience_img.png) no-repeat;
     &:hover {
@@ -63,10 +76,7 @@ header {
       }  
 }  
 
-
 /*life line results */
-
-
 .grid {
     position: relative;
     display: none;
@@ -104,19 +114,26 @@ header {
     z-index: 0;
 }
 
+/* timer and logo */
 
-
-#logo img {
-    width: 180px;
-    height: auto;
+.timer-logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#logo {
+    width: 150px;
+    height: 150px;
     margin-bottom: 20px;
+    background: url(../images/wwtbam_logo.png) no-repeat center center;
+    background-size: contain;
 }
 
 /*timer*/
 #timer {
-    margin: auto;
-    width: 140px;
-    height: 140px;
+    width: 100px;
+    height: 100px;
     position: relative;
 }
 
@@ -124,61 +141,54 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 130px;
-    width: 130px;
-    padding: 15px;
+    height: 100px;
+    width: 100px;
+    left: 0;
     border-radius: 50%;
-    box-shadow: 6px  6px 6px 6px rgba(248, 248, 249, 0.7),
-               -6px -6px 6px 6px rgba(248, 248, 249, 0.7);
+    box-shadow: 0  0 10px 10px rgba(248, 248, 249, 0.7);
 }
 .inner {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 120px;
-    width: 120px;
+    height: 80px;
+    width: 80px;
     border-radius: 50%;
-    box-shadow: inset 6px  6px 6px 6px rgba(248, 248, 249, 0.7),
-               inset -6px -6px 6px 6px rgba(248, 248, 249, 0.7);
+    box-shadow: inset 0  0 10px 10px rgba(248, 248, 249);
 
 }
 
 
 #number {
     font-weight: 900;
-    font-size: 50px;
+    font-size: 30px;
     color: white;
 }
 
-circle {  
+circle {    
     fill: none;
     stroke: url(#GradientColor);
-    stroke-width: 20px;
+    stroke-width: 12px;
     stroke-dasharray: 472;
     stroke-dashoffset: 0;  
-    animation: anim 32s linear forwards;
-      
-}
-
-@keyframes anim {
-    100%{
-        stroke-dashoffset: -472;
-    }
-    
+    stroke-linecap: round;
 }
 
 svg {
     position: absolute;
-    top: 0;
     left: 0;
+    top: 0;
+    width: 110px;
+    height: 110px;
+    overflow:visible;
+    offset: 0%;
 }
-
-
 
 #prizes {
     text-align: center;
-   padding: 20px;
+    padding: 20px;
 }
+
 #prizes li {
     background: url(../images/answer_box.png) no-repeat center;
     background-size: contain;
@@ -206,11 +216,13 @@ main {
     justify-content: center;
     align-items: center;
     background: url(../images/question_bg.png) no-repeat center;
-    background-size:  90% 100px;
+    background-size:  90% 100%;
     width: 90%;
-    height: 100px;
+    height: fit-content;
+    min-height: 100px;
     margin: 20px auto 20px auto;
     text-align: center;
+    padding: 10px 20px;
 }
 
 #question {
@@ -224,7 +236,7 @@ main {
     margin: 10px auto 10px auto;
     flex-wrap: wrap;
     justify-content: center;
-    max-width: 85%;
+    max-width: 90%;
 }
 
 .button {
@@ -232,17 +244,21 @@ main {
     align-items: center;
     justify-content: center;
     width: 500px;
-    height: 50px;
+    max-width: 90%;
+    height: fit-content;
+    min-height: 50px;
     background: url(../images/answer_box.png) no-repeat center /cover;
-    background-size: 95% 50px;
+    background-size: 95% 100%;
     margin-top: 10px;
     text-decoration: none;
     text-align: center;
-    padding: 0 50px 0 50px;
+    padding: 8px 50px;
 }
+
 .button:hover {
     background-image: url(../images/orange_answer_box.png);
 }
+
 /*pop up window*/
 #pop_up {
     display: none;
@@ -254,10 +270,8 @@ main {
     height: 45%;
     background-color: rgb(7, 7, 67);
     text-align: center;
+    z-index: 3;
 }
-
-
-
 
 /*footer:- bottom of page*/
 footer {
@@ -268,3 +282,29 @@ footer {
 
 
 
+@media screen and (max-width: 900px) {
+  
+    #logo {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    
+  .lf-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #logo {
+        width: 120px;
+        height: 120px;
+    }
+    .grid {
+        position: absolute;
+        background-color: blue;
+        z-index: 1;
+    }
+   
+}

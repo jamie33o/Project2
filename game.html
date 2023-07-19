@@ -20,10 +20,11 @@
         <!--this is life line section has 3 different line line to help the user answer a question-->
         <section id="life_lines"class="box">
           
-            <button id="fiftyFifty"></button>
-            <button id="phoneAfriend"></button>
-            <button id="askAudience"></button>
-
+            <div class="lf-buttons">
+                <button id="fiftyFifty"></button>
+                <button id="phoneAfriend"></button>
+                <button id="askAudience"></button>
+            </div>
             <p class="phoneAfriendResults"></p>
             <div id="life_line_results">
                 <div class="grid">
@@ -40,29 +41,28 @@
 
         </section>
 
-
-        <div id="logo">
-            <img src="assets/images/wwtbam_logo.png" alt="who wants to be a millionaire logo">          
+        <section class="timer-logo">
+            <div id="logo"></div>
             <div id="timer">
                 <div class="outer">
                     <div class="inner">
                         <div id="number">
-                            30
+                                30
                         </div>
                     </div>
-                </div>
+                    
                 <!--this is the svg for the timer animation-->
-                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
                     <defs>
                         <linearGradient id="GradientColor">
                         <stop offset="0%" stop-color="#e91e63" />
                         <stop offset="100%" stop-color="#673ab7" />
                         </linearGradient>
                     </defs>
-                    <circle cx="80" cy="80" r="70" stroke-linecap="round" />
+                    <circle cx="50" cy="50" r="45"/>
                 </svg>
-            </div>
-        </div> 
+            </div> 
+        </section>
 
         <!--this is a pop up that displays at certain milestones in the game-->
         <div id="pop_up" class="box">

@@ -149,7 +149,7 @@ function checkAnswer(buttonText) {
             incrementPrize();
             restartTimer = true;
         }else {
-            gameOver();
+            //gameOver();
         }
         hideResultsBool = true;
     }
@@ -295,7 +295,7 @@ function timer() {
                 number.innerHTML = timerCount;
             }
         }
-    },970)
+    },1000)
 }
      
 /**
@@ -304,8 +304,8 @@ function timer() {
 function restartAnimation () {
     const element = document.querySelector("circle");
     element.animate(
-              { strokeDashoffset: [0, -472] },
-              { duration: 32000, easing: 'linear', fill: 'forwards' }
+              { strokeDashoffset: [0, -280] },
+              { duration: 30000, easing: 'linear', fill: 'forwards' }
             );
 }
 

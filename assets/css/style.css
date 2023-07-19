@@ -301,10 +301,26 @@ footer {
         width: 120px;
         height: 120px;
     }
-    .grid {
+    #life_line_results {
+        display: none;
+        background-color: rgb(7, 7, 67);
+        width: 95%;
+        height: 450px;
         position: absolute;
+        left:10px;
+        top: 5px;
+        border: 3px solid lightblue;
+        border-radius: 20px;
+        justify-content: center;
+
+        
+    }
+    .grid {
         background-color: blue;
         z-index: 1;
+        margin-top: 50px;
+       
     }
+   
    
 }

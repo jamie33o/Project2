@@ -332,6 +332,7 @@ function hideResults(button) {
     if(hideResultsBool){
         if(button === askAudience_btn){
             grid.style.display = "none";
+            lifeLineResults.style.display = "none";
         }else if(button === fiftyFifty_btn){
             fiftyFifty_btn.style.display = "none";
         }else {
@@ -379,6 +380,7 @@ function phoneAfriend() {
 function askAudience() {
     
     grid.style.display = "grid";
+    lifeLineResults.style.display = "flex";
     //show the life line div again after display none
     askAudience_btn.style.backgroundImage = `url('assets/images/green_ask_audience.png')`;
     //for loop creates divs for the grid

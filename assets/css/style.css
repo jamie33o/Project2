@@ -6,24 +6,26 @@
     color: white;
 }
 
-
-
 body {
     background: url(../images/bg.png);
     background-repeat: repeat-x;
-    background-size: 100% 100%;
+    background-color: rgb(7, 7, 36);
+    height: 100%;
 }
 
+/*main:- center of page*/
 main {
      display: flex;
     flex-direction: column;
-    width: fit-content;
+    width: 100%;
     height: fit-content;
-    margin: auto auto;
-    min-width: 70%;
+    margin: 50px auto;
+    min-width: 50%;
     max-width: 70%;
     position: relative;
+    margin-bottom: 15 0px;
 }
+
 .center {
     text-align: center;
 }
@@ -37,6 +39,7 @@ p ,button{
 /*overlay at the start of the game */
 #overlay {
     position: fixed;
+    top:0;
     width: 100%;
     height: 100%;
     background: url(../images/bg.png) repeat-x;
@@ -53,11 +56,9 @@ p ,button{
 .flex-row {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     position: relative;
 }
-
-
 
 /*box for lifelines and prizes*/
 .box {
@@ -65,7 +66,6 @@ p ,button{
     border-radius: 10px;
     width: 200px;
     padding: 5px;
-    margin: 0 10px;
 }
 
 /*lifelines buttons*/
@@ -105,7 +105,9 @@ p ,button{
       }  
 }  
 
+
 /*life line results */
+/*ask the audience results*/
 .grid {
     position: relative;
     display: none;
@@ -129,10 +131,10 @@ p ,button{
     width: 170px;
 }
 
-
 .bars li {
     display: flex;
     justify-self: flex-end;
+    align-self: self-end;
     width: 18px;
     height: 0;
     background-color: blueviolet;
@@ -228,11 +230,6 @@ svg {
 /*game.html */
 ul {
     list-style: none;
-    }
-
-/*main:- center of page*/
-main {
-    margin-bottom: 35px;
 }
 
 .question_box {
@@ -240,8 +237,7 @@ main {
     justify-content: center;
     align-items: center;
     background: url(../images/question_bg.png) no-repeat center;
-    background-size:  90% 100%;
-    width: 90%;
+    background-size:  100% 100%;
     height: fit-content;
     min-height: 100px;
     margin: 20px auto 20px auto;
@@ -260,7 +256,7 @@ main {
     margin: 10px auto 10px auto;
     flex-wrap: wrap;
     justify-content: center;
-    max-width: 90%;
+    max-width: 100%;
 }
 
 .button {
@@ -268,7 +264,7 @@ main {
     align-items: center;
     justify-content: center;
     width: 45%;
-    max-width: 90%;
+    max-width: 100%;
     height: fit-content;
     min-height: 50px;
     background: url(../images/answer_box.png) no-repeat center /cover;
@@ -276,7 +272,7 @@ main {
     margin-top: 10px;
     text-decoration: none;
     text-align: center;
-    padding: 8px 50px;
+    padding: 15px 50px;
 }
 
 .button:hover {
@@ -299,78 +295,94 @@ main {
 
 /*footer:- bottom of page*/
 footer {
-    background: black;
-    height: 110px;
+    background-color: black;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
-}
-
-
+    height: 100px;
+    display: none; /* Initially hide the footer */
+  }
 
 @media screen and (max-width: 900px) {
-   
-    body {
-        width: 100%;
-        height: 100%;
-        background-size: 100% 100%;
-        max-width: 100%;
-        min-width: 100%;
-    }
-    #prizes li {
-        background-size: 100% 20px;
-        margin-top: 5px;
-    }
-    #prizes li:nth-child(10), #prizes li:nth-child(1), #prizes li:nth-child(5) {
-        background-size: 100% 20px;
-        
-    }
-  .lf-buttons {
-        flex-direction: column;
-        align-items: center;
+    main {
+       max-width: 80%;
+   }
+
+   #logo {
+    margin: 0 10px;
     }
 
-    #logo {
-        width: 100px;
-        height: 100px;
-    }
-   
-
-    p {
-        font-size: 1em;
-    }
     .answer_btns {
         flex-direction: column;
         align-items: center;
         margin: 10px 0 10px 0;
         justify-content: center;
-        max-width: 100%;
     }
     .button {
-        
         width: 100%;
-        max-width: 90%;
         height: fit-content;
         min-height: 50px;
         margin-top: 10px;
         
     }
+  
+}
+
+@media screen and (max-width: 650px) {
+    main{
+        max-width: 100%;
+    }
+
+    #logo {
+        width: 100px;
+        height: 100px;
+        
+    }
+
+    #prizes li {
+        background-size: 100% 20px;
+        margin-top: 5px;
+    }
+
+    #prizes li:nth-child(10), #prizes li:nth-child(1), #prizes li:nth-child(5) {
+        background-size: 100% 20px;
+        
+    }
+
+  .lf-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    p {
+        font-size: 1em;
+    }
 
 /*life line results */
     .grid { 
-        grid-template-columns: repeat(6, 20px);  
+        grid-template-columns: repeat(4, 20px);  
         grid-template-rows: repeat(10, 20px);
     }
 
     .bars {
         justify-content: space-evenly;
-        width: 125px;
-    }
+        width: 90px;
+        bottom: 25px;
 
+    }
 
     .bars li {
         width: 12px;
     }
-}
 
-@media screen and (max-width: 600px) {
-     
+    /*box for lifelines and prizes*/
+    .box {
+        width: 100px;
+    }
+
+    #pop_up {
+        width: 95%;
+    }
 }

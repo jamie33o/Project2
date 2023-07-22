@@ -42,6 +42,9 @@ let prize;
 /**boolean to restart timer*/
 let restartTimer;
 
+/**boolean for playsound function */
+let currentAudio = null;
+
 /**stop user from pressing button when pop up active */
 let popUpActive = false;
 
@@ -75,6 +78,28 @@ start_btn.addEventListener("click", function(){
 });
 }
 
+/**function for playing audi */
+function playSound(soundUrl, duration) {
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
+  
+    const audio = new Audio(soundUrl);
+    currentAudio = audio;
+  
+    audio.addEventListener('timeupdate', function() {
+      if (audio.currentTime >= duration) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    });
+  
+    audio.play();
+  }
+  
+
+  
 /*this aevent handler shows the footer when user scrolls to bottom of
  page and hides it when user scrolls up */
 window.addEventListener('scroll', function() {
@@ -151,7 +176,7 @@ function checkAnswer(buttonText) {
             incrementPrize();
             restartTimer = true;
         }else {
-            gameOver();
+            //gameOver();
         }
         hideResultsBool = true;
     }
@@ -214,9 +239,13 @@ function incrementPrize() {
     prize = paragraph.textContent;
     //checks if user reaches a take home prize
     if(prize === "€5,000" || prize ==="€50,000") {
+          
+        // Call the playSound function and pass the URL of the sound file
+        playSound('assets/sounds/milestone_prize.mp3',3);
         popUp(`WELL DONE!!!`, `You have reached ${prize} would you like to continue or save your progress and come back later
         ?`, "CONTINUE", "SAVE");
-      }else if (prize === "€1 million"){
+      }else if (prize === "Million"){
+        playSound('assets/sounds/million_sound.mp3',7);
         popUp(`Congratulations!!!`, `You have WON!! Congradulations you are a millionaire`, "PLAY AGAIN", "Quit");
     }
 
@@ -262,11 +291,11 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
         if (btn2Text === "Quit") {    
                 // Navigate to a new page, replacing the current page in the browser history
                 localStorage.setItem("prizeCounter", 13);
-            } else {
+        }else {
                     // Save data to local storage
                 localStorage.setItem("prizeCounter", prizeCounter);
                 
-            }
+        }
         sessionStorage.setItem("startScreen", 'true')
         location.reload();
     }); 
@@ -287,12 +316,14 @@ function timer() {
             if (restartTimer){
                 timerCount = 30;
                 number.innerHTML = 30; 
+                playSound("assets/sounds/suspense.mp3",30);
                 // Set the animation back to its original value
                 restartAnimation();
                 restartTimer = false;
             }else if(timerCount === 0){
                 clearInterval(timer);
                 gameOver();
+                playSound("assets/sounds/lose.mp3", 5)
             }else{
                 timerCount--;
                 number.innerHTML = timerCount;
@@ -454,6 +485,8 @@ function fiftyFifty() {
 }
 
 function startGame() {
+
+    playSound("assets/sounds/suspense.mp3",30);
 /*
 check if there is a previously stored prize  
 set prize counter to it then changes all previous

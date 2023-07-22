@@ -75,6 +75,21 @@ start_btn.addEventListener("click", function(){
 });
 }
 
+/*this aevent handler shows the footer when user scrolls to bottom of
+ page and hides it when user scrolls up */
+window.addEventListener('scroll', function() {
+    var footer = document.getElementById('myFooter');
+    var scrollPosition = window.innerHeight + window.scrollY;
+    var documentHeight = document.body.offsetHeight;
+    var footerHeight = footer.offsetHeight;
+
+    if (scrollPosition >= documentHeight - footerHeight) {
+      footer.style.display = 'block'; // Show the footer when scrolled to the bottom
+    } else {
+      footer.style.display = 'none'; // Hide the footer when not at the bottom
+    }
+});
+
 //--------functions for question and answers section-----------
 
 /**

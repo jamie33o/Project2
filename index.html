@@ -4,7 +4,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Who wants to be a millionaire"/>
+    <meta name="description" content="Who wants to be a millionaire">
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-16x16.png">
@@ -16,34 +16,147 @@
 
 </head>
 <body>
-    <header>
-
+    <header id="overlay">
         <div id="logo">
         </div> 
+        <p class="center">Welcome to</p>
+        <h1 class="center">Who Want's To Be A Millionaire?</h1>
+        <button id="start" class="button">Start</button>
 
-      
+        <!--this is a pop up that displays at certain milestones in the game-->
+        
     </header>
 
     <main>      
-  <p class="center">Welcome to</p>
-        <h1 class="center">Who Want's To Be A Millionaire?</h1>
-  
-        <nav class="answer_btns">
-            <ul>
-                <li>
-                    <a href="game.html" id="play_btn" class="button">PLAY</a>
-                </li>
-                <li>
-                    <a href="help.html" id="help_btn" class="button">HELP</a>
-                </li>
-            </ul>
-        </nav>
+        
+        <div class="flex-row">
+            <div id="pop_up" class="box">
             
+                <h2></h2>
+                <p></p>
+                <button id="btn1" class="button"></button>
+                <button id="btn2" class="button"></button>
+
+            </div>  
+            <!--this is life line section has 3 different line line to help the user answer a question-->
+            <div id="life_lines" class="box">
+                    
+                <div class="lf-buttons">
+                    <button id="fiftyFifty"></button>
+                    <button id="phoneAfriend"></button>
+                    <button id="askAudience"></button>
+                </div>
+                <p class="phoneAfriendResults"></p>
+                <div id="life_line_results">
+                    <div class="grid">
+                        <ul class="bars">
+                            <li class="bar">A</li>
+                            <li class="bar">B</li>
+                            <li class="bar">C</li>
+                            <li class="bar">D</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        
+                <div class="timer-logo">
+                    <div id="logo"></div>
+                    <div id="timer">
+                        <div class="outer">
+                            <div class="inner">
+                                <div id="number">
+                                        30
+                                </div>
+                            </div>
+                            
+                        <!--this is the svg for the timer animation-->
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                            <defs>
+                                <linearGradient id="GradientColor">
+                                <stop offset="0%" stop-color="#e91e63" />
+                                <stop offset="100%" stop-color="#673ab7" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="40" cy="40" r="35"/>
+                        </svg>
+                    </div> 
+                    </div>
+                </div>
+
+
+                <!--these are the prizes the user can win-->
+                <div id="prizes" class="box">
+                    <ul > 
+                        <li>
+                            <p>Million</p>
+                        </li>
+                        <li>
+                            <p>€500,000</p>
+                        </li>
+                        <li>
+                            <p>€250,000</p>
+                        </li>
+                        <li>
+                            <p>€100,000</p>
+                        </li>
+                        <li>
+                            <p>€50,000</p>
+                        </li>
+                        <li>
+                            <p>€30,000</p>
+                        </li>
+                        <li>
+                            <p>€20,000</p>
+                        </li>
+                        <li>
+                            <p>€10,000</p>
+                        </li>
+                        <li>
+                            <p>€7,000</p>
+                        </li>
+                        <li>
+                            <p>€5,000</p>
+                        </li>
+                        <li>
+                            <p>€3,000</p>
+                        </li>
+                        <li>
+                            <p>€2,000</p>
+                        </li>
+                        <li>
+                            <p>€1,000</p>
+                        </li>
+                        <li>
+                            <p>€500</p>
+                        </li>
+                    </ul>
+                </div> 
+        </div>
+
+        <!--this is the section where the question and 4 answer will be display with js-->
+        <section>
+            <div class="question_box">
+                <p id="question"></p>
+            </div>
+            <div class="answer_btns">
+
+                    <button class="button" id="answer_a_btn"></button>
+                    <button class="button" id="answer_b_btn"></button>
+                    <button class="button" id="answer_c_btn"></button>
+                    <button class="button" id="answer_d_btn"></button>
+
+            </div>
+       </section>
+
+       
     </main>
 
+    <!--the footer section holds instrucions for the game-->
     <footer>
         <p class="center">Instructions for buttons to press</p>
     </footer>
     
+    <!-- script -->
+    <script src="assets/js/javascript.js"></script>
 </body>
 </html>

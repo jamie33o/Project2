@@ -1,6 +1,7 @@
 
 //--------Global variables with event listenerers------
 
+
 //Select the buttons elements for the answer's and add an event listener to triger checkanswer function
 const button_A = document.getElementById("answer_a_btn");
 button_A.addEventListener("click", (evt) => checkAnswer(button_A.textContent));
@@ -29,7 +30,7 @@ askAudience_btn.addEventListener("click", (evt) => askAudience());
 //store the question and answer's object retrieved from the api 
 let qnaObjectArray;
 /**counter used to increment trough the question's object from api*/
-let questionCounter = 0;
+let questionCounter;
 /**store the correct answer of each question*/
 let correctAnswer;
 /**array of wrong answers */
@@ -61,35 +62,17 @@ let storedCount = localStorage.getItem("prizeCounter");
 //answer is clicked to hide the results of the lifeline
 let hideResultsBool;
 
-//call retrieve qna to get the qna object from api so the first question and answer get loaded
-retrieve_QnA();
-
-//start the timer 
-timer();
-
-/*
-check if there is a previously stored prize  
-set prize counter to it then changes all previous
-prize amounts to gray and set background of current prize amount to green
- */
-if (storedCount != null){
-    prizeCounter = storedCount;
-     //change background image of the prize li
-    liElement[prizeCounter].style.backgroundImage = "url('assets/images/green_answer_box.png')";
-  
-    for (let i = prizeCounter; i < liElement.length; i++){
-       if (i === prizeCounter){
-            continue;
-       }     
-        let prizeAmount = liElement[i].querySelector("p");
-        prizeAmount.style.color = "grey";
-        if (prizeAmount.textContent === "€5,000" || prizeAmount.textContent === "€50,000") {
-            liElement[i].style.backgroundImage = "url('assets/images/answer_box.png')";
-        }
-    }
-    
+if(sessionStorage.getItem("startScreen") === "false"){
+    startGame();
+    document.querySelector("#overlay").style.display = "none";
 }else {
-     prizeCounter = 13;
+//event listener of the start up overlay
+const start_btn = document.getElementById("start");
+start_btn.addEventListener("click", function(){
+    //call retrieve qna to get the qna object from api so the first question and answer get loaded
+    startGame();
+    document.querySelector("#overlay").style.display = "none";
+});
 }
 
 //--------functions for question and answers section-----------
@@ -248,10 +231,10 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
  
     popUp_element.querySelector("#btn1").addEventListener('click',  function() {
         if (btn1Text === "PLAY AGAIN") {
+            sessionStorage.setItem("startScreen", 'false');
             location.reload();
         }
         popUpActive = false;
-        
         popUp_element.style.display = "none";
     });
 
@@ -265,7 +248,8 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
                 localStorage.setItem("prizeCounter", prizeCounter);
                 
             }
-        window.location.replace("index.html");
+        sessionStorage.setItem("startScreen", 'true')
+        location.reload();
     }); 
 }
 
@@ -304,7 +288,7 @@ function timer() {
 function restartAnimation () {
     const element = document.querySelector("circle");
     element.animate(
-              { strokeDashoffset: [0, -280] },
+              { strokeDashoffset: [0, -219] },
               { duration: 30000, easing: 'linear', fill: 'forwards' }
             );
 }
@@ -331,15 +315,16 @@ function hideResults(button) {
     let resultsDissapear = setInterval(() => {
     if(hideResultsBool){
         if(button === askAudience_btn){
+            button.style.backgroundImage = "url('assets/images/redX_ask_the_audience_img.png')";
             grid.style.display = "none";
             lifeLineResults.style.display = "none";
         }else if(button === fiftyFifty_btn){
-            fiftyFifty_btn.style.display = "none";
+            button.style.backgroundImage = "url('assets/images/redX_50_50_img.png')";
         }else {
             phoneAfriendResults.style.display = "none";
-
-        }
-        button.style.display = "none";
+            button.style.backgroundImage = "url('assets/images/redX_phone_a_friend_img.png')";
+    }
+        
         clearInterval(resultsDissapear);
         hideResultsBool = false;
         phoneAfriend_btn.disabled = false;
@@ -449,3 +434,32 @@ function fiftyFifty() {
 
 }
 
+function startGame() {
+/*
+check if there is a previously stored prize  
+set prize counter to it then changes all previous
+prize amounts to gray and set background of current prize amount to green
+ */
+if (storedCount != null){
+    prizeCounter = storedCount;
+     //change background image of the prize li
+    liElement[prizeCounter].style.backgroundImage = "url('assets/images/green_answer_box.png')";
+  
+    for (let i = prizeCounter; i < liElement.length; i++){
+       if (i === prizeCounter){
+            continue;
+       }     
+        let prizeAmount = liElement[i].querySelector("p");
+        prizeAmount.style.color = "grey";
+        if (prizeAmount.textContent === "€5,000" || prizeAmount.textContent === "€50,000") {
+            liElement[i].style.backgroundImage = "url('assets/images/answer_box.png')";
+        }
+    }
+    
+}else {
+     prizeCounter = 13;
+}
+    retrieve_QnA();
+    timer();
+    questionCounter = 0;
+}

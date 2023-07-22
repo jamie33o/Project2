@@ -133,7 +133,6 @@ p ,button{
 .bars li {
     display: flex;
     justify-self: flex-end;
-    align-self: self-end;
     width: 18px;
     height: 0;
     background-color: blueviolet;

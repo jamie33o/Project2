@@ -256,7 +256,7 @@ function incrementPrize() {
         popUp(`WELL DONE!!!`, `You have reached ${prize} would you like to continue or save your progress and come back later
         ?`, "CONTINUE", "SAVE");
       }else if (prize === "Million"){
-        playAudioWithSrc('assets/sounds/million_sound.mp3',7);
+        playAudioWithSrc('assets/sounds/million_sound.mp3',9);
         popUp(`Congratulations!!!`, `You have WON!! Congradulations you are a millionaire`, "PLAY AGAIN", "Quit");
     }
 

@@ -25,6 +25,11 @@ phoneAfriend_btn.addEventListener("click", (evt) => phoneAfriend());
 const askAudience_btn = document.getElementById("askAudience");
 askAudience_btn.addEventListener("click", (evt) => askAudience());
 
+//event listener for play and pause
+/** play and pause button */
+const mutePlayButton = document.getElementById('mute-play-btn');
+mutePlayButton.addEventListener('click', toggleMutePlay);
+
 //---------Global variables----------
 
 //store the question and answer's object retrieved from the api 
@@ -42,7 +47,7 @@ let prize;
 /**boolean to restart timer*/
 let restartTimer;
 
-/**boolean for playsound function */
+/**sets current audio to 0 */
 let currentAudio = null;
 
 /**stop user from pressing button when pop up active */
@@ -61,6 +66,9 @@ const liElement = document.querySelectorAll("#prizes ul li");
 // Retrieve data from local storage
 let storedCount = localStorage.getItem("prizeCounter");
 
+/**audio element selecter for adding source of audio */
+const audio = document.getElementById('track');
+
 //boolean that is set to trough when correct 
 //answer is clicked to hide the results of the lifeline
 let hideResultsBool;
@@ -78,28 +86,35 @@ start_btn.addEventListener("click", function(){
 });
 }
 
-/**function for playing audi */
-function playSound(soundUrl, duration) {
-    if (currentAudio) {
+/**function's for playing audi */
+  function toggleMutePlay() {
+    if (currentAudio && currentAudio !== audio) {
       currentAudio.pause();
       currentAudio.currentTime = 0;
     }
   
-    const audio = new Audio(soundUrl);
+    if (audio.paused) {
+      playAudioWithSrc("assets/sounds/suspense.mp3",35);
+      audio.play();
+      mutePlayButton.style.backgroundImage = 'url("assets/images/no-sound.png")';
+    } else {
+      audio.pause();
+      mutePlayButton.style.backgroundImage = 'url("assets/images/sound-on.png")';    }
+  
     currentAudio = audio;
-  
-    audio.addEventListener('timeupdate', function() {
-      if (audio.currentTime >= duration) {
-        audio.pause();
-        audio.currentTime = 0;
-      }
-    });
-  
-    audio.play();
   }
   
-
+  // Function to change the audio source and play it
+  function playAudioWithSrc(sourceUrl, durationInSeconds) {
+    audio.src = sourceUrl;
+    audio.play();
   
+    setTimeout(function() {
+      audio.pause();
+      audio.currentTime = 0; // Reset the audio to the beginning
+    }, durationInSeconds * 1000); // Convert duration to milliseconds
+  }
+
 /*this aevent handler shows the footer when user scrolls to bottom of
  page and hides it when user scrolls up */
 window.addEventListener('scroll', function() {
@@ -107,10 +122,6 @@ window.addEventListener('scroll', function() {
     var scrollPosition = window.innerHeight + window.scrollY;
     var documentHeight = document.body.offsetHeight;
     var footerHeight = 180;
-    console.log("DocHeig:"+documentHeight);
-    console.log("footerHeig:"+footerHeight);
-    console.log("scrollHeig:"+scrollPosition);
-
     if (scrollPosition < documentHeight + footerHeight) {
         footer.style.display = 'none'; // Hide the footer when not at the bottom
     } else {
@@ -241,11 +252,11 @@ function incrementPrize() {
     if(prize === "€5,000" || prize ==="€50,000") {
           
         // Call the playSound function and pass the URL of the sound file
-        playSound('assets/sounds/milestone_prize.mp3',3);
+        playAudioWithSrc('assets/sounds/milestone_prize.mp3',3);
         popUp(`WELL DONE!!!`, `You have reached ${prize} would you like to continue or save your progress and come back later
         ?`, "CONTINUE", "SAVE");
       }else if (prize === "Million"){
-        playSound('assets/sounds/million_sound.mp3',7);
+        playAudioWithSrc('assets/sounds/million_sound.mp3',7);
         popUp(`Congratulations!!!`, `You have WON!! Congradulations you are a millionaire`, "PLAY AGAIN", "Quit");
     }
 
@@ -316,14 +327,14 @@ function timer() {
             if (restartTimer){
                 timerCount = 30;
                 number.innerHTML = 30; 
-                playSound("assets/sounds/suspense.mp3",30);
+                playAudioWithSrc("assets/sounds/suspense.mp3",30);
                 // Set the animation back to its original value
                 restartAnimation();
                 restartTimer = false;
             }else if(timerCount === 0){
                 clearInterval(timer);
                 gameOver();
-                playSound("assets/sounds/lose.mp3", 5)
+                playAudioWithSrc("assets/sounds/lose.mp3", 7)
             }else{
                 timerCount--;
                 number.innerHTML = timerCount;
@@ -486,8 +497,7 @@ function fiftyFifty() {
 
 function startGame() {
 
-    playSound("assets/sounds/suspense.mp3",30);
-/*
+    /*
 check if there is a previously stored prize  
 set prize counter to it then changes all previous
 prize amounts to gray and set background of current prize amount to green

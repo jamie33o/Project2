@@ -151,10 +151,31 @@ p ,button{
 #logo {
     width: 150px;
     height: 150px;
-    margin-bottom: 20px;
     background: url(../images/wwtbam_logo.png) no-repeat center center;
     background-size: contain;
 }
+
+
+/*mute and play button and how to play button*/
+
+
+.mute-play-btn {
+    width: 30px;
+    height:30px;
+    background: url('../images/sound-on.png') no-repeat center;
+    background-size: contain;
+    background-color: aliceblue;
+    border: 1px solid white;
+    border-radius: 50%;
+}
+
+.outline-btn {
+    background-color: black;
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 30px;
+}
+
 
 /*timer*/
 #timer {

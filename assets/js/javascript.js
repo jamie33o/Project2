@@ -26,7 +26,7 @@ const askAudience_btn = document.getElementById("askAudience");
 askAudience_btn.addEventListener("click", (evt) => askAudience());
 
 //event listener for play and pause
-/** play and pause button */
+/** play/pause button */
 const mutePlayButton = document.getElementById('mute-play-btn');
 mutePlayButton.addEventListener('click', toggleMutePlay);
 
@@ -47,8 +47,10 @@ let prize;
 /**boolean to restart timer*/
 let restartTimer;
 
-/**sets current audio to 0 */
+/**used to pause current audio when new one is starting */
 let currentAudio = null;
+/**boolean to let sound play if false or not if true  */
+let mute = true;
 
 /**stop user from pressing button when pop up active */
 let popUpActive = false;
@@ -72,12 +74,18 @@ const audio = document.getElementById('track');
 //boolean that is set to trough when correct 
 //answer is clicked to hide the results of the lifeline
 let hideResultsBool;
-
+const previousOverflow = document.body.style.overflow;
 if(sessionStorage.getItem("startScreen") === "false"){
     startGame();
     document.querySelector("#overlay").style.display = "none";
+   
 }else {
 //event listener of the start up overlay
+playAudioWithSrc("assets/sounds/start_theme.mp3",60);
+ 
+// To disable scrolling
+document.body.style.overflow = "hidden";
+
 const start_btn = document.getElementById("start");
 start_btn.addEventListener("click", function(){
     //call retrieve qna to get the qna object from api so the first question and answer get loaded
@@ -86,33 +94,31 @@ start_btn.addEventListener("click", function(){
 });
 }
 
-/**function's for playing audi */
+/**function's for mute/unmute audio */
   function toggleMutePlay() {
-    if (currentAudio && currentAudio !== audio) {
-      currentAudio.pause();
-      currentAudio.currentTime = 0;
-    }
-  
     if (audio.paused) {
-      playAudioWithSrc("assets/sounds/suspense_sound.mp3",35);
       audio.play();
       mutePlayButton.style.backgroundImage = 'url("assets/images/no-sound.png")';
+      mute = false;
     } else {
       audio.pause();
-      mutePlayButton.style.backgroundImage = 'url("assets/images/sound-on.png")';    }
-  
-    currentAudio = audio;
+      mutePlayButton.style.backgroundImage = 'url("assets/images/sound-on.png")';   
+      mute = true;
+    }
   }
   
-  // Function to change the audio source and play it
-  function playAudioWithSrc(sourceUrl, durationInSeconds) {
+  /** 
+   * Function to change the audio source and play it
+   * @param {url} sourceUrl - url of audio file
+   * */ 
+  function playAudioWithSrc(sourceUrl) {
     audio.src = sourceUrl;
-    audio.play();
-  
-    setTimeout(function() {
-      audio.pause();
-      audio.currentTime = 0; // Reset the audio to the beginning
-    }, durationInSeconds * 1000); // Convert duration to milliseconds
+    audio.currentTime = 0; // Reset the audio to the beginning
+    if(mute){
+        audio.pause();
+    } else {
+        audio.play();
+    }
   }
 
 /*this aevent handler shows the footer when user scrolls to bottom of
@@ -250,7 +256,6 @@ function incrementPrize() {
     prize = paragraph.textContent;
     //checks if user reaches a take home prize
     if(prize === "€5,000" || prize ==="€50,000") {
-          
         // Call the playSound function and pass the URL of the sound file
         playAudioWithSrc('assets/sounds/milestone_prize.mp3',3);
         popUp(`WELL DONE!!!`, `You have reached ${prize} would you like to continue or save your progress and come back later
@@ -290,7 +295,8 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
  
     popUp_element.querySelector("#btn1").addEventListener('click',  function() {
         if (btn1Text === "PLAY AGAIN") {
-            sessionStorage.setItem("startScreen", 'false');
+            sessionStorage.setItem("startScreen", 'false');//stops the start screen from showing if user playing again
+            localStorage.setItem("prizeCounter", 13);//resets prize to first one when game over win the million
             location.reload();
         }
         popUpActive = false;
@@ -496,7 +502,10 @@ function fiftyFifty() {
 }
 
 function startGame() {
+    playAudioWithSrc("assets/sounds/suspense_sound.mp3",30);
 
+// To re-enable scrolling
+document.body.style.overflow = previousOverflow;
     /*
 check if there is a previously stored prize  
 set prize counter to it then changes all previous

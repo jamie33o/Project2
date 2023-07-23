@@ -94,7 +94,7 @@ start_btn.addEventListener("click", function(){
     }
   
     if (audio.paused) {
-      playAudioWithSrc("assets/sounds/suspense.mp3",35);
+      playAudioWithSrc("assets/sounds/suspense_sound.mp3",35);
       audio.play();
       mutePlayButton.style.backgroundImage = 'url("assets/images/no-sound.png")';
     } else {
@@ -327,7 +327,7 @@ function timer() {
             if (restartTimer){
                 timerCount = 30;
                 number.innerHTML = 30; 
-                playAudioWithSrc("assets/sounds/suspense.mp3",30);
+                playAudioWithSrc("assets/sounds/suspense_sound.mp3",30);
                 // Set the animation back to its original value
                 restartAnimation();
                 restartTimer = false;

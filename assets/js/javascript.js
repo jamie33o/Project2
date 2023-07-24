@@ -2,7 +2,7 @@
 //--------Global variables with event listenerers------
 
 
-//Select the buttons elements for the answer's and add an event listener to triger checkanswer function
+//Select the usedLifeLines elements for the answer's and add an event listener to triger checkanswer function
 const button_A = document.getElementById("answer_a_btn");
 button_A.addEventListener("click", (evt) => checkAnswer(button_A.textContent));
 
@@ -15,7 +15,7 @@ button_C.addEventListener("click", (evt) => checkAnswer(button_C.textContent));
 const button_D = document.getElementById("answer_d_btn");
 button_D.addEventListener("click", (evt) => checkAnswer(button_D.textContent));
 
-//event listeners for the lifeline buttons 
+//event listeners for the lifeline usedLifeLines 
 const fiftyFifty_btn = document.getElementById("fiftyFifty");
 fiftyFifty_btn.addEventListener("click", (evt) => fiftyFifty());
 
@@ -59,6 +59,9 @@ let popUpActive = false;
 //answer not always in same place e
 let shuffledAnswers = [];
 
+/**array of used usedLifeLines */
+let usedLifeLines = [];
+
 // Select the <p> element with the ID "question"
 const questionElement = document.getElementById("question");
 
@@ -70,6 +73,10 @@ let storedCount = localStorage.getItem("prizeCounter");
 
 /**audio element selecter for adding source of audio */
 const audio = document.getElementById('track');
+
+/**lifelines button array */
+let lifeline_btns = [phoneAfriend_btn,fiftyFifty_btn,askAudience_btn]
+
 
 //boolean that is set to trough when correct 
 //answer is clicked to hide the results of the lifeline
@@ -113,7 +120,6 @@ start_btn.addEventListener("click", function(){
    * */ 
   function playAudioWithSrc(sourceUrl) {
     audio.src = sourceUrl;
-    audio.currentTime = 0; // Reset the audio to the beginning
     if(mute){
         audio.pause();
     } else {
@@ -257,11 +263,11 @@ function incrementPrize() {
     //checks if user reaches a take home prize
     if(prize === "€5,000" || prize ==="€50,000") {
         // Call the playSound function and pass the URL of the sound file
-        playAudioWithSrc('assets/sounds/milestone_prize.mp3',3);
+        playAudioWithSrc('assets/sounds/milestone_prize.mp3');
         popUp(`WELL DONE!!!`, `You have reached ${prize} would you like to continue or save your progress and come back later
         ?`, "CONTINUE", "SAVE");
       }else if (prize === "Million"){
-        playAudioWithSrc('assets/sounds/million_sound.mp3',9);
+        playAudioWithSrc('assets/sounds/million_sound.mp3');
         popUp(`Congratulations!!!`, `You have WON!! Congradulations you are a millionaire`, "PLAY AGAIN", "Quit");
     }
 
@@ -276,7 +282,7 @@ function incrementPrize() {
 
 //---------pop up-----------
 /**
- * This function generates a re-useable pop up window to notify user of progress it has two buttons 
+ * This function generates a re-useable pop up window to notify user of progress it has two usedLifeLines 
  * and when its called you pass in the text for the h2, paragraph, button 1 and button 2, btn1 will make the pop up dissapear
  * while btn2 will save progress and bring user back to homepage
  * @param {text} h2_text - text for the h2 element
@@ -333,14 +339,14 @@ function timer() {
             if (restartTimer){
                 timerCount = 30;
                 number.innerHTML = 30; 
-                playAudioWithSrc("assets/sounds/suspense_sound.mp3",30);
+                playAudioWithSrc("assets/sounds/suspense_sound.mp3");
                 // Set the animation back to its original value
                 restartAnimation();
                 restartTimer = false;
             }else if(timerCount === 0){
                 clearInterval(timer);
                 gameOver();
-                playAudioWithSrc("assets/sounds/lose.mp3", 7)
+                playAudioWithSrc("assets/sounds/lose.mp3")
             }else{
                 timerCount--;
                 number.innerHTML = timerCount;
@@ -379,6 +385,7 @@ let phoneAfriendResults = document.querySelector(".phoneAfriendResults");
  * @param {- button will dissapear that was pressed} button 
  */
 function hideResults(button) {
+    disableLifeLineBtns();
     let resultsDissapear = setInterval(() => {
     if(hideResultsBool){
         if(button === askAudience_btn){
@@ -393,10 +400,16 @@ function hideResults(button) {
     }
         
         clearInterval(resultsDissapear);
+
         hideResultsBool = false;
-        phoneAfriend_btn.disabled = false;
-        fiftyFifty_btn.disabled = false;
-        askAudience_btn.disabled = false;
+        //keeps the button that is pressed disabled and enable the others
+        usedLifeLines.push(button);
+        // Create a new array with elements from array1 that are not present in array2
+        let unusedLifeLines =  lifeline_btns.filter((element) => !usedLifeLines.includes(element))
+        unusedLifeLines.forEach((element) => {
+                element.disabled = false;
+            
+          });
     }
    },1000);
 }
@@ -411,6 +424,7 @@ function hideResults(button) {
  * then the hide results function is called to hide the button and results
  */
 function phoneAfriend() {
+    playAudioWithSrc("assets/sounds/life-lines.mp3");
 
     const randomNumber = Math.floor(Math.random() * 100) + 1;
     let answer = randomNumber > 50 ? correctAnswer : wrongAnswers[0];
@@ -418,10 +432,6 @@ function phoneAfriend() {
     phoneAfriendResults.innerHTML = `Hi im ${randomNumber}% sure the answer is "${answer}"`;   
 
     hideResults(phoneAfriend_btn);
-    phoneAfriend_btn.disabled = true;
-    fiftyFifty_btn.disabled = true;
-    askAudience_btn.disabled = true;
-
 }
 
 /**
@@ -430,7 +440,7 @@ function phoneAfriend() {
  * then hide results is called again to hide the button and the results
  */
 function askAudience() {
-    
+    playAudioWithSrc("assets/sounds/life-lines.mp3");
     grid.style.display = "grid";
     lifeLineResults.style.display = "flex";
     //show the life line div again after display none
@@ -461,19 +471,15 @@ function askAudience() {
         document.head.appendChild(style);
 
     }
-
     hideResults(askAudience_btn);
-       askAudience_btn.disabled = true;
-       phoneAfriend_btn.disabled = true;
-       fiftyFifty_btn.disabled = true;
-
 }
 
 /**This function is for the 50/50 lifeline button
  * it gets rid of two wrong questions
  */
 function fiftyFifty() {
-    
+    playAudioWithSrc("assets/sounds/life-lines.mp3");
+
     fiftyFifty_btn.style.backgroundImage = `url('assets/images/green_50_50.png')`;
 
     for(let i = 0;i <= 1;i++){
@@ -492,17 +498,18 @@ function fiftyFifty() {
                 break;
         }
     }
+    hideResults(fiftyFifty_btn);    
+}
 
-    hideResults(fiftyFifty_btn);
-
-    fiftyFifty_btn.disabled = true;
-    phoneAfriend_btn.disabled = true;
-    askAudience_btn.disabled = true;
-
+/**disables the lifeline buttons */
+function disableLifeLineBtns() {
+    lifeline_btns.forEach((element) => {
+        element.disabled = true;
+    });
 }
 
 function startGame() {
-    playAudioWithSrc("assets/sounds/suspense_sound.mp3",30);
+    playAudioWithSrc("assets/sounds/suspense_sound.mp3");
 
 // To re-enable scrolling
 document.body.style.overflow = previousOverflow;

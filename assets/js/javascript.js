@@ -584,7 +584,7 @@ if (storedCount != null){
     leaderBoard.push({ name: username, password: password, score: 0 });
 
     // Save the updated scores back to the scores.json file
-    const saveResponse = await fetch('scores.json', {
+    const saveResponse = await fetch('leader_board.json', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -613,7 +613,7 @@ if (storedCount != null){
   });
 
     // Save the updated scores back to the scores.json file
-    const saveResponse = await fetch('scores.json', {
+    const saveResponse = await fetch('leader_board.json', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

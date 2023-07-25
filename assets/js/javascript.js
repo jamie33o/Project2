@@ -578,13 +578,13 @@ if (storedCount != null){
   // Function to add a new user to the scores.json file
   async function register() {
    
-    const response = await fetch('../json/leader_board.json');
+    const response = await fetch('Project2/assets/json/leader_board.json');
     let leaderBoard = await response.json();
 
     leaderBoard.push({ name: username, password: password, score: 0 });
 
     // Save the updated scores back to the scores.json file
-    const saveResponse = await fetch('../json/leader_board.json', {
+    const saveResponse = await fetch('Project2/assets/json/leader_board.json', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

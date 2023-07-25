@@ -577,14 +577,17 @@ if (storedCount != null){
 
   // Function to add a new user to the scores.json file
   async function register() {
-   let usernameInput = document.getElementById("username");
-   let username = usernameInput.value;
-   let passwordInput = document.getElementById("password");
+    let usernameInput = document.getElementById("username");
+    let username = usernameInput.value;
+    let passwordInput = document.getElementById("password");
     let password = passwordInput.value;
 
     const response = await fetch('assets/json/leader_board.json');
     let leaderBoard = await response.json();
-
+    // Check if the leaderBoard is an array, if not, initialize with an empty array
+    if (!Array.isArray(leaderBoard)) {
+        leaderBoard = [];
+    }
     leaderBoard.push({ "name": username, "password": password, "score": 0 });
 
     // Save the updated scores back to the scores.json file

@@ -55,6 +55,12 @@ let mute = true;
 /**stop user from pressing button when pop up active */
 let popUpActive = false;
 
+/**current user username */
+let currentUser;
+
+/**current user score */
+let score;
+
 //array of wrong and correct answer so correct 
 //answer not always in same place e
 let shuffledAnswers = [];
@@ -94,11 +100,20 @@ playAudioWithSrc("assets/sounds/start_theme.mp3",60);
 document.body.style.overflow = "hidden";
 
 const start_btn = document.getElementById("start");
-start_btn.addEventListener("click", function(){
-    //call retrieve qna to get the qna object from api so the first question and answer get loaded
-    startGame();
-    document.querySelector("#overlay").style.display = "none";
-});
+
+if(localStorage.getItem("currentUser")){
+    start_btn.addEventListener("click", function(){
+        //call retrieve qna to get the qna object from api so the first question and answer get loaded
+        startGame();
+        document.querySelector("#overlay").style.display = "none";
+    });
+}else {
+    const singUp = document.getElementsByClassName("sign-up");
+    singUp.style.display = "flex";
+
+
+}
+
 }
 
 /**function's for mute/unmute audio */
@@ -282,9 +297,9 @@ function incrementPrize() {
 
 //---------pop up-----------
 /**
- * This function generates a re-useable pop up window to notify user of progress it has two usedLifeLines 
+ * This function generates a re-useable pop up window to notify user of progress 
  * and when its called you pass in the text for the h2, paragraph, button 1 and button 2, btn1 will make the pop up dissapear
- * while btn2 will save progress and bring user back to homepage
+ * while btn2 will save progress and bring user back to homepage and also save some variables to local or session storage
  * @param {text} h2_text - text for the h2 element
  * @param {text} p_text - text for the p element
  * @param {text} btn1Text - text for button element
@@ -541,3 +556,75 @@ if (storedCount != null){
     timer();
     questionCounter = 0;
 }
+
+ // Function to fetch scores from the scores.json file
+ async function displayScores() {
+    const response = await fetch('leader_board.json');
+    const scores = await response.json();
+
+    const scoreList = document.getElementById('score-list');
+    scoreList.innerHTML = ''; // Clear the existing list
+
+    scores.forEach(score => {
+      const listItem = document.createElement('li');
+      listItem.textContent = `${score.name}: ${score.score}`;
+      scoreList.appendChild(listItem);
+    });
+  }
+
+  // Function to add a new user to the scores.json file
+  async function register() {
+   
+    const response = await fetch('leader_board.json');
+    let leaderBoard = await response.json();
+
+    leaderBoard.push({ name: username, password: password, score: 0 });
+
+    // Save the updated scores back to the scores.json file
+    const saveResponse = await fetch('scores.json', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(leaderBoard)
+    });
+
+    if (saveResponse.ok) {
+      document.querySelector("#overlay").style.display = "none";
+      startGame();
+      alert("Registration complete!!!")
+    }else{
+      alert("Error Regerstration failed!! Try again")
+    }
+  }
+
+   // Function to add a new user to the scores.json file
+   async function saveScore() {
+   
+    const response = await fetch('leader_board.json');
+    let leaderBoard = await response.json();
+    leaderBoard.forEach((element) => {
+        if(element.username === currentUser){
+            element.score = score;
+        }
+    
+  });
+    leaderBoard.push({ name: username, password: password, score: 0 });
+
+    // Save the updated scores back to the scores.json file
+    const saveResponse = await fetch('scores.json', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(leaderBoard)
+    });
+
+    localStorage.setItem("currentUser", username)
+    if (saveResponse.ok) {
+      alert("Score saved")
+    }else{
+      alert("Error saving score")
+    }
+  }
+

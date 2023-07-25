@@ -21,10 +21,24 @@
             <h1 class="center">Who Want's To Be A Millionaire?</h1>
         </div>
         <button id="start" class="button">Start</button>
+
+        <div id="sign-up">
+            <p>Sign up to add your score to the leader board</p>
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Username" name="username" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Password" name="password" required>
+            <button id="register" class="button" onclick="register()">Register</button>
+        </div>
     </header>
+
+    
 
     <main>      
         <div class="flex-row"> 
+            <div class="leader-board">
+                <ul id="score-list"></ul>
+            </div>
              <!--this is a pop up that displays at certain milestones in the game-->
             <div id="pop_up" class="box">
                 <h2></h2>

@@ -10,6 +10,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-32x32.png">
     <!-- Stylesheet import -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- This is the minified production version of Parse JS -->
+    <script type="text/javascript" src="https://npmcdn.com/parse/dist/parse.min.js"></script>
 
     <title>Who wants to be a millionaire</title>
 
@@ -36,6 +38,8 @@
         </div>
         <div id="sign-up">
             <p>Sign up to add your score to the leader board</p>
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Email" name="email" required>
             <label for="username">Username</label>
             <input type="text" id="username" placeholder="Username" name="username" required>
             <label for="password">Password</label>

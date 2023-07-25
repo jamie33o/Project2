@@ -1,3 +1,7 @@
+// Initialize Parse
+Parse.initialize("IhNUqCfsmmW0MvFQ3TioMfv9gw54kNxzUgvmJKVl", "iIvlL1BIiVkZFmbzjClkWhbzbZVuCQA7ASADL7i4"); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+Parse.serverURL = "https://parseapi.back4app.com/";
+
 
 //--------Global variables with event listenerers------
 
@@ -111,6 +115,7 @@ if(localStorage.getItem("currentUser")){
     });
 }else {
     singUp.style.display = "flex";
+    displayScores();
     
 }
 
@@ -562,76 +567,87 @@ if (storedCount != null){
 
  // Function to fetch scores from the scores.json file
  async function displayScores() {
-    const response = await fetch('../assets/json/leader_board.json');
-    const scores = await response.json();
-
-    const scoreList = document.getElementById('score-list');
-    scoreList.innerHTML = ''; // Clear the existing list
-
-    scores.forEach(score => {
-      const listItem = document.createElement('li');
-      listItem.textContent = `${score.name}: ${score.score}`;
-      scoreList.appendChild(listItem);
+    let query = new Parse.Query("User");
+    query.find().then(function(objects){
+        if(objects){
+            const scoreList = document.getElementById('score-list');
+            scoreList.innerHTML = ''; // Clear the existing list
+        console.log(objects.username)
+            objects.forEach(object => {
+              const listItem = document.createElement('li');
+              listItem.textContent = `${object.username}: ${object.score}`;
+              scoreList.appendChild(listItem);
+            });        
+        } else {
+           console.log("Nothing found, please try again");
+        }
+    }).catch(function(error){
+        console.log("Error: " + error.code + " " + error.message);       
     });
+
+    
   }
 
   // Function to add a new user to the scores.json file
   async function register() {
-    let usernameInput = document.getElementById("username");
-    let username = usernameInput.value;
-    let passwordInput = document.getElementById("password");
-    let password = passwordInput.value;
 
-    const response = await fetch('assets/json/leader_board.json');
-    let leaderBoard = await response.json();
-    // Check if the leaderBoard is an array, if not, initialize with an empty array
-    if (!Array.isArray(leaderBoard)) {
-        leaderBoard = [];
-    }
-    leaderBoard.push({ "name": username, "password": password, "score": 0 });
+     // Creates a new Parse "User" object, which is created by default in your Parse app
+        let user = new Parse.User();
+        // Set the input values to the new "User" object
+        user.set("username", document.getElementById("username").value);
+        user.set("email", document.getElementById("email").value);
+        user.set("password", document.getElementById("password").value);
 
-    // Save the updated scores back to the scores.json file
-    const saveResponse = await fetch('assets/json/leader_board.json', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(leaderBoard)
-    });
-
-    if (saveResponse.ok) {
-      alert("Registration complete!!!");
-      singUp.display = "none";
-      localStorage.setItem("currentUser", username)
-    }else{
-      alert("Error Regerstration failed!! Try again");
-    }
-  }
-
-   // Function to add a new user to the scores.json file
-   async function saveScore(score) {
-   
-    const response = await fetch('../json/leader_board.json');
-    let leaderBoard = await response.json();
-    leaderBoard.forEach((element) => {
-        if(element.username === currentUser){
-            element.score = score;
+        try {
+            // Call the save method, which returns the saved object if successful
+            user = await user.save();
+            if (user !== null) {
+            // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
+            alert(
+                `New user created with success! ObjectId: ${
+                user.id
+                }, ${user.get("username")}`
+            );
+            }
+        } catch (error) {
+            alert(`Error: ${error.message}`);
         }
-  });
-
-    // Save the updated scores back to the scores.json file
-    const saveResponse = await fetch('../json/leader_board.json', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(leaderBoard)
-    });
-
-    if (saveResponse.ok) {
-      alert("Score saved")
-    }else{
-      alert("Error saving score")
-    }
   }
 
+  function readThenUpdate(score) {
+    query = new Parse.Query(User);
+    query.equalTo("username", username);
+    query.first().then(function (object) {
+      if (object) {
+        console.log('Pet found with name: ' + object.get("username") + ' and age: ' + pet.get("username"));
+        update(object, score);
+      } else {
+        console.log("Nothing found, please try again");
+      }
+    }).catch(function (error) {
+      console.log("Error: " + error.code + " " + error.message);
+    });
+}
+
+function update(foundObject, score) {
+
+    let newScore = foundObject.score + score;
+    foundObject.set('score', newScore);
+
+    foundObject.save().then(function (object) {
+      console.log('score updated! Username: ' + object.get("username") + ' and new score: ' + object.get("score"));
+    }).catch(function(error) {
+      console.log('Error: ' + error.message);
+    });
+}
+
+
+function logIn() {
+    // Create a new instance of the user class
+    let user = Parse.User
+        .logIn("myname", "mypass").then(function(user) {
+            console.log('User created successful with name: ' + user.get("username") + ' and email: ' + user.get("email"));
+    }).catch(function(error){
+        console.log("Error: " + error.code + " " + error.message);
+    });
+}

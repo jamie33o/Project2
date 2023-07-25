@@ -83,6 +83,8 @@ const audio = document.getElementById('track');
 /**lifelines button array */
 let lifeline_btns = [phoneAfriend_btn,fiftyFifty_btn,askAudience_btn]
 
+/**div with sign up form */
+const singUp = document.getElementById("sign-up");
 
 //boolean that is set to trough when correct 
 //answer is clicked to hide the results of the lifeline
@@ -108,10 +110,8 @@ if(localStorage.getItem("currentUser")){
         document.querySelector("#overlay").style.display = "none";
     });
 }else {
-    const singUp = document.getElementsByClassName("sign-up");
     singUp.style.display = "flex";
-
-
+    
 }
 
 }
@@ -281,9 +281,11 @@ function incrementPrize() {
         playAudioWithSrc('assets/sounds/milestone_prize.mp3');
         popUp(`WELL DONE!!!`, `You have reached ${prize} would you like to continue or save your progress and come back later
         ?`, "CONTINUE", "SAVE");
+        saveScore(prize === "€5,000" ? 5000 : 50000);
       }else if (prize === "Million"){
         playAudioWithSrc('assets/sounds/million_sound.mp3');
         popUp(`Congratulations!!!`, `You have WON!! Congradulations you are a millionaire`, "PLAY AGAIN", "Quit");
+        saveScore(1000000);
     }
 
     if(prize != "€1 million"){
@@ -557,6 +559,7 @@ if (storedCount != null){
     questionCounter = 0;
 }
 
+
  // Function to fetch scores from the scores.json file
  async function displayScores() {
     const response = await fetch('leader_board.json');
@@ -590,16 +593,16 @@ if (storedCount != null){
     });
 
     if (saveResponse.ok) {
-      document.querySelector("#overlay").style.display = "none";
-      startGame();
-      alert("Registration complete!!!")
+      alert("Registration complete!!!");
+      singUp.display = "none";
+      localStorage.setItem("currentUser", username)
     }else{
-      alert("Error Regerstration failed!! Try again")
+      alert("Error Regerstration failed!! Try again");
     }
   }
 
    // Function to add a new user to the scores.json file
-   async function saveScore() {
+   async function saveScore(score) {
    
     const response = await fetch('leader_board.json');
     let leaderBoard = await response.json();
@@ -607,9 +610,7 @@ if (storedCount != null){
         if(element.username === currentUser){
             element.score = score;
         }
-    
   });
-    leaderBoard.push({ name: username, password: password, score: 0 });
 
     // Save the updated scores back to the scores.json file
     const saveResponse = await fetch('scores.json', {
@@ -620,7 +621,6 @@ if (storedCount != null){
       body: JSON.stringify(leaderBoard)
     });
 
-    localStorage.setItem("currentUser", username)
     if (saveResponse.ok) {
       alert("Score saved")
     }else{

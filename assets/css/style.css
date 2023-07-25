@@ -51,12 +51,9 @@ p ,button{
     background-size: 100% 100%;
     display: flex;
     flex-direction: column;
-    justify-content:center;
+    justify-content:space-evenly;
     align-items: center;
     z-index: 1;
-}
-.start-page {
-    margin-top: 220px;
 }
 
 /*main section*/
@@ -161,7 +158,6 @@ p ,button{
     height: 150px;
     background: url(../images/wwtbam_logo.png) no-repeat center center;
     background-size: contain;
-    z-index: 2;
 }
 
 
@@ -177,17 +173,18 @@ p ,button{
     border: 1px solid white;
     border-radius: 50%;
     box-shadow: 0px 0px 3px 4px var(--dark-blue);
-    z-index: 2;
 }
 
-.help-btn {
-    background-color: black;
-    border: 1px solid white;
-    padding: 5px;
+.menu-btn {
+    background: url('../images/menu.png') no-repeat center;
+    background-size: contain;
     border-radius: 50%;
-    font-size: 1em;
     box-shadow: 0px 0px 3px 4px var(--dark-blue);
-    z-index: 2;
+    background-color: aliceblue;
+    border: 1px solid white;
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px 4px var(--dark-blue);
+    width: 50px;
 }
 
 
@@ -258,7 +255,6 @@ svg {
 #prizes li:nth-child(10), #prizes li:nth-child(1), #prizes li:nth-child(5) {
     background: url(../images/orange_answer_box.png) no-repeat center;
     background-size: contain;
-    
 }
 
 /*game.html */
@@ -327,29 +323,37 @@ ul {
     z-index: 3;
 }
 
+
+
 /*sign up*/
 #sign-up {
     position: absolute;
-    display: none;
-    align-items: center;
+    display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    margin-top: 30px;
+    align-items: center;
     border: 1px solid var(--border);
     border-radius: 30px;
     background-color: var(--dark-blue);
     padding: 50px;
-    height: 300px;
+    height: 70%;
+    width: 50%;
     z-index: 5;
 }
-
-/*leader board*/
-.leader-board {
-    position: absolute;
-    width: 70%;
-    height: 100%;
+input {
+    background-color: black;
     border: 1px solid var(--border);
-    background-color: var(--dark-blue);
+}
+
+#leader-board {
+    position: absolute;
+    top:20px;
+    left: 20px;
+}
+#instructions {
+    position: absolute;
+    right:20px;
+    top: 20px;
 }
 
 /*footer:- bottom of page*/

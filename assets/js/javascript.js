@@ -1,12 +1,12 @@
-// Initialize Parse
-Parse.initialize("IhNUqCfsmmW0MvFQ3TioMfv9gw54kNxzUgvmJKVl", "iIvlL1BIiVkZFmbzjClkWhbzbZVuCQA7ASADL7i4"); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+// Initialize back4app Parse databse
+Parse.initialize("IhNUqCfsmmW0MvFQ3TioMfv9gw54kNxzUgvmJKVl", "iIvlL1BIiVkZFmbzjClkWhbzbZVuCQA7ASADL7i4"); 
 Parse.serverURL = "https://parseapi.back4app.com/";
-
 
 //--------Global variables with event listenerers------
 
 
-//Select the usedLifeLines elements for the answer's and add an event listener to triger checkanswer function
+//the 4 answer button elements for the answer's with an event listener to triger checkanswer function 
+//and pass in the the text content of the button
 const button_A = document.getElementById("answer_a_btn");
 button_A.addEventListener("click", (evt) => checkAnswer(button_A.textContent));
 
@@ -19,7 +19,7 @@ button_C.addEventListener("click", (evt) => checkAnswer(button_C.textContent));
 const button_D = document.getElementById("answer_d_btn");
 button_D.addEventListener("click", (evt) => checkAnswer(button_D.textContent));
 
-//event listeners for the lifeline usedLifeLines 
+//event listeners for the lifeline buttons 
 const fiftyFifty_btn = document.getElementById("fiftyFifty");
 fiftyFifty_btn.addEventListener("click", (evt) => fiftyFifty());
 
@@ -29,12 +29,18 @@ phoneAfriend_btn.addEventListener("click", (evt) => phoneAfriend());
 const askAudience_btn = document.getElementById("askAudience");
 askAudience_btn.addEventListener("click", (evt) => askAudience());
 
-
-/** play/pause button */
-const mutePlayButton = document.querySelectorAll('.mute-play-btn');
+/**start button on menu overlay */
+const start_btn = document.getElementById("start");
+start_btn.addEventListener("click", function(){
+    if(!menuBoolean){
+        startGame();
+        menuBoolean = false;
+    }
+    document.querySelector("#overlay").style.display = "none";
+});
 
 //---------Global variables----------
-//store the question and answer's object retrieved from the api 
+/**store the question and answer's object retrieved from the api */
 let qnaObjectArray;
 /**counter used to increment trough the question's object from api*/
 let questionCounter;
@@ -49,7 +55,7 @@ let prize;
 /**boolean to restart timer*/
 let restartTimer;
 
-/**used to pause current audio when new one is starting */
+/**used to stop current audio when new one is starting */
 let currentAudio = null;
 /**boolean to let sound play if false or not if true  */
 let mute = true;
@@ -57,59 +63,72 @@ let mute = true;
 /**stop user from pressing button when pop up active */
 let popUpActive = false;
 
+/**if true timer isnt restarted if false startgame is called so user can use menu during game to
+ * see score and instructions but it does not stop the timer
+ */
+let menuBoolean;
 
 /**current user score */
-let score;
+//let score;
 
-//array of wrong and correct answer so correct 
-//answer not always in same place e
+/**boolean that is set to trough when correct 
+*answer is clicked to hide the results of the lifeline
+*/
+let hideResultsBool;
+
+/**store the current value of the CSS overflow property of the <body> */
+const previousOverflow = document.body.style.overflow;
+
+//------Global arrays------
+
+/**array of the wrong and correct answer used so correct 
+answer not always in same place */
 let shuffledAnswers = [];
 
 /**array of used usedLifeLines */
 let usedLifeLines = [];
 
-// Select the <p> element with the ID "question"
-const questionElement = document.getElementById("question");
-
-// Select the <li> element you want to update
-const liElement = document.querySelectorAll("#prizes ul li");
-  
-// Retrieve data from local storage
-let storedCount = localStorage.getItem("prizeCounter");
-
-/**audio element selecter for adding source of audio */
-const audio = document.getElementById('track');
-
-const password = document.getElementById("password");
-const username = document.getElementById("username");
-
 /**lifelines button array */
 let lifeline_btns = [phoneAfriend_btn,fiftyFifty_btn,askAudience_btn]
 
+//-------Global selectors-------
+
+/**Select the <p> element with the ID "question"*/
+const questionElement = document.getElementById("question");
+
+/**Select the <li> element you want to update */ 
+const liElement = document.querySelectorAll("#prizes ul li");
+  
+/**used to Retrieve prizecounter from local storage */ 
+let storedCount = localStorage.getItem("prizeCounter");
+
+/**audio element selector for adding source of audio */
+const audio = document.getElementById('track');
+
+/**for password text content on form */
+const password = document.getElementById("password");
+/**for username text content on form */
+const username = document.getElementById("username");
+
+/** play/pause button */
+const mutePlayButton = document.querySelectorAll('.mute-play-btn');
+
 /**div with sign up form */
 const singUp = document.getElementById("sign-up");
-
+/**for email text content */
 let emailInput = document.getElementById("email-input");
 
-//boolean that is set to trough when correct 
-//answer is clicked to hide the results of the lifeline
-let hideResultsBool;
-const previousOverflow = document.body.style.overflow;
-
-
-const start_btn = document.getElementById("start");
-
- function checkUser(){
+/**this function checks if the user is logged in
+ * if they are not it shows the sign up/log in form otherwise it doesnt
+ */
+function checkUser(){
     if( checkUserLogin()){
         // To disable scrolling
         document.body.style.overflow = "hidden";
-        //event listener of the start up overlay
+        //plays the start theme
         playAudioWithSrc("assets/sounds/start_theme.mp3");
-        start_btn.addEventListener("click", function(){
-            //call retrieve qna to get the qna object from api so the first question and answer get loaded
-            startGame();
-            document.querySelector("#overlay").style.display = "none";
-        });
+        //event listener of the start up overlay
+       
         displayScores();
         singUp.style.display = "none";
 
@@ -121,10 +140,21 @@ const start_btn = document.getElementById("start");
 }
 checkUser();
 
+/**this function is for the menu button it shows the menu over lay so the user can see
+ * sores and instructions it doesnt stop the timer
+ */
+function menu() {
+    document.querySelector("#overlay").style.display = "flex";
+    start_btn.innerHTML = "Continue";
+    displayScores();
+    menuBoolean = true;
+}
+
 /**function's for mute/unmute audio */
   function toggleMutePlay() {
     if (audio.paused) {
       audio.play();
+      //sets the image for mute/sound button on start over lay and in game
       mutePlayButton.forEach(button => {
         button.style.backgroundImage = 'url("assets/images/no-sound.png")';
       });
@@ -139,7 +169,7 @@ checkUser();
   }
   
   /** 
-   * Function to change the audio source and play it
+   * Function to change the audio source, and then play it if sound not muted 
    * @param {url} sourceUrl - url of audio file
    * */ 
   function playAudioWithSrc(sourceUrl) {
@@ -297,7 +327,7 @@ function incrementPrize() {
         readThenUpdate(1000);
     }
 
-    if(prize != "€1 million"){
+    if(prize != "Million"){
     //change background image of the prize li
     liElement[prizeCounter].style.backgroundImage = "url('assets/images/green_answer_box.png')";
     //if its not on the first prize then change 
@@ -351,7 +381,7 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
 }
 
 //-----------Timer function section-----------
-
+let intervalTimer;
 /**
  * This function creates a 30second timer that restarts each time the user
  * answers a question if it goes to 0 its game over
@@ -360,7 +390,7 @@ function timer() {
     let number = document.getElementById("number");
     let timerCount = 30;
     restartAnimation();
-    let timer = setInterval(() => {
+     intervalTimer = setInterval(() => {
         if(!popUpActive) {
             if (restartTimer){
                 timerCount = 30;
@@ -370,7 +400,7 @@ function timer() {
                 restartAnimation();
                 restartTimer = false;
             }else if(timerCount === 0){
-                clearInterval(timer);
+                clearInterval(intervalTimer);
                 gameOver();
                 playAudioWithSrc("assets/sounds/lose.mp3")
             }else{
@@ -633,23 +663,27 @@ if (storedCount != null){
   }
 
   function readThenUpdate(score) {
-    query = new Parse.Query(User);
-    query.equalTo("username", username.value);
-    query.first().then(function (object) {
-      if (object) {
-        console.log('Pet found with name: ' + object.get("username") + ' and age: ' + pet.get("username"));
-        update(object, score);
-      } else {
-        console.log("Nothing found, please try again");
-      }
-    }).catch(function (error) {
-      console.log("Error: " + error.code + " " + error.message);
-    });
+    const currentUser = Parse.User.current();
+    if (currentUser) {
+        const currentUserUsername = currentUser.get("username");
+
+        query = new Parse.Query("User");
+        query.equalTo("username", currentUserUsername);
+        query.first().then(function (object) {
+        if (object) {
+            update(object, score);
+        } else {
+            console.log("Nothing found, please try again");
+        }
+        }).catch(function (error) {
+        console.log("Error: " + error.code + " " + error.message);
+        });
+  }
 }
 
 function update(foundObject, score) {
 
-    let newScore = foundObject.score + score;
+    let newScore = foundObject.get("score") + score;
     foundObject.set('score', newScore);
 
     foundObject.save().then(function (object) {

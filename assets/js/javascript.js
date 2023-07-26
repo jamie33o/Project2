@@ -29,13 +29,11 @@ phoneAfriend_btn.addEventListener("click", (evt) => phoneAfriend());
 const askAudience_btn = document.getElementById("askAudience");
 askAudience_btn.addEventListener("click", (evt) => askAudience());
 
-//event listener for play and pause
+
 /** play/pause button */
-const mutePlayButton = document.getElementById('mute-play-btn');
-mutePlayButton.addEventListener('click', toggleMutePlay);
+const mutePlayButton = document.querySelectorAll('.mute-play-btn');
 
 //---------Global variables----------
-
 //store the question and answer's object retrieved from the api 
 let qnaObjectArray;
 /**counter used to increment trough the question's object from api*/
@@ -59,8 +57,6 @@ let mute = true;
 /**stop user from pressing button when pop up active */
 let popUpActive = false;
 
-/**current user username */
-let currentUser;
 
 /**current user score */
 let score;
@@ -84,52 +80,60 @@ let storedCount = localStorage.getItem("prizeCounter");
 /**audio element selecter for adding source of audio */
 const audio = document.getElementById('track');
 
+const password = document.getElementById("password");
+const username = document.getElementById("username");
+
 /**lifelines button array */
 let lifeline_btns = [phoneAfriend_btn,fiftyFifty_btn,askAudience_btn]
 
 /**div with sign up form */
 const singUp = document.getElementById("sign-up");
 
+let emailInput = document.getElementById("email-input");
+
 //boolean that is set to trough when correct 
 //answer is clicked to hide the results of the lifeline
 let hideResultsBool;
 const previousOverflow = document.body.style.overflow;
-if(sessionStorage.getItem("startScreen") === "false"){
-    startGame();
-    document.querySelector("#overlay").style.display = "none";
-   
-}else {
-//event listener of the start up overlay
-playAudioWithSrc("assets/sounds/start_theme.mp3",60);
- 
-// To disable scrolling
-document.body.style.overflow = "hidden";
+
 
 const start_btn = document.getElementById("start");
 
-if(localStorage.getItem("currentUser")){
-    start_btn.addEventListener("click", function(){
-        //call retrieve qna to get the qna object from api so the first question and answer get loaded
-        startGame();
-        document.querySelector("#overlay").style.display = "none";
-    });
-}else {
-    singUp.style.display = "flex";
-    displayScores();
-    
-}
+ function checkUser(){
+    if( checkUserLogin()){
+        // To disable scrolling
+        document.body.style.overflow = "hidden";
+        //event listener of the start up overlay
+        playAudioWithSrc("assets/sounds/start_theme.mp3");
+        start_btn.addEventListener("click", function(){
+            //call retrieve qna to get the qna object from api so the first question and answer get loaded
+            startGame();
+            document.querySelector("#overlay").style.display = "none";
+        });
+        displayScores();
+        singUp.style.display = "none";
 
+    }else {
+        singUp.style.display = "flex";
+        // To disable scrolling
+        document.body.style.overflow = "hidden";
+    }
 }
+checkUser();
 
 /**function's for mute/unmute audio */
   function toggleMutePlay() {
     if (audio.paused) {
       audio.play();
-      mutePlayButton.style.backgroundImage = 'url("assets/images/no-sound.png")';
+      mutePlayButton.forEach(button => {
+        button.style.backgroundImage = 'url("assets/images/no-sound.png")';
+      });
       mute = false;
     } else {
       audio.pause();
-      mutePlayButton.style.backgroundImage = 'url("assets/images/sound-on.png")';   
+      mutePlayButton.forEach(button => {
+        button.style.backgroundImage = 'url("assets/images/sound-on.png")';
+      });
       mute = true;
     }
   }
@@ -286,11 +290,11 @@ function incrementPrize() {
         playAudioWithSrc('assets/sounds/milestone_prize.mp3');
         popUp(`WELL DONE!!!`, `You have reached ${prize} would you like to continue or save your progress and come back later
         ?`, "CONTINUE", "SAVE");
-        saveScore(prize === "€5,000" ? 5000 : 50000);
+        readThenUpdate(prize === "€5,000" ? 50 : 500);
       }else if (prize === "Million"){
         playAudioWithSrc('assets/sounds/million_sound.mp3');
         popUp(`Congratulations!!!`, `You have WON!! Congradulations you are a millionaire`, "PLAY AGAIN", "Quit");
-        saveScore(1000000);
+        readThenUpdate(1000);
     }
 
     if(prize != "€1 million"){
@@ -565,17 +569,21 @@ if (storedCount != null){
 }
 
 
- // Function to fetch scores from the scores.json file
+ // Function to fetch scores from back4app
  async function displayScores() {
+    let i =0;
     let query = new Parse.Query("User");
+    query.descending("score"); // Sort the results by the "score" property in descending order
+
     query.find().then(function(objects){
         if(objects){
             const scoreList = document.getElementById('score-list');
             scoreList.innerHTML = ''; // Clear the existing list
-        console.log(objects.username)
+
             objects.forEach(object => {
+                i++;
               const listItem = document.createElement('li');
-              listItem.textContent = `${object.username}: ${object.score}`;
+              listItem.textContent = `${i}. ${object.get("username")} => score : ${object.get("score")}`;
               scoreList.appendChild(listItem);
             });        
         } else {
@@ -584,24 +592,33 @@ if (storedCount != null){
     }).catch(function(error){
         console.log("Error: " + error.code + " " + error.message);       
     });
-
-    
   }
 
   // Function to add a new user to the scores.json file
   async function register() {
 
+    if(emailInput.style.display === "none"){
+        emailInput.style.display = "flex";
+    }else{
+
+    
      // Creates a new Parse "User" object, which is created by default in your Parse app
         let user = new Parse.User();
         // Set the input values to the new "User" object
-        user.set("username", document.getElementById("username").value);
+        user.set("username", username.value);
         user.set("email", document.getElementById("email").value);
-        user.set("password", document.getElementById("password").value);
-
+        user.set("password", password.value);
+        
         try {
             // Call the save method, which returns the saved object if successful
             user = await user.save();
             if (user !== null) {
+                singUp.style.display = "none";
+            // Get the session token from the user object
+            const sessionToken = user.getSessionToken();
+
+            // Store the session token in local storage
+            localStorage.setItem('sessionToken', sessionToken);      
             // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
             alert(
                 `New user created with success! ObjectId: ${
@@ -612,11 +629,12 @@ if (storedCount != null){
         } catch (error) {
             alert(`Error: ${error.message}`);
         }
+    }
   }
 
   function readThenUpdate(score) {
     query = new Parse.Query(User);
-    query.equalTo("username", username);
+    query.equalTo("username", username.value);
     query.first().then(function (object) {
       if (object) {
         console.log('Pet found with name: ' + object.get("username") + ' and age: ' + pet.get("username"));
@@ -641,13 +659,46 @@ function update(foundObject, score) {
     });
 }
 
-
-function logIn() {
-    // Create a new instance of the user class
-    let user = Parse.User
-        .logIn("myname", "mypass").then(function(user) {
-            console.log('User created successful with name: ' + user.get("username") + ' and email: ' + user.get("email"));
-    }).catch(function(error){
+async function logIn() {
+    if (emailInput.style.display === "" || emailInput.style.display === "flex") {
+      emailInput.style.display = "none";
+    } else {
+      try {
+        // Log in the user using Parse.User.logIn()
+        const user = await Parse.User.logIn(username.value, password.value);
+  
+        // Get the session token from the user object
+        const sessionToken = user.getSessionToken();
+  
+        // Store the session token in local storage
+        localStorage.setItem('sessionToken', sessionToken);
+  
+        // Hide the signup form
+        singUp.style.display = "none";
+  
+        // Log the user login success
+        console.log('User logged in successfully with name: ' + user.get("username") + ' and email: ' + user.get("email"));
+      } catch (error) {
         console.log("Error: " + error.code + " " + error.message);
-    });
-}
+      }
+    }
+  }
+ 
+  
+
+// Function to check if a user is logged in
+async function checkUserLogin() {
+    const sessionToken = localStorage.getItem('sessionToken'); // Fetch the session token from local storage
+    if (sessionToken) {
+      try {
+        await Parse.User.become(sessionToken); // Set up the user session using the session token
+        return true;
+    } catch (error) {
+        console.error('Error setting up user session:', error);
+        // Handle any errors if token is invalid or expired
+      }
+    } else {
+        return false;
+    }
+  }
+  

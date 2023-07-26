@@ -118,6 +118,190 @@ const singUp = document.getElementById("sign-up");
 /**for email text content */
 let emailInput = document.getElementById("email-input");
 
+//-------function for start menu---------
+
+/**this function is for the menu button it shows the menu over lay so the user can see
+ * sores and instructions it doesnt stop the timer
+ */
+function menu() {
+    document.querySelector("#overlay").style.display = "flex";
+    start_btn.innerHTML = "Continue";
+    displayScores();
+    menuBoolean = true;
+}
+
+function startGame() {
+    //play the suspense sound for timer
+    playAudioWithSrc("assets/sounds/suspense_sound.mp3");
+    // To re-enable scrolling
+    document.body.style.overflow = previousOverflow;
+        /*
+    check if there is a previously stored prize  
+    set prize counter to it then changes all previous
+    prize amounts to gray and set background of current prize amount to green
+    */
+    if (storedCount != null){
+        prizeCounter = storedCount;
+        //change background image of the prize li
+        liElement[prizeCounter].style.backgroundImage = "url('assets/images/green_answer_box.png')";
+    
+        for (let i = prizeCounter; i < liElement.length; i++){
+            if (i === prizeCounter){
+                    continue;
+            }     
+            let prizeAmount = liElement[i].querySelector("p");
+            prizeAmount.style.color = "grey";
+            if (prizeAmount.textContent === "€5,000" || prizeAmount.textContent === "€50,000") {
+                liElement[i].style.backgroundImage = "url('assets/images/answer_box.png')";
+            }
+        }
+    }else {
+        prizeCounter = 13;
+    }
+    retrieve_QnA();
+    timer();
+    questionCounter = 0;
+}
+
+
+//----------Function's for database register/log in and display score--------------
+
+// Function to fetch scores from back4app
+async function displayScores() {
+    let i =0;
+    let query = new Parse.Query("User");
+    query.descending("score"); // Sort the results by the "score" property in descending order
+
+    query.find().then(function(objects){
+        if(objects){
+            const scoreList = document.getElementById('score-list');
+            scoreList.innerHTML = ''; // Clear the existing list
+
+            objects.forEach(object => {
+                i++;
+              const listItem = document.createElement('li');
+              listItem.textContent = `${i}. ${object.get("username")} => score : ${object.get("score")}`;
+              scoreList.appendChild(listItem);
+            });        
+        } else {
+           console.log("Nothing found, please try again");
+        }
+    }).catch(function(error){
+        console.log("Error: " + error.code + " " + error.message);       
+    });
+  }
+
+  // Function to add a new user to the scores.json file
+  async function register() {
+
+    if(emailInput.style.display === "none"){
+        emailInput.style.display = "flex";
+    }else{
+
+    
+     // Creates a new Parse "User" object, which is created by default in your Parse app
+        let user = new Parse.User();
+        // Set the input values to the new "User" object
+        user.set("username", username.value);
+        user.set("email", document.getElementById("email").value);
+        user.set("password", password.value);
+        
+        try {
+            // Call the save method, which returns the saved object if successful
+            user = await user.save();
+            if (user !== null) {
+                singUp.style.display = "none";
+            // Get the session token from the user object
+            const sessionToken = user.getSessionToken();
+
+            // Store the session token in local storage
+            localStorage.setItem('sessionToken', sessionToken);      
+            // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
+            alert(
+                `New user created with success! ObjectId: ${
+                user.id
+                }, ${user.get("username")}`
+            );
+            }
+        } catch (error) {
+            alert(`Error: ${error.message}`);
+        }
+    }
+  }
+
+  function readThenUpdate(score) {
+    const currentUser = Parse.User.current();
+    if (currentUser) {
+        const currentUserUsername = currentUser.get("username");
+
+        query = new Parse.Query("User");
+        query.equalTo("username", currentUserUsername);
+        query.first().then(function (object) {
+        if (object) {
+            update(object, score);
+        } else {
+            console.log("Nothing found, please try again");
+        }
+        }).catch(function (error) {
+        console.log("Error: " + error.code + " " + error.message);
+        });
+  }
+}
+
+function update(foundObject, score) {
+
+    let newScore = foundObject.get("score") + score;
+    foundObject.set('score', newScore);
+
+    foundObject.save().then(function (object) {
+      console.log('score updated! Username: ' + object.get("username") + ' and new score: ' + object.get("score"));
+    }).catch(function(error) {
+      console.log('Error: ' + error.message);
+    });
+}
+
+async function logIn() {
+    if (emailInput.style.display === "" || emailInput.style.display === "flex") {
+      emailInput.style.display = "none";
+    } else {
+      try {
+        // Log in the user using Parse.User.logIn()
+        const user = await Parse.User.logIn(username.value, password.value);
+  
+        // Get the session token from the user object
+        const sessionToken = user.getSessionToken();
+  
+        // Store the session token in local storage
+        localStorage.setItem('sessionToken', sessionToken);
+  
+        // Hide the signup form
+        singUp.style.display = "none";
+  
+        // Log the user login success
+        console.log('User logged in successfully with name: ' + user.get("username") + ' and email: ' + user.get("email"));
+      } catch (error) {
+        console.log("Error: " + error.code + " " + error.message);
+      }
+    }
+  }
+ 
+  
+
+// Function to check if a user is logged in
+async function checkUserLogin() {
+    const sessionToken = localStorage.getItem('sessionToken'); // Fetch the session token from local storage
+    if (sessionToken) {
+      try {
+        await Parse.User.become(sessionToken); // Set up the user session using the session token
+        return true;
+    } catch (error) {
+        console.error('Error setting up user session:', error);
+        // Handle any errors if token is invalid or expired
+      }
+    } else {
+        return false;
+    }
+  }
 /**this function checks if the user is logged in
  * if they are not it shows the sign up/log in form otherwise it doesnt
  */
@@ -140,15 +324,8 @@ function checkUser(){
 }
 checkUser();
 
-/**this function is for the menu button it shows the menu over lay so the user can see
- * sores and instructions it doesnt stop the timer
- */
-function menu() {
-    document.querySelector("#overlay").style.display = "flex";
-    start_btn.innerHTML = "Continue";
-    displayScores();
-    menuBoolean = true;
-}
+
+//-------functions for audio--------
 
 /**function's for mute/unmute audio */
   function toggleMutePlay() {
@@ -168,10 +345,10 @@ function menu() {
     }
   }
   
-  /** 
-   * Function to change the audio source, and then play it if sound not muted 
-   * @param {url} sourceUrl - url of audio file
-   * */ 
+/** 
+ * Function to change the audio source, and then play it if sound not muted 
+ * @param {url} sourceUrl - url of audio file
+ * */ 
   function playAudioWithSrc(sourceUrl) {
     audio.src = sourceUrl;
     if(mute){
@@ -181,21 +358,6 @@ function menu() {
     }
   }
 
-/*this aevent handler shows the footer when user scrolls to bottom of
- page and hides it when user scrolls up */
-window.addEventListener('scroll', function() {
-    var footer = document.getElementById('myFooter');
-    var scrollPosition = window.innerHeight + window.scrollY;
-    var documentHeight = document.body.offsetHeight;
-    var footerHeight = 180;
-    if (scrollPosition < documentHeight + footerHeight) {
-        footer.style.display = 'none'; // Hide the footer when not at the bottom
-    } else {
-        footer.style.display = 'block'; // Show the footer when scrolled to the bottom
-
-    }
-});
-
 //--------functions for question and answers section-----------
 
 /**
@@ -204,8 +366,7 @@ window.addEventListener('scroll', function() {
  * or catch's and display any errors
  */
 function retrieve_QnA() {
-
-// Fetch the question from the https://the-trivia-api.com/ API
+    // Fetch the question from the https://the-trivia-api.com/ API
     fetch('https://the-trivia-api.com/v2/questions')
     .then(response => response.json()) // Parse the response as JSON
     .then(data => {
@@ -215,7 +376,6 @@ function retrieve_QnA() {
     .catch(error => {
         questionElement.textContent = `Error fetching question: ${error}`
     });
-
 }
 
 /**
@@ -234,13 +394,12 @@ function nextQuestion() {
 
     update_QnA_content(questionText,wrongAnswers,correctAnswer);
     questionCounter++;
-    
 }
+
 /**
  * function triggered by any answer button pressed check's if the answer is correct
  * and then goes to next question or gets new qna object array if reaches 9
  */
-
 function checkAnswer(buttonText) {
     if(!popUpActive){
         if (buttonText === correctAnswer){
@@ -253,11 +412,10 @@ function checkAnswer(buttonText) {
             incrementPrize();
             restartTimer = true;
         }else {
-            //gameOver();
+            ///gameOver();
         }
         hideResultsBool = true;
     }
-    
 }
 
 /**
@@ -272,20 +430,16 @@ function shuffleArray(array) {
   }
 
 /**
- * Shufle the anwers and update the question and answers elements with content
+ * Shufle the anwers and update the question and answers elements with text content
  */
 function update_QnA_content(questionText, wrongAnswers, correctAnswer) {
-
     const answersArray = [wrongAnswers[0],wrongAnswers[1],wrongAnswers[2],correctAnswer];
-
     shuffledAnswers = shuffleArray(answersArray);
-
     //update the content of the <p> elements for the answers a,b,c,d
     button_A.textContent = shuffledAnswers[0];
     button_B.textContent = shuffledAnswers[1];
     button_C.textContent = shuffledAnswers[2];
     button_D.textContent = shuffledAnswers[3];
-
     // Update the content of the <p> element with the question id
     questionElement.textContent = questionText;
 }
@@ -297,8 +451,7 @@ function update_QnA_content(questionText, wrongAnswers, correctAnswer) {
  * the user has reached any of the take home prizes
  */
 function incrementPrize() {
-    //decrement counter after updating the image
-    prizeCounter--;
+    
     //counter for the previous prize li element
     let previousPrizeLi = prizeCounter; 
     
@@ -326,14 +479,11 @@ function incrementPrize() {
         popUp(`Congratulations!!!`, `You have WON!! Congradulations you are a millionaire`, "PLAY AGAIN", "Quit");
         readThenUpdate(1000);
     }
-
-    if(prize != "Million"){
     //change background image of the prize li
     liElement[prizeCounter].style.backgroundImage = "url('assets/images/green_answer_box.png')";
-    //if its not on the first prize then change 
-    //the prize bg before it back to original colour black
-   }
    
+   //decrement counter after updating the image
+   prizeCounter--;
 }
 
 //---------pop up-----------
@@ -564,175 +714,21 @@ function disableLifeLineBtns() {
     });
 }
 
-function startGame() {
-    playAudioWithSrc("assets/sounds/suspense_sound.mp3");
-
-// To re-enable scrolling
-document.body.style.overflow = previousOverflow;
-    /*
-check if there is a previously stored prize  
-set prize counter to it then changes all previous
-prize amounts to gray and set background of current prize amount to green
- */
-if (storedCount != null){
-    prizeCounter = storedCount;
-     //change background image of the prize li
-    liElement[prizeCounter].style.backgroundImage = "url('assets/images/green_answer_box.png')";
-  
-    for (let i = prizeCounter; i < liElement.length; i++){
-       if (i === prizeCounter){
-            continue;
-       }     
-        let prizeAmount = liElement[i].querySelector("p");
-        prizeAmount.style.color = "grey";
-        if (prizeAmount.textContent === "€5,000" || prizeAmount.textContent === "€50,000") {
-            liElement[i].style.backgroundImage = "url('assets/images/answer_box.png')";
-        }
-    }
-    
-}else {
-     prizeCounter = 13;
-}
-    retrieve_QnA();
-    timer();
-    questionCounter = 0;
-}
 
 
- // Function to fetch scores from back4app
- async function displayScores() {
-    let i =0;
-    let query = new Parse.Query("User");
-    query.descending("score"); // Sort the results by the "score" property in descending order
-
-    query.find().then(function(objects){
-        if(objects){
-            const scoreList = document.getElementById('score-list');
-            scoreList.innerHTML = ''; // Clear the existing list
-
-            objects.forEach(object => {
-                i++;
-              const listItem = document.createElement('li');
-              listItem.textContent = `${i}. ${object.get("username")} => score : ${object.get("score")}`;
-              scoreList.appendChild(listItem);
-            });        
-        } else {
-           console.log("Nothing found, please try again");
-        }
-    }).catch(function(error){
-        console.log("Error: " + error.code + " " + error.message);       
-    });
-  }
-
-  // Function to add a new user to the scores.json file
-  async function register() {
-
-    if(emailInput.style.display === "none"){
-        emailInput.style.display = "flex";
-    }else{
-
-    
-     // Creates a new Parse "User" object, which is created by default in your Parse app
-        let user = new Parse.User();
-        // Set the input values to the new "User" object
-        user.set("username", username.value);
-        user.set("email", document.getElementById("email").value);
-        user.set("password", password.value);
-        
-        try {
-            // Call the save method, which returns the saved object if successful
-            user = await user.save();
-            if (user !== null) {
-                singUp.style.display = "none";
-            // Get the session token from the user object
-            const sessionToken = user.getSessionToken();
-
-            // Store the session token in local storage
-            localStorage.setItem('sessionToken', sessionToken);      
-            // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
-            alert(
-                `New user created with success! ObjectId: ${
-                user.id
-                }, ${user.get("username")}`
-            );
-            }
-        } catch (error) {
-            alert(`Error: ${error.message}`);
-        }
-    }
-  }
-
-  function readThenUpdate(score) {
-    const currentUser = Parse.User.current();
-    if (currentUser) {
-        const currentUserUsername = currentUser.get("username");
-
-        query = new Parse.Query("User");
-        query.equalTo("username", currentUserUsername);
-        query.first().then(function (object) {
-        if (object) {
-            update(object, score);
-        } else {
-            console.log("Nothing found, please try again");
-        }
-        }).catch(function (error) {
-        console.log("Error: " + error.code + " " + error.message);
-        });
-  }
-}
-
-function update(foundObject, score) {
-
-    let newScore = foundObject.get("score") + score;
-    foundObject.set('score', newScore);
-
-    foundObject.save().then(function (object) {
-      console.log('score updated! Username: ' + object.get("username") + ' and new score: ' + object.get("score"));
-    }).catch(function(error) {
-      console.log('Error: ' + error.message);
-    });
-}
-
-async function logIn() {
-    if (emailInput.style.display === "" || emailInput.style.display === "flex") {
-      emailInput.style.display = "none";
-    } else {
-      try {
-        // Log in the user using Parse.User.logIn()
-        const user = await Parse.User.logIn(username.value, password.value);
-  
-        // Get the session token from the user object
-        const sessionToken = user.getSessionToken();
-  
-        // Store the session token in local storage
-        localStorage.setItem('sessionToken', sessionToken);
-  
-        // Hide the signup form
-        singUp.style.display = "none";
-  
-        // Log the user login success
-        console.log('User logged in successfully with name: ' + user.get("username") + ' and email: ' + user.get("email"));
-      } catch (error) {
-        console.log("Error: " + error.code + " " + error.message);
-      }
-    }
-  }
  
   
-
-// Function to check if a user is logged in
-async function checkUserLogin() {
-    const sessionToken = localStorage.getItem('sessionToken'); // Fetch the session token from local storage
-    if (sessionToken) {
-      try {
-        await Parse.User.become(sessionToken); // Set up the user session using the session token
-        return true;
-    } catch (error) {
-        console.error('Error setting up user session:', error);
-        // Handle any errors if token is invalid or expired
-      }
+/*this aevent handler shows the footer when user scrolls to bottom of
+ page and hides it when user scrolls up */
+ window.addEventListener('scroll', function() {
+    var footer = document.getElementById('myFooter');
+    var scrollPosition = window.innerHeight + window.scrollY;
+    var documentHeight = document.body.offsetHeight;
+    var footerHeight = 180;
+    if (scrollPosition < documentHeight + footerHeight) {
+        footer.style.display = 'none'; // Hide the footer when not at the bottom
     } else {
-        return false;
+        footer.style.display = 'block'; // Show the footer when scrolled to the bottom
+
     }
-  }
-  
+});

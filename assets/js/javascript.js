@@ -412,7 +412,7 @@ function checkAnswer(buttonText) {
             incrementPrize();
             restartTimer = true;
         }else {
-            ///gameOver();
+            gameOver();
         }
         hideResultsBool = true;
     }
@@ -451,17 +451,16 @@ function update_QnA_content(questionText, wrongAnswers, correctAnswer) {
  * the user has reached any of the take home prizes
  */
 function incrementPrize() {
-    
     //counter for the previous prize li element
     let previousPrizeLi = prizeCounter; 
     
-    if (prizeCounter < 13){
-        previousPrizeLi++;
-        liElement[previousPrizeLi].style.backgroundImage = "url('assets/images/answer_box.png')";
-        //get the p element from the previous prize and then change its color
-        let previosParagraph = liElement[previousPrizeLi].querySelector("p");
-        previosParagraph.style.color = "grey";
-    }
+    
+    previousPrizeLi++;
+    liElement[previousPrizeLi].style.backgroundImage = "url('assets/images/answer_box.png')";
+    //get the p element from the previous prize and then change its color
+    let previosParagraph = liElement[previousPrizeLi].querySelector("p");
+    previosParagraph.style.color = "grey";
+
     // Access the <p> element within the <li>
     let paragraph = liElement[previousPrizeLi].querySelector("p");
 
@@ -479,11 +478,12 @@ function incrementPrize() {
         popUp(`Congratulations!!!`, `You have WON!! Congradulations you are a millionaire`, "PLAY AGAIN", "Quit");
         readThenUpdate(1000);
     }
+   
+    //decrement counter after updating the image
+    prizeCounter--;
+
     //change background image of the prize li
     liElement[prizeCounter].style.backgroundImage = "url('assets/images/green_answer_box.png')";
-   
-   //decrement counter after updating the image
-   prizeCounter--;
 }
 
 //---------pop up-----------

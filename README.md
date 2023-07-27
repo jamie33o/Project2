@@ -6,7 +6,7 @@ Welcome to,
 
 ## Introduction
 
-Welcome to the "Who Wants To Be A Millionaire" game! This is an interactive quiz game that replicates the famous TV show. The objective of the game is to correctly answer a series of increasingly difficult multiple-choice questions and progress towards winning one million (virtual) dollars!This game is made for educational purposes and will not be monatized...
+Welcome to the "Who Wants To Be A Millionaire" game! This interactive quiz game replicates the famous TV show. The objective is to correctly answer a series of increasingly difficult multiple-choice questions and progress towards winning one million (virtual) dollars! The game is designed for educational purposes and will not be monetized
 
 The live link can be found here - https://jamie33o.github.io/Project2/ 
 
@@ -16,7 +16,7 @@ ___
 ## Table of Contents
 
 - [Who wants to be a millionaire](#quiz-game)
-  - [Table of Contents](#table-of-contents)
+ - [Table of Contents](#table-of-contents)
   - [Project Goals](#project-goals)
     - [Player Goals](#player-goals)
     - [Site Owner Goals](#site-owner-goals)
@@ -26,20 +26,20 @@ ___
     - [User Stories](#user-stories)
       - [Players](#players)
       - [Site Owner](#site-owner)
-- [Design](#design)
-    - [Design Choices](#design-choices)
-    - [Structure](#structure)
-     - [Welcome Overlay menu Screen/Page](#welcome-Overlay-menu-Screen/Page)
-      - [Register/Log in form](#register/Log-in-form)
-      - [Instruction's](#instruction's)
-      - [Leader Board](#leader-Board)
-     - [Quiz Page](#quiz-Page)
-      - [Life Lines box](#life-lines-box)
-      - [Menu button](#menu-button)
-      - [Timer](#timer)
-      - [Prize's box](#prize's-box)
-      - [Question and 4 answer boxs](#Question-and-4-answer-boxs)
-      - [Footer](#Footer)
+  - [Design](#design)
+   - [Design Choices](#design-choices)
+   - [Structure](#structure)
+    - [Welcome Overlay menu Screen/Page](#welcome-Overlay-menu-Screen/Page)
+     - [Register/Log in form](#register/Log-in-form)
+     - [Instruction's](#instruction's)
+     - [Leader Board](#leader-Board)
+    - [Quiz Page](#quiz-Page)
+     - [Life Lines box](#life-lines-box)
+     - [Menu button](#menu-button)
+     - [Timer](#timer)
+     - [Prize's box](#prize's-box)
+     - [Question and 4 answer boxs](#Question-and-4-answer-boxs)
+     - [Footer](#Footer)
       
 
      - [Wireframes](#wireframes)
@@ -130,14 +130,14 @@ The aim of this site is to provide the look and feel similar to the tv show. Wit
 
 ### Structure
 
-The website consists of 3 pages (welcome overlay screen/page, quiz page, 404 error page).
-The pages are structured in an easy-to-navigate framed pattern allowing visitors to quickly consume key information within the center of the screen. On the menu screen at the top center of the page the visitor will notice the quiz game logo, then followed under it is the mute/sound button then the start button then the instructions button and lastly the leader board button. 
-This allows the user to quickly understand the name of the game, start the game, how to play, and how to toggle sound/music on or off.
+The website comprises three pages: a welcome overlay screen/page, a quiz page, and a 404 error page. These pages follow a user-friendly and easily navigable framed pattern, enabling visitors to swiftly access key information at the center of the screen. 
+
+On the menu screen, located at the top center of the page, visitors will immediately notice the quiz game logo. Positioned below the logo are the mute/sound button, the start button, the instructions button, and finally, the leader board button. This intuitive layout ensures that users can quickly grasp the name of the game, commence playing, understand the gameplay instructions, and conveniently toggle sound or music on or off.
 
 
 #### Welcome Overlay menu Screen/Page
 
-- The main game page, with a background consisting spot lights effect and gradient of light to dark blue also contains:
+- On the main game page, you will be greeted with a captivating background featuring spotlight effects and a gradient of light to dark blue. The following essential elements are also present on this page:
   - Register/Log in form
   - The Logo
   - Sound mute/unmute toggle icon.
@@ -148,19 +148,27 @@ This allows the user to quickly understand the name of the game, start the game,
 
 ##### Register/Log in form
 
-- A form that show's on the menu screen if the user is not logged in or has not registered.
+- Register/Log in Form: Users can easily access the registration and login form, allowing them to participate in the game and keep track of their progress.
+
+##### Logo
+
+-The Logo: The game's logo is prominently displayed, giving users a clear visual identity of the game they are engaging with.
 
 ![Get in Touch](docs/readme_images/register-form.png)
 
+##### Sound mute/unmute toggle icon
+
+- Sound Mute/Unmute Toggle Icon: Users have the option to control the sound by toggling between mute and unmute, ensuring a customizable audio experience.
+
 ##### Instruction's
 
-- A simple scrollabale pop up, with a list on how to play the game in detail with a button at the bottom for the user to close the pop up.
+- Instructions Button: For newcomers or those needing a refresher, an "Instructions" button is readily available. Clicking on it will provide clear guidelines on how to play the game.
 
 ![How to Play](docs/readme_images/instructions.png)
 
 ##### Leader Board
 
-- A simple scrollabale pop up, with a list of all the users scores starting at highest down to lowest with a "done" button at the bottom for the user to close the pop up.
+- Leaderboard Button: To encourage competitiveness and track user scores, a "Leaderboard" button is provided. Players can check their standings among others who have participated in the game.
 
 ![How to Play](docs/readme_images/leader-board.png)
 
@@ -168,7 +176,7 @@ ___
 
 #### Quiz Page
 
-- The main game page, with a background consisting spot lights effect and gradient of light to dark blue also contains:
+- On the main game page, you will find an engaging background featuring spotlight effects and a gradient from light to dark blue. The page includes the following key elements:
   - Life lines box 
   - The Logo
   - Sound mute/unmute toggle icon.
@@ -201,26 +209,62 @@ After each button is pressed and user goes to the next question a red x will be 
 
 ##### Timer
 
-- The timer is under the menu button in the center of the page it resets to 30 seconds for each question in the center is the number and then around it is a circle animation 
+-On the main game page, you'll find the timer positioned below the menu button in the center of the screen. The timer is set to 30 seconds for each question and is represented as a numerical countdown in the center. Encircling the timer, there is a dynamic circle animation that visually illustrates the remaining time, gradually shrinking as the seconds pass. This animation adds excitement and urgency to the game, prompting users to make quick decisions during their gameplay. 
 ![life line buttons with red x](docs/readme_images/life_line_buttons_redx.png)
 
 ##### Prize's box
 
-- The prize section is at the top right of the page it is a list that goes from €500 to €1 million , the question the user is on will be green and as the user gets annwers right the green background will move up the list of prizes, there is 3 milestone prizes "€5000" the score for this is 50points then €50,000 the score for this is 500points and €1 million the score for this is 1000points these are orange when the user reaches them there will be a pop up letting the user know they have reached a milestone and it will show the prize amount they are on and what score they get for it and there is two buttons on each pop up for the €500 and €50,000 there will be a "continue" button and a "save" button if the user clicks save they can leave the game and when they come back they will still be on that mile stone when the reach €1 million the pop will let the user know they have won and the buttons will ask if they would like to play again or quit
+- On the main game page, the prize section is located at the top right corner, presented as a list ranging from €500 to €1 million. As the user progresses through the game and answers questions correctly, the corresponding prize amount will be highlighted with a green background, indicating the current level they are on.
 ![prize section](docs/readme_images/life_line_buttons_redx.png)
-![pop up for €5000 and €50,000](docs/readme_images/life_line_buttons_redx.png)
+
+ - There are three milestone prizes that hold special significance in the game:
+
+  - €5,000 Milestone: The user reaches this milestone when they score 50 points. Upon reaching this milestone, the prize amount will be highlighted in orange.
+![pop up for €5000](docs/readme_images/life_line_buttons_redx.png)
+
+  - €50,000 Milestone: When the user achieves 500 points, they will hit this milestone, and the prize amount will be displayed in orange.
+![pop up for €50,000](docs/readme_images/life_line_buttons_redx.png)
+
+  - €1 Million Milestone: Reaching the ultimate goal of 1000 points will unlock the €1 million prize, also indicated with an orange background.
 ![pop up for €1 milllion](docs/readme_images/life_line_buttons_redx.png)
+
+When the user reaches any of these milestone prizes, a pop-up notification will appear, congratulating them on their achievement. The pop-up will display the prize amount they are currently on and the score they have obtained. For the €500 and €50,000 milestones, two buttons will be available:
+
+"Continue" button: If the user clicks this button, they can proceed with the game and continue playing from the current milestone.
+
+"Save" button: By clicking this button, the user can choose to exit the game, and their progress will be saved at the current milestone. When they return to the game, they will resume from where they left off.
+![pop up for €5000](docs/readme_images/life_line_buttons_redx.png)
+
+Upon reaching the €1 million milestone, a special pop-up will appear, announcing the user's victory in winning the grand prize. The pop-up will provide two options:
+
+"Play Again" button: If the user wants to play again and aim for higher scores, they can click this button and restart the game.
+
+"Quit" button: Clicking this button will allow the user to gracefully exit the game after their triumph.
+![pop up for €5000](docs/readme_images/life_line_buttons_redx.png)
+
+These features and notifications enhance the excitement and engagement of the game while providing the user with clear feedback on their progress and achievements.
 
 
 ##### Question and 4 answer boxs
 
-- The question and 4 answer's are displayed at the bottom of the page. When the user clicks an answer the user is instantly shown wether the question answer they selected was correct or wrong if correct they go to next question if it is wrong there is a pop up letting them know the game is over and it tells them the correct answer.
+- On the main game page, the question and four answer choices are displayed at the bottom of the screen. When the user selects an answer by clicking on it, they will instantly receive feedback on whether their choice was correct or incorrect.
+
+- If the user's answer is correct:
+
+ - They will be notified immediately that their answer is correct.
+ - The game will automatically proceed to the next question, presenting them with another opportunity to answer and continue their progress.
+
+- If the user's answer is wrong:
+
+ - A pop-up notification will appear, informing them that the game is over for this session.
+  - The pop-up will reveal the correct answer to the question they just attempted.
+  - This swift feedback system allows users to quickly know their performance, learn from their mistakes, and continue playing or start a new game with improved knowledge. It keeps the gameplay engaging and encourages users to challenge themselves to achieve better results in subsequent attempts.
 ![Question and 4 answer boxs](docs/readme_images/life_line_buttons_redx.png)
 ![wrong answer pop up](docs/readme_images/life_line_buttons_redx.png)
 
 ##### Footer
 
-- The footer appears when the user scrolls to the bottom of the page and dissapears when they scroll up it contains 2 lines of text which are link
+- On the main game page, the footer is designed to appear when the user scrolls to the bottom of the page, and it will automatically disappear when they scroll back up. The footer contains text, serving as a link to relevant information and resources.
 ![wrong answer pop up](docs/readme_images/life_line_buttons_redx.png)
 
 

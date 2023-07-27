@@ -11,7 +11,38 @@ Welcome to the "Who Wants To Be A Millionaire" game! This is an interactive quiz
 The live link can be found here - https://jamie33o.github.io/Project2/ 
 
 ![ScreenShot](docs/readme_images/responsive_screenshot.png)
+___
 
+## Table of Contents
+
+- [Who wants to be a millionaire](#quiz-game)
+  - [Table of Contents](#table-of-contents)
+  - [Project Goals](#project-goals)
+    - [Player Goals](#player-goals)
+    - [Site Owner Goals](#site-owner-goals)
+  - [User Experience](#user-experience)
+    - [Target Audience](#target-audience)
+    - [User Requirements and Expectations](#user-requirements-and-expectations)
+    - [User Stories](#user-stories)
+      - [Players](#players)
+      - [Site Owner](#site-owner)
+- [Design](#design)
+    - [Design Choices](#design-choices)
+    - [Structure](#structure)
+     - [Welcome Overlay menu Screen/Page](#welcome-Overlay-menu-Screen/Page)
+      - [Register/Log in form](#register/Log-in-form)
+      - [Instruction's](#instruction's)
+      - [Leader Board](#leader-Board)
+     - [Quiz Page](#quiz-Page)
+      - [Life Lines box](#life-lines-box)
+      - [Menu button](#menu-button)
+      - [Timer](#timer)
+      - [Prize's box](#prize's-box)
+      - [Question and 4 answer boxs](#Question-and-4-answer-boxs)
+      - [Footer](#Footer)
+      
+
+     - [Wireframes](#wireframes)
 ___
 
 ## Project Goals
@@ -89,6 +120,113 @@ The players of the game are the primary users of this website with site owner be
 [Back to Table of Contents](#table-of-contents)
 
 ___
+
+## Design
+
+### Design Choices
+
+The aim of this site is to provide the look and feel similar to the tv show. With its dark blue colours with spotlights. All images, colours, and sounds were chosen with this aim in mind.
+
+
+### Structure
+
+The website consists of 3 pages (welcome overlay screen/page, quiz page, 404 error page).
+The pages are structured in an easy-to-navigate framed pattern allowing visitors to quickly consume key information within the center of the screen. On the menu screen at the top center of the page the visitor will notice the quiz game logo, then followed under it is the mute/sound button then the start button then the instructions button and lastly the leader board button. 
+This allows the user to quickly understand the name of the game, start the game, how to play, and how to toggle sound/music on or off.
+
+
+#### Welcome Overlay menu Screen/Page
+
+- The main game page, with a background consisting spot lights effect and gradient of light to dark blue also contains:
+  - Register/Log in form
+  - The Logo
+  - Sound mute/unmute toggle icon.
+  - An Instruction's button.
+  - Leader board button to check user scores.
+
+![Welcome Overlay Screen/Page](docs/readme_images/menu.png)
+
+##### Register/Log in form
+
+- A form that show's on the menu screen if the user is not logged in or has not registered.
+
+![Get in Touch](docs/readme_images/register-form.png)
+
+##### Instruction's
+
+- A simple scrollabale pop up, with a list on how to play the game in detail with a button at the bottom for the user to close the pop up.
+
+![How to Play](docs/readme_images/instructions.png)
+
+##### Leader Board
+
+- A simple scrollabale pop up, with a list of all the users scores starting at highest down to lowest with a "done" button at the bottom for the user to close the pop up.
+
+![How to Play](docs/readme_images/leader-board.png)
+
+___
+
+#### Quiz Page
+
+- The main game page, with a background consisting spot lights effect and gradient of light to dark blue also contains:
+  - Life lines box 
+  - The Logo
+  - Sound mute/unmute toggle icon.
+  - Menu button
+  - Timer
+  - Prize's box
+  - Question and 4 answer boxs
+  - Footer
+![Quiz page](docs/readme_images/quiz-page.png)
+
+##### Life Lines box
+- The Life lines box has 3 life lines and when each button is pressed it will show the results inside the box under the buttons except for the 50:50 button as two answer will just dissapear:
+ 
+ - 50:50 button: This button when pressed will make 2 wrong answers dissapear.
+![fifty fifty button](docs/readme_images/50_50_img.png)
+![fifty fifty - Results](docs/readme_images/fiftyresults.png)
+ - Ask the audience button: This button when pressed will show a bar chart to show the results of the audience votes with a letter on each bar to show which answer it represents the bars are animated so they rise slowly to there final position it does not always give the right answer.
+![ask the audiene button and results](docs/readme_images/asktheaudienceresults.png)
+ - Phone A friend button: This button when pressed will show a paragraph  of text representing the fake caller's anwers 
+![phone a friend button and results](docs/readme_images/asktheaudienceresults.png)
+
+After each button is pressed and user goes to the next question a red x will be on the button to show it has been used.
+![life line buttons with red x](docs/readme_images/life_line_buttons_redx.png)
+
+
+##### Menu button
+
+- The menu button is between the mute/sound button and the logo in the center of the page when pressed it shows the menu screen but it does not stop the timer so the user cant use it to pause the game and google the question.
+![life line buttons with red x](docs/readme_images/life_line_buttons_redx.png)
+
+##### Timer
+
+- The timer is under the menu button in the center of the page it resets to 30 seconds for each question in the center is the number and then around it is a circle animation 
+![life line buttons with red x](docs/readme_images/life_line_buttons_redx.png)
+
+##### Prize's box
+
+- The prize section is at the top right of the page it is a list that goes from €500 to €1 million , the question the user is on will be green and as the user gets annwers right the green background will move up the list of prizes, there is 3 milestone prizes "€5000" the score for this is 50points then €50,000 the score for this is 500points and €1 million the score for this is 1000points these are orange when the user reaches them there will be a pop up letting the user know they have reached a milestone and it will show the prize amount they are on and what score they get for it and there is two buttons on each pop up for the €500 and €50,000 there will be a "continue" button and a "save" button if the user clicks save they can leave the game and when they come back they will still be on that mile stone when the reach €1 million the pop will let the user know they have won and the buttons will ask if they would like to play again or quit
+![prize section](docs/readme_images/life_line_buttons_redx.png)
+![pop up for €5000 and €50,000](docs/readme_images/life_line_buttons_redx.png)
+![pop up for €1 milllion](docs/readme_images/life_line_buttons_redx.png)
+
+
+##### Question and 4 answer boxs
+
+- The question and 4 answer's are displayed at the bottom of the page. When the user clicks an answer the user is instantly shown wether the question answer they selected was correct or wrong if correct they go to next question if it is wrong there is a pop up letting them know the game is over and it tells them the correct answer.
+![Question and 4 answer boxs](docs/readme_images/life_line_buttons_redx.png)
+![wrong answer pop up](docs/readme_images/life_line_buttons_redx.png)
+
+##### Footer
+
+- The footer appears when the user scrolls to the bottom of the page and dissapears when they scroll up it contains 2 lines of text which are link
+![wrong answer pop up](docs/readme_images/life_line_buttons_redx.png)
+
+
+
+
+
 
 
 

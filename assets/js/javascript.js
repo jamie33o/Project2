@@ -114,7 +114,7 @@ const username = document.getElementById("username");
 const mutePlayButton = document.querySelectorAll('.mute-play-btn');
 
 /**div with sign up form */
-const singUp = document.getElementById("sign-up");
+const signUp = document.getElementById("sign-up");
 /**for email text content */
 let emailInput = document.getElementById("email-input");
 
@@ -138,7 +138,7 @@ document.getElementById("leader-board-btn").addEventListener('click', function()
     }
     leaderBoard.style.display = "block";
     outerContainer.style.display = "flex";
-
+    displayScores();
 });
 
 document.getElementById("done").addEventListener('click', function() {
@@ -227,8 +227,6 @@ async function displayScores() {
     if(emailInput.style.display === "none"){
         emailInput.style.display = "flex";
     }else{
-
-    
      // Creates a new Parse "User" object, which is created by default in your Parse app
         let user = new Parse.User();
         // Set the input values to the new "User" object
@@ -240,7 +238,7 @@ async function displayScores() {
             // Call the save method, which returns the saved object if successful
             user = await user.save();
             if (user !== null) {
-                singUp.style.display = "none";
+                signUp.style.display = "none";
             // Get the session token from the user object
             const sessionToken = user.getSessionToken();
 
@@ -305,7 +303,7 @@ async function logIn() {
         localStorage.setItem('sessionToken', sessionToken);
   
         // Hide the signup form
-        singUp.style.display = "none";
+        signUp.style.display = "none";
   
         // Log the user login success
         console.log('User logged in successfully with name: ' + user.get("username") + ' and email: ' + user.get("email"));
@@ -315,12 +313,11 @@ async function logIn() {
     }
   }
  
-  
-
 // Function to check if a user is logged in
 async function checkUserLogin() {
     const sessionToken = localStorage.getItem('sessionToken'); // Fetch the session token from local storage
     if (sessionToken) {
+        console.log(sessionToken);
       try {
         await Parse.User.become(sessionToken); // Set up the user session using the session token
         return true;
@@ -331,29 +328,27 @@ async function checkUserLogin() {
     } else {
         return false;
     }
-  }
+}
+
 /**this function checks if the user is logged in
  * if they are not it shows the sign up/log in form otherwise it doesnt
  */
 function checkUser(){
-    if( checkUserLogin()){
+    if(checkUserLogin()){
         // To disable scrolling
         document.body.style.overflow = "hidden";
         //plays the start theme
         playAudioWithSrc("assets/sounds/start_theme.mp3");
         //event listener of the start up overlay
        
-        displayScores();
-        singUp.style.display = "none";
-
+        signUp.style.display = "none";
     }else {
-        singUp.style.display = "flex";
+        signUp.style.display = "flex";
         // To disable scrolling
         document.body.style.overflow = "hidden";
     }
 }
 checkUser();
-
 
 //-------functions for audio--------
 
@@ -498,12 +493,12 @@ function incrementPrize() {
     if(prize === "€5,000" || prize ==="€50,000") {
         // Call the playSound function and pass the URL of the sound file
         playAudioWithSrc('assets/sounds/milestone_prize.mp3');
-        popUp(`WELL DONE!!!`, `You have reached ${prize} would you like to continue or save your progress and come back later
+        popUp(`WELL DONE!!!`, `You have reached ${prize}!!! \n ${prize === "€5,000" ? "50" : "500"} will be added to your score!!! \n Would you like to continue or save your progress and come back later
         ?`, "CONTINUE", "SAVE");
         readThenUpdate(prize === "€5,000" ? 50 : 500);
       }else if (prize === "Million"){
         playAudioWithSrc('assets/sounds/million_sound.mp3');
-        popUp(`Congratulations!!!`, `You have WON!! Congradulations you are a millionaire`, "PLAY AGAIN", "Quit");
+        popUp(`Congratulations!!!`, `You have WON!! Congradulations you are a millionaire 1000 will be added to your score!!`, "PLAY AGAIN", "Quit");
         readThenUpdate(1000);
     }
    

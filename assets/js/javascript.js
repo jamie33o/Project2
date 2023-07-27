@@ -243,7 +243,8 @@ async function displayScores() {
             const sessionToken = user.getSessionToken();
 
             // Store the session token in local storage
-            localStorage.setItem('sessionToken', sessionToken);      
+            localStorage.setItem('sessionToken', sessionToken);  
+            setUserSessionToken(sessionToken);    
             // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
             alert(
                 `New user created with success! ObjectId: ${
@@ -260,10 +261,10 @@ async function displayScores() {
   function readThenUpdate(score) {
     const currentUser = Parse.User.current();
     if (currentUser) {
-        const currentUserUsername = currentUser.get("username");
+        const currentUsername = currentUser.get("username"); // Get the current user's username
 
         query = new Parse.Query("User");
-        query.equalTo("username", currentUserUsername);
+        query.equalTo("username", currentUsername);
         query.first().then(function (object) {
         if (object) {
             update(object, score);
@@ -301,7 +302,8 @@ async function logIn() {
   
         // Store the session token in local storage
         localStorage.setItem('sessionToken', sessionToken);
-  
+        setUserSessionToken(sessionToken);    
+
         // Hide the signup form
         signUp.style.display = "none";
   
@@ -360,7 +362,7 @@ async function setUserSessionToken(sessionToken){
     } else {
       audio.pause();
       mutePlayButton.forEach(button => {
-        button.style.backgroundImage = 'url("assets/images/sound-on.png")';
+      button.style.backgroundImage = 'url("assets/images/sound-on.png")';
       });
       mute = true;
     }
@@ -433,7 +435,7 @@ function checkAnswer(buttonText) {
             incrementPrize();
             restartTimer = true;
         }else {
-            //gameOver();
+            gameOver();
         }
         hideResultsBool = true;
     }

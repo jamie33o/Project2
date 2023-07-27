@@ -122,13 +122,15 @@ let instruction = document.getElementById("instructions");
 
 let leaderBoard = document.getElementById("leader-board");
 let outerContainer = document.getElementById("outer-container");
-
+let instructions_LeaderBoard = document.getElementById("inst-leader");
 document.getElementById("instructions-btn").addEventListener('click', function() {
     if(leaderBoard.style.display === "block") {
         leaderBoard.style.display = "none";
     }
     instruction.style.display = "block";
     outerContainer.style.display = "flex";
+
+    instructions_LeaderBoard.innerHTML = "Instruction's";
 
 });
 
@@ -138,6 +140,8 @@ document.getElementById("leader-board-btn").addEventListener('click', function()
     }
     leaderBoard.style.display = "block";
     outerContainer.style.display = "flex";
+    instructions_LeaderBoard.innerHTML = "Leader Board";
+
     displayScores();
 });
 
@@ -145,7 +149,7 @@ document.getElementById("done").addEventListener('click', function() {
    outerContainer.style.display = "none";
    leaderBoard.style.display = "none";
    instruction.style.display = "none";
-
+instructions_LeaderBoard.innerHTML = "";
 });
 
 //-------function for start menu---------
@@ -278,7 +282,6 @@ async function displayScores() {
 }
 
 function update(foundObject, score) {
-
     let newScore = foundObject.get("score") + score;
     foundObject.set('score', newScore);
 
@@ -346,7 +349,6 @@ async function setUserSessionToken(sessionToken){
         // Handle any errors if token is invalid or expired
     }
 }
-
 
 //-------functions for audio--------
 
@@ -435,7 +437,7 @@ function checkAnswer(buttonText) {
             incrementPrize();
             restartTimer = true;
         }else {
-            gameOver();
+            //gameOver();
         }
         hideResultsBool = true;
     }
@@ -491,20 +493,22 @@ function incrementPrize() {
     if(prize === "€5,000" || prize ==="€50,000") {
         // Call the playSound function and pass the URL of the sound file
         playAudioWithSrc('assets/sounds/milestone_prize.mp3');
-        popUp(`WELL DONE!!!`, `You have reached ${prize}!!! \n ${prize === "€5,000" ? "50" : "500"} will be added to your score!!! \n Would you like to continue or save your progress and come back later
+        popUp(`WELL DONE!!!`, `You have reached ${prize}!!! \n ${prize === "€5,000" ? "50" : "500"} points will be added to your score!!! \n Would you like to continue or save your progress and come back later
         ?`, "CONTINUE", "SAVE");
         readThenUpdate(prize === "€5,000" ? 50 : 500);
       }else if (prize === "Million"){
         playAudioWithSrc('assets/sounds/million_sound.mp3');
-        popUp(`Congratulations!!!`, `You have WON!! Congradulations you are a millionaire 1000 will be added to your score!!`, "PLAY AGAIN", "Quit");
+        popUp(`Congratulations!!!`, `You have WON!! Congradulations you are a millionaire!!! 1000 points will be added to your score!!`, "PLAY AGAIN", "QUIT");
         readThenUpdate(1000);
     }
    
     //decrement counter after updating the image
     prizeCounter--;
 
+    if(prizeCounter >0 ){
     //change background image of the prize li
     liElement[prizeCounter].style.backgroundImage = "url('assets/images/green_answer_box.png')";
+    }
 }
 
 //---------pop up-----------
@@ -538,7 +542,7 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
 
     popUp_element.querySelector("#btn2").addEventListener('click',  function() {
            
-        if (btn2Text === "Quit") {    
+        if (btn2Text === "QUIT") {    
                 // Navigate to a new page, replacing the current page in the browser history
                 localStorage.setItem("prizeCounter", 13);
         }else {
@@ -735,10 +739,6 @@ function disableLifeLineBtns() {
     });
 }
 
-
-
- 
-  
 /*this aevent handler shows the footer when user scrolls to bottom of
  page and hides it when user scrolls up */
  window.addEventListener('scroll', function() {

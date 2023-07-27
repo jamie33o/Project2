@@ -749,7 +749,7 @@ function disableLifeLineBtns() {
     if (scrollPosition < documentHeight + footerHeight) {
         footer.style.display = 'none'; // Hide the footer when not at the bottom
     } else {
-        footer.style.display = 'block'; // Show the footer when scrolled to the bottom
+        footer.style.display = 'flex'; // Show the footer when scrolled to the bottom
 
     }
 });

@@ -51,10 +51,104 @@ p ,button{
     background-size: 100% 100%;
     display: flex;
     flex-direction: column;
-    justify-content:space-evenly;
+    justify-content:center;
     align-items: center;
     z-index: 1;
 }
+
+#instructions {
+    display:none;
+}
+
+#leader-board {
+    display:none;
+}
+
+#outer-container {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    top: 0;
+    margin: 10px 10px;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    background-color: var(--dark-blue);
+    padding: 50px;
+    height: 75vh;
+    width: 70vw;
+    z-index: 5;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    overflow: scroll;
+    
+}
+
+#done {
+    width:50%;
+    height: 20px;
+    background-size: contain;
+    position: absolute;
+    bottom: 0;
+}
+
+#container ol{
+    margin: 5px;
+}
+
+#container p{
+    font-size: 1em;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 500px;
+    width: 100%;
+}
+
+/*sign up*/
+#sign-up {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    background-color: var(--dark-blue);
+    padding: 50px;
+    height: 70%;
+    width: 70%;
+    z-index: 5;
+}
+
+input {
+    background-color: black;
+    border: 1px solid var(--border);
+}
+
+.inputs-style {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
 
 /*main section*/
 .flex-row {
@@ -324,44 +418,6 @@ ul {
     z-index: 3;
 }
 
-/*sign up*/
-#sign-up {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    border: 1px solid var(--border);
-    border-radius: 30px;
-    background-color: var(--dark-blue);
-    padding: 50px;
-    height: 70%;
-    width: 70%;
-    z-index: 5;
-}
-
-input {
-    background-color: black;
-    border: 1px solid var(--border);
-}
-
-.inputs-style {
-    display:flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#leader-board {
-    position: absolute;
-    top:20px;
-    left: 20px;
-}
-#instructions {
-    position: absolute;
-    right:20px;
-    top: 20px;
-}
 
 /*footer:- bottom of page*/
 footer {

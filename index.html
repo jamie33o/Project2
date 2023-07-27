@@ -18,24 +18,57 @@
 </head>
 <body>
     <header id="overlay">
-        
+        <div class="flex-column">
             <div id="logo"></div>
             <button onclick="toggleMutePlay()" class="mute-play-btn" aria-label="mute and play button"></button>
-        <div>
             <p class="center">Welcome to</p>
             <h1 class="center">Who Want's To Be A Millionaire?</h1>
-        </div>
-        <button id="start" class="button">Start</button>
+            <button id="start" class="button">Start</button>
+            <button id="instructions-btn" class="button">Instruction's</button>
+            <button id="leader-board-btn" class="button">Leader Board</button>
 
-
-        <div id="leader-board" class="box">
-            <h2 class="center">Leader Board</h2>
-            <ul id="score-list"></ul>
         </div>
 
-        <div id="instructions" class="box">
-            <h2 class="center">Instuctions</h2>
+        <div id="outer-container">
+            
+            <div id="leader-board" class="container">
+                <h2 class="center">Leader Board</h2>
+                <ul id="score-list"></ul>
+            </div>
+
+            <div id="instructions" class="container">
+                <h2 class="center">Instruction's</h2>
+                <ol>
+                    <li><p>Register or log in to start the game if you are logged in press start</p></li>
+                    <li><p>Use the mute button to turn on/off the sounds</p></li>
+                    <li><p>The leader board is on the menu screen on the left during the game you can press the menu button under the mute button to view the menu screen...But the timer will not stop!!!</p></li>
+                    <li><p> Start the Game: When the game starts, the player will be presented with the first question along with four possible answers (A, B, C, and D).
+                    </p></li>
+                    <li><p>Answer the Question: The player must choose the correct answer by selecting the corresponding letter (A, B, C, or D).
+                    </p></li>
+                    <li><p>Timer: There is a 30 second timer for each question. If the player fails to answer within the time limit, they will lose the game, and their winnings will be based on the last milestone they achieved.
+                    </p></li>
+                    <li><p>Lifelines: The player will have a 3 lifelines to help them with difficult questions.Lifelines are:
+                    </p><li><p>50:50: Removes two incorrect answer choices, leaving the correct answer and one incorrect answer.</p></li>
+                    <li><p></p>Ask the Audience: The virtual audience votes on the most likely correct answer.</p></li>
+                    <li><p> Phone a Friend: The player can get help from a virtual friend who may or may not know the correct answer.</p></li>
+                    </li>
+                    <li><p>Progression: For each correct answer, the player progresses to the next question with a higher prize value. As the questions get more challenging, the prize money increases.
+                    </p></li>
+                    <li><p>Safety Nets: Once the player reaches these milestones highlighted in orange, they are guaranteed to win at least that amount even if they answer a question incorrectly afterward.
+                    The scores for each milestone are €5,000 : 50points / €500,000 : 500points / €1million : 1000points</p></li>
+                    <li><p>Wrong Answer: If the player answers a question incorrectly, they lose the game and leave with the last milestone they achieved.
+                    </p></li>
+                    <li><p>Winning the Game: If the player answers all questions correctly, they win the highest prize value (e.g., one million).
+                    </p></li>
+                    <li><p>Restart: After the game ends (either by winning or losing), the player may have the option to play again.
+                    </p></li>
+                </ol>
+            </div>
+            <button id="done" class="button">Done</button>
+
         </div>
+        
         <div id="sign-up">
             <p>Register or log in</p>
         <div class="inputs-style" id="email-input">
@@ -57,7 +90,6 @@
         </div>
     </header>
 
-    
 
     <main>     
        

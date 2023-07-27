@@ -118,6 +118,36 @@ const singUp = document.getElementById("sign-up");
 /**for email text content */
 let emailInput = document.getElementById("email-input");
 
+let instruction = document.getElementById("instructions");
+
+let leaderBoard = document.getElementById("leader-board");
+let outerContainer = document.getElementById("outer-container");
+
+document.getElementById("instructions-btn").addEventListener('click', function() {
+    if(leaderBoard.style.display === "block") {
+        leaderBoard.style.display = "none";
+    }
+    instruction.style.display = "block";
+    outerContainer.style.display = "flex";
+
+});
+
+document.getElementById("leader-board-btn").addEventListener('click', function() {
+    if(instruction.style.display === "block") {
+        instruction.style.display = "none";
+    }
+    leaderBoard.style.display = "block";
+    outerContainer.style.display = "flex";
+
+});
+
+document.getElementById("done").addEventListener('click', function() {
+   outerContainer.style.display = "none";
+   leaderBoard.style.display = "none";
+   instruction.style.display = "none";
+
+});
+
 //-------function for start menu---------
 
 /**this function is for the menu button it shows the menu over lay so the user can see
@@ -412,7 +442,7 @@ function checkAnswer(buttonText) {
             incrementPrize();
             restartTimer = true;
         }else {
-            gameOver();
+            //gameOver();
         }
         hideResultsBool = true;
     }
@@ -454,8 +484,6 @@ function incrementPrize() {
     //counter for the previous prize li element
     let previousPrizeLi = prizeCounter; 
     
-    
-    previousPrizeLi++;
     liElement[previousPrizeLi].style.backgroundImage = "url('assets/images/answer_box.png')";
     //get the p element from the previous prize and then change its color
     let previosParagraph = liElement[previousPrizeLi].querySelector("p");

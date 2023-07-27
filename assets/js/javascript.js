@@ -311,44 +311,40 @@ async function logIn() {
         console.log("Error: " + error.code + " " + error.message);
       }
     }
-  }
+}
  
 // Function to check if a user is logged in
-async function checkUserLogin() {
+function checkUserLogin() {
     const sessionToken = localStorage.getItem('sessionToken'); // Fetch the session token from local storage
     if (sessionToken) {
-        console.log(sessionToken);
-      try {
-        await Parse.User.become(sessionToken); // Set up the user session using the session token
-        return true;
-    } catch (error) {
-        console.error('Error setting up user session:', error);
-        // Handle any errors if token is invalid or expired
-      }
-    } else {
-        return false;
-    }
-}
-
-/**this function checks if the user is logged in
- * if they are not it shows the sign up/log in form otherwise it doesnt
- */
-function checkUser(){
-    if(checkUserLogin()){
         // To disable scrolling
         document.body.style.overflow = "hidden";
         //plays the start theme
         playAudioWithSrc("assets/sounds/start_theme.mp3");
         //event listener of the start up overlay
-       
+        setUserSessionToken(sessionToken);
         signUp.style.display = "none";
-    }else {
+      }else {
         signUp.style.display = "flex";
         // To disable scrolling
         document.body.style.overflow = "hidden";
+      }
+}
+checkUserLogin();
+
+/**this function checks if the user is logged in
+ * if they are not it shows the sign up/log in form otherwise it doesnt
+ */
+async function setUserSessionToken(sessionToken){
+    try {
+        await Parse.User.become(sessionToken); // Set up the user session using the session token
+        return true;
+    } catch (error) {
+        console.error('Error setting up user session:', error);
+        // Handle any errors if token is invalid or expired
     }
 }
-checkUser();
+
 
 //-------functions for audio--------
 

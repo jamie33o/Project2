@@ -126,10 +126,9 @@ let outerContainer = document.getElementById("outer-container");
 
  // Add h2 to leader borard and instructions
  const htmlContent = '<h2 id="inst-leader" class="center"></h2>';
- // Insert the HTML content after the befor content of the "outerContainer"
- outerContainer.insertAdjacentHTML("afterbegin", htmlContent);
+ 
 
-let instructions_LeaderBoard = document.getElementById("inst-leader");
+let instructions_LeaderBoard_h2;
 
 document.getElementById("instructions-btn").addEventListener('click', function() {
     if(leaderBoard.style.display === "block") {
@@ -137,8 +136,12 @@ document.getElementById("instructions-btn").addEventListener('click', function()
     }
     instruction.style.display = "block";
     outerContainer.style.display = "flex";
+    // Insert the h2 tag before other content of the "outerContainer"
+    outerContainer.insertAdjacentHTML("afterbegin", htmlContent);
 
-    instructions_LeaderBoard.innerHTML = "Instruction's";
+    //get the h2 that was added by class and add text
+    instructions_LeaderBoard_h2 = document.getElementById("inst-leader");
+    instructions_LeaderBoard_h2.innerHTML = "Instruction's";
 
 });
 
@@ -148,9 +151,12 @@ document.getElementById("leader-board-btn").addEventListener('click', function()
     }
     leaderBoard.style.display = "block";
     outerContainer.style.display = "flex";
-    instructions_LeaderBoard.innerHTML = "Leader Board";
+    //Insert the h2 content before the other content of the "outerContainer"
+    outerContainer.insertAdjacentHTML("afterbegin", htmlContent);
 
-
+    //get the h2 that was added by class and add text
+    instructions_LeaderBoard_h2 = document.getElementById("inst-leader");
+    instructions_LeaderBoard_h2.innerHTML = "Leader Board";
     displayScores();
 });
 
@@ -158,7 +164,8 @@ document.getElementById("done").addEventListener('click', function() {
    outerContainer.style.display = "none";
    leaderBoard.style.display = "none";
    instruction.style.display = "none";
-instructions_LeaderBoard.innerHTML = "";
+   //remove the h2 tag
+   instructions_LeaderBoard_h2.remove();
 });
 
 //-------function for start menu---------

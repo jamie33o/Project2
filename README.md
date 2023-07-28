@@ -62,18 +62,18 @@ The goals of this website include:
 
 - __Player Goals__
 
-  - Play a fun and interactive online quiz game.
-  - Quickly understand how to play.
-  - Test their knowledge of multiple random catagories .
-  - Challenge themselves by answering a series of quiz questions.
-  - Play the game as often as desired with a easy "play again" option.
-  - Learn interesting facts and trivia.
+ - Play a fun and interactive online quiz game.
+ - Quickly understand how to play.
+ - Test their knowledge of multiple random catagories .
+ - Challenge themselves by answering a series of quiz questions.
+ - Play the game as often as desired with a easy "play again" option.
+ - Learn interesting facts and trivia.
 
 - __Site Owner Goals__
 
-  - Create a fun interactive game that furthers my understanding of problem solving, through the use of code. From HTML, CCS to the JavaScript language.
-  - Create an attractive and easy to use website and user interface.
-  - Create a fully responsive game website.
+ - Create a fun interactive game that furthers my understanding of problem solving, through the use of code. From HTML, CCS to the JavaScript language.
+ - Create an attractive and easy to use website and user interface.
+ - Create a fully responsive game website.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -83,17 +83,17 @@ ___
 
 - __Target Audience__
 
-  - The Who wants to be a millionaire game is perfect for fans of the famous show, and if you're a brainiac who craves exciting quiz challenges, this game is tailored for you. It's also an ideal choice for those who enjoy playing online quiz games. All you need is a web browser with JavaScript enabled on your device to embark on this thrilling journey of knowledge and entertainment.
+ - The Who wants to be a millionaire game is perfect for fans of the famous show, and if you're a brainiac who craves exciting quiz challenges, this game is tailored for you. It's also an ideal choice for those who enjoy playing online quiz games. All you need is a web browser with JavaScript enabled on your device to embark on this thrilling journey of knowledge and entertainment.
 
 - __User Requirements and Expectations__
 
-  - An intuitive navigation system regardless of screen size
-  - Easy to locate and understand game rules and instructions on how to play the game
-  - An intuitive game interface with clear controls and notifications to aid game play
-  - The ability to turn game Sound effects or Music on or off
-  - An easy way to register so you will be added to the leader board and add to your score each game
-  - An easy mechanism to Play Again.
-  - An accessible game website that can be viewed and played on any device
+ - An intuitive navigation system regardless of screen size
+ - Easy to locate and understand game rules and instructions on how to play the game
+ - An intuitive game interface with clear controls and notifications to aid game play
+ - The ability to turn game Sound effects or Music on or off
+ - An easy way to register so you will be added to the leader board and add to your score each game
+ - An easy mechanism to Play Again.
+ - An accessible game website that can be viewed and played on any device
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -101,32 +101,32 @@ ___
 
 - __User Stories__
 
-- The players of the game are the primary users of this website with site owner being a secondary user:
+ - The players of the game are the primary users of this website with site owner being a secondary user:
 
-  - __Players__
+ - __Players__
 
-  1.	As a player, I want the website to load quickly and provide a seamless and enjoyable quiz experience without any technical issues.
-  2.	As a player, I want to have a visually appealing and intuitive interface that makes it easy for me to understand and interact with the quiz.
-  3.	As a player, I want my score to be saved so I can compete with other Users.
-  4.	As a player, I want good design This includes themed background images and background music.
-  5.	As a player, I want the quiz questions to be challenging and engaging.
-  6.	As a player, I want to be able to view my score.
-  7.	As a player, I want to be able to see the correct answers for the questions I answered incorrectly to learn and improve my knowledge.
-  8.	As a quiz player, I want the option to play the quiz again without having to log in again.
-  9.	As a player, I want to be able to easily save the game when I reach a milestone so i can come back again and play from that milestone
-  10.	As a player, I want the game to have smooth and fluid animations and transitions, enhancing the overall visual appeal and user experience.
-  11.	As a player, I want the game to be optimized for different screen sizes and orientations, ensuring a seamless and enjoyable experience on both mobile and desktop devices.
-  12.	As a player, I want the game to have a visually appealing and intuitive user interface, with clear icons and labels, to easily understand and interact with the game controls.
-  13.	As a player, when I interact with buttons or elements in the game interface, I want to see appropriate effects, such as button clicks or hover effects. These effects will provide feedback and create a more engaging and responsive user experience.
-  14.	As a player, I want the sound effects to be enjoyable, non-intrusive, and harmonize with the overall game aesthetics, ensuring they enhance the gameplay experience without becoming distracting or annoying.
-  15.	As a who wants to be a millionaire enthusiast, I want to be able to play a Quiz to test my knowledge and have fun.
-  16.	As a player, I want the game to have a progress bar or indicator to track my progress during the quiz.
+1.	As a player, I want the website to load quickly and provide a seamless and enjoyable quiz experience without any technical issues.
+2.	As a player, I want to have a visually appealing and intuitive interface that makes it easy for me to understand and interact with the quiz.
+3.	As a player, I want my score to be saved so I can compete with other Users.
+4.	As a player, I want good design This includes themed background images and background music.
+5.	As a player, I want the quiz questions to be challenging and engaging.
+6.	As a player, I want to be able to view my score.
+7.	As a player, I want to be able to see the correct answers for the questions I answered incorrectly to learn and improve my knowledge.
+8.	As a quiz player, I want the option to play the quiz again without having to log in again.
+9.	As a player, I want to be able to easily save the game when I reach a milestone so i can come back again and play from that milestone
+10.	As a player, I want the game to have smooth and fluid animations and transitions, enhancing the overall visual appeal and user experience.
+11.	As a player, I want the game to be optimized for different screen sizes and orientations, ensuring a seamless and enjoyable experience on both mobile and desktop devices.
+12.	As a player, I want the game to have a visually appealing and intuitive user interface, with clear icons and labels, to easily understand and interact with the game controls.
+13.	As a player, when I interact with buttons or elements in the game interface, I want to see appropriate effects, such as button clicks or hover effects. These effects will provide feedback and create a more engaging and responsive user experience.
+14.	As a player, I want the sound effects to be enjoyable, non-intrusive, and harmonize with the overall game aesthetics, ensuring they enhance the gameplay experience without becoming distracting or annoying.
+15.	As a who wants to be a millionaire enthusiast, I want to be able to play a Quiz to test my knowledge and have fun.
+16.	As a player, I want the game to have a progress bar or indicator to track my progress during the quiz.
 
 
-  #### Site Owner
+- __Site Owner__
 
-  17. As the site owner, I want to receive feedback from players so I can understand if they are enjoying the game, identify any bugs, and continually improve the game.
-  18. As the site owner, I want users to see a 404 page if they enter an incorrect URL so they can be navigated back to the main game page.
+17. As the site owner, I want to receive feedback from players so I can understand if they are enjoying the game, identify any bugs, and continually improve the game.
+18. As the site owner, I want users to see a 404 page if they enter an incorrect URL so they can be navigated back to the main game page.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -153,38 +153,38 @@ On the menu screen, located at the top center of the page, visitors will immedia
 
 - __Welcome Overlay menu Screen/Page__
 
-  - On the main game page, you will be greeted with a captivating background featuring spotlight effects and a gradient of light to dark blue. The following essential elements are also present on this page:
-    - Register/Log in form
-    - The Logo
-    - Sound mute/unmute toggle icon.
-    - An Instruction's button.
-    - Leader board button to check user scores.
+ - On the main game page, you will be greeted with a captivating background featuring spotlight effects and a gradient of light to dark blue. The following essential elements are also present on this page:
+  - Register/Log in form
+  - The Logo
+  - Sound mute/unmute toggle icon.
+  - An Instruction's button.
+  - Leader board button to check user scores.
 
   ![Welcome Overlay Screen/Page](docs/readme_images/menu.png)
 
-- Register/Log in form
+ - Register/Log in form
 
   - Register/Log in Form: Users can easily access the registration and login form, allowing them to participate in the game and keep track of their progress.
 
-- Logo
+ - Logo
 
   - The Logo: The game's logo is prominently displayed, giving users a clear visual identity of the game they are engaging with.
 
   ![Get in Touch](docs/readme_images/register-form.png)
 
-- Sound mute/unmute toggle icon
+ - Sound mute/unmute toggle icon
 
   - Sound Mute/Unmute Toggle Icon: Users have the option to control the sound by toggling between mute and unmute, ensuring a customizable audio experience.
 
   ![Get in Touch](docs/readme_images/register-form.png)
 
-- Instruction's
+ - Instruction's
 
   - Instructions Button: For newcomers or those needing a refresher, an "Instructions" button is readily available. Clicking on it will provide clear guidelines on how to play the game.
 
   ![How to Play](docs/readme_images/instructions.png)
 
-- Leader Board
+ - Leader Board
 
   - Leaderboard Button: To encourage competitiveness and track user scores, a "Leaderboard" button is provided. Players can check their standings among others who have participated in the game.
 
@@ -194,44 +194,44 @@ ___
 
 - __Quiz Page__
 
-  - On the main game page, you will find an engaging background featuring spotlight effects and a gradient from light to dark blue. The page includes the following key elements:
-    - Life lines box 
-    - The Logo
-    - Sound mute/unmute toggle icon.
-    - Menu button
-    - Timer
-    - Prize's box
-    - Question and 4 answer boxs
-    - Footer
+ - On the main game page, you will find an engaging background featuring spotlight effects and a gradient from light to dark blue. The page includes the following key elements:
+  - Life lines box 
+  - The Logo
+  - Sound mute/unmute toggle icon.
+  - Menu button
+  - Timer
+  - Prize's box
+  - Question and 4 answer boxs
+  - Footer
   ![Quiz page](docs/readme_images/quiz-page.png)
 
-- Life Lines box
+ - Life Lines box
 
   - The Life lines box has 3 life lines and when each button is pressed it will show the results inside the box under the buttons except for the 50:50 button as two answer will just dissapear:
   
-    - 50:50 button: This button when pressed will make 2 wrong answers dissapear.
+   - 50:50 button: This button when pressed will make 2 wrong answers dissapear.
     ![fifty fifty button](docs/readme_images/50_50_img.png)
     ![fifty fifty - Results](docs/readme_images/fiftyresults.png)
-    - Ask the audience button: This button when pressed will show a bar chart to show the results of the audience votes with a letter on each bar to show which answer it represents the bars are animated so they rise slowly to there final position it does not always give the right answer.
+   - Ask the audience button: This button when pressed will show a bar chart to show the results of the audience votes with a letter on each bar to show which answer it represents the bars are animated so they rise slowly to there final position it does not always give the right answer.
     ![ask the audiene button and results](docs/readme_images/asktheaudienceresults.png)
-    - Phone A friend button: This button when pressed will show a paragraph  of text representing the fake caller's anwers 
+   - Phone A friend button: This button when pressed will show a paragraph  of text representing the fake caller's anwers 
     ![phone a friend button and results](docs/readme_images/asktheaudienceresults.png)
 
-    After each button is pressed and user goes to the next question a red x will be on the button to show it has been used.
+  - After each button is pressed and user goes to the next question a red x will be on the button to show it has been used.
     ![life line buttons with red x](docs/readme_images/life_line_buttons_redx.png)
 
 
-- Menu button
+ - Menu button
 
   - The menu button is between the mute/sound button and the logo in the center of the page when pressed it shows the menu screen but it does not stop the timer so the user cant use it to pause the game and google the question.
   ![life line buttons with red x](docs/readme_images/life_line_buttons_redx.png)
 
-- Timer
+ - Timer
 
   - On the main game page, you'll find the timer positioned below the menu button in the center of the screen. The timer is set to 30 seconds for each question and is represented as a numerical countdown in the center. Encircling the timer, there is a dynamic circle animation that visually illustrates the remaining time, gradually shrinking as the seconds pass. This animation adds excitement and urgency to the game, prompting users to make quick decisions during their gameplay. 
   ![life line buttons with red x](docs/readme_images/life_line_buttons_redx.png)
 
-- Prize's box
+ - Prize's box
 
   - On the main game page, the prize section is located at the top right corner, presented as a list ranging from €500 to €1 million. As the user progresses through the game and answers questions correctly, the corresponding prize amount will be highlighted with a green background, indicating the current level they are on.
   ![prize section](docs/readme_images/life_line_buttons_redx.png)
@@ -264,7 +264,7 @@ ___
 These features and notifications enhance the excitement and engagement of the game while providing the user with clear feedback on their progress and achievements.
 
 
-- Question and 4 answer boxs__
+- __Question and 4 answer boxs__
 
  - On the main game page, the question and four answer choices are displayed at the bottom of the screen. When the user selects an answer by clicking on it, they will instantly receive feedback on whether their choice was correct or incorrect.
 
@@ -276,14 +276,14 @@ These features and notifications enhance the excitement and engagement of the ga
  - If the user's answer is wrong:
 
  - A pop-up notification will appear, informing them that the game is over for this session.
-  - The pop-up will reveal the correct answer to the question they just attempted.
-  - This swift feedback system allows users to quickly know their performance, learn from their mistakes, and continue playing or start a new game with improved knowledge. It keeps the gameplay engaging and encourages users to challenge themselves to achieve better results in subsequent attempts.
+ - The pop-up will reveal the correct answer to the question they just attempted.
+ - This swift feedback system allows users to quickly know their performance, learn from their mistakes, and continue playing or start a new game with improved knowledge. It keeps the gameplay engaging and encourages users to challenge themselves to achieve better results in subsequent attempts.
   ![Question and 4 answer boxs](docs/readme_images/life_line_buttons_redx.png)
   ![wrong answer pop up](docs/readme_images/life_line_buttons_redx.png)
 
 - __Footer__
 
-- On the main game page, the footer is designed to appear when the user scrolls to the bottom of the page, and it will automatically disappear when they scroll back up. The footer contains text, serving as a link to relevant information and resources.
+ - On the main game page, the footer is designed to appear when the user scrolls to the bottom of the page, and it will automatically disappear when they scroll back up. The footer contains text, serving as a link to relevant information and resources.
 ![wrong answer pop up](docs/readme_images/life_line_buttons_redx.png)
 
 

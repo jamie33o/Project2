@@ -127,15 +127,20 @@ ___
 
 The aim of this site is to provide the look and feel similar to the tv show. With its dark blue colours with spotlights. All images, colours, and sounds were chosen with this aim in mind.
 
+### Wireframes
 
-### Structure
+Homepage
+
+
+
+## Features
 
 The website comprises three pages: a welcome overlay screen/page, a quiz page, and a 404 error page. These pages follow a user-friendly and easily navigable framed pattern, enabling visitors to swiftly access key information at the center of the screen. 
 
 On the menu screen, located at the top center of the page, visitors will immediately notice the quiz game logo. Positioned below the logo are the mute/sound button, the start button, the instructions button, and finally, the leader board button. This intuitive layout ensures that users can quickly grasp the name of the game, commence playing, understand the gameplay instructions, and conveniently toggle sound or music on or off.
 
 
-#### Welcome Overlay menu Screen/Page
+### Welcome Overlay menu Screen/Page
 
 - On the main game page, you will be greeted with a captivating background featuring spotlight effects and a gradient of light to dark blue. The following essential elements are also present on this page:
   - Register/Log in form
@@ -146,27 +151,27 @@ On the menu screen, located at the top center of the page, visitors will immedia
 
 ![Welcome Overlay Screen/Page](docs/readme_images/menu.png)
 
-##### Register/Log in form
+#### Register/Log in form
 
 - Register/Log in Form: Users can easily access the registration and login form, allowing them to participate in the game and keep track of their progress.
 
-##### Logo
+#### Logo
 
 -The Logo: The game's logo is prominently displayed, giving users a clear visual identity of the game they are engaging with.
 
 ![Get in Touch](docs/readme_images/register-form.png)
 
-##### Sound mute/unmute toggle icon
+#### Sound mute/unmute toggle icon
 
 - Sound Mute/Unmute Toggle Icon: Users have the option to control the sound by toggling between mute and unmute, ensuring a customizable audio experience.
 
-##### Instruction's
+#### Instruction's
 
 - Instructions Button: For newcomers or those needing a refresher, an "Instructions" button is readily available. Clicking on it will provide clear guidelines on how to play the game.
 
 ![How to Play](docs/readme_images/instructions.png)
 
-##### Leader Board
+#### Leader Board
 
 - Leaderboard Button: To encourage competitiveness and track user scores, a "Leaderboard" button is provided. Players can check their standings among others who have participated in the game.
 
@@ -174,7 +179,7 @@ On the menu screen, located at the top center of the page, visitors will immedia
 
 ___
 
-#### Quiz Page
+### Quiz Page
 
 - On the main game page, you will find an engaging background featuring spotlight effects and a gradient from light to dark blue. The page includes the following key elements:
   - Life lines box 
@@ -187,7 +192,7 @@ ___
   - Footer
 ![Quiz page](docs/readme_images/quiz-page.png)
 
-##### Life Lines box
+#### Life Lines box
 - The Life lines box has 3 life lines and when each button is pressed it will show the results inside the box under the buttons except for the 50:50 button as two answer will just dissapear:
  
  - 50:50 button: This button when pressed will make 2 wrong answers dissapear.
@@ -202,17 +207,17 @@ After each button is pressed and user goes to the next question a red x will be 
 ![life line buttons with red x](docs/readme_images/life_line_buttons_redx.png)
 
 
-##### Menu button
+#### Menu button
 
 - The menu button is between the mute/sound button and the logo in the center of the page when pressed it shows the menu screen but it does not stop the timer so the user cant use it to pause the game and google the question.
 ![life line buttons with red x](docs/readme_images/life_line_buttons_redx.png)
 
-##### Timer
+#### Timer
 
--On the main game page, you'll find the timer positioned below the menu button in the center of the screen. The timer is set to 30 seconds for each question and is represented as a numerical countdown in the center. Encircling the timer, there is a dynamic circle animation that visually illustrates the remaining time, gradually shrinking as the seconds pass. This animation adds excitement and urgency to the game, prompting users to make quick decisions during their gameplay. 
+- On the main game page, you'll find the timer positioned below the menu button in the center of the screen. The timer is set to 30 seconds for each question and is represented as a numerical countdown in the center. Encircling the timer, there is a dynamic circle animation that visually illustrates the remaining time, gradually shrinking as the seconds pass. This animation adds excitement and urgency to the game, prompting users to make quick decisions during their gameplay. 
 ![life line buttons with red x](docs/readme_images/life_line_buttons_redx.png)
 
-##### Prize's box
+#### Prize's box
 
 - On the main game page, the prize section is located at the top right corner, presented as a list ranging from €500 to €1 million. As the user progresses through the game and answers questions correctly, the corresponding prize amount will be highlighted with a green background, indicating the current level they are on.
 ![prize section](docs/readme_images/life_line_buttons_redx.png)
@@ -245,7 +250,7 @@ Upon reaching the €1 million milestone, a special pop-up will appear, announci
 These features and notifications enhance the excitement and engagement of the game while providing the user with clear feedback on their progress and achievements.
 
 
-##### Question and 4 answer boxs
+#### Question and 4 answer boxs
 
 - On the main game page, the question and four answer choices are displayed at the bottom of the screen. When the user selects an answer by clicking on it, they will instantly receive feedback on whether their choice was correct or incorrect.
 
@@ -262,16 +267,43 @@ These features and notifications enhance the excitement and engagement of the ga
 ![Question and 4 answer boxs](docs/readme_images/life_line_buttons_redx.png)
 ![wrong answer pop up](docs/readme_images/life_line_buttons_redx.png)
 
-##### Footer
+#### Footer
 
 - On the main game page, the footer is designed to appear when the user scrolls to the bottom of the page, and it will automatically disappear when they scroll back up. The footer contains text, serving as a link to relevant information and resources.
 ![wrong answer pop up](docs/readme_images/life_line_buttons_redx.png)
 
 
 
+## Technologies
 
+- HTML
+  - The structure of the Website was developed using HTML as the main language.
+- CSS
+  - The Website was styled using custom CSS in an external file.
+- Javascript
+  - Building, structuring and presenting project
+- Back4app parse database
+  - Storing user log in details and score also displaying sore on the leader board
+- Visual Studio Code
+  - The website was developed using Visual Studio Code IDE
+- GitHub
+  - Source code is hosted on GitHub and delpoyed using Git Pages.
+- Git
+  - Used to commit and push code during the development opf the Website
+- Flaticon
+  - Sound and menu icons created by doraclub - Flaticon section.
+- Tinyjpg
+  - https://tinyjpg.com/ was used to reduce the size of the images used throughout the website
+- Favicon.io
+  - favicon files were created at [favicon.io](fahttps://favicon.io/favicon-converter/)
+- balsamiq
+  - wireframes were created using balsamiq from [balsamiq.com](https://balsamiq.com/wireframes/desktop/#)
 
+## Testing 
 
+## Deployment
+
+## Credits
 
 
 

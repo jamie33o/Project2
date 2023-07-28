@@ -151,9 +151,9 @@ On the menu screen, located at the top center of the page, visitors will immedia
 
 ### Existing Features
 
-- __Welcome Overlay menu Screen/Page__
+#### Welcome Overlay menu Screen/Page
 
-  - On the main game page, you will be greeted with a captivating background featuring spotlight effects and a gradient of light to dark blue. The following essential elements are also present on this page:
+- On the main game page, you will be greeted with a captivating background featuring spotlight effects and a gradient of light to dark blue. The following essential elements are also present on this page:
   - Register/Log in form
   - The Logo
   - Sound mute/unmute toggle icon.
@@ -192,99 +192,93 @@ On the menu screen, located at the top center of the page, visitors will immedia
 
 ___
 
-- __Quiz Page__
+#### Quiz Page
 
-  - On the main game page, you will find an engaging background featuring spotlight effects and a gradient from light to dark blue. The page includes the following key elements:
-    - Life lines box 
-    - The Logo
-    - Sound mute/unmute toggle icon.
-    - Menu button
-    - Timer
-    - Prize's box
-    - Question and 4 answer boxs
-    - Footer
-    ![Quiz page](docs/readme_images/quiz-page.png)
+![Quiz page](docs/readme_images/quiz-page.png)
 
-  - Life Lines box
-
-    - The Life lines box has 3 life lines and when each button is pressed it will show the results inside the box under the buttons except for the 50:50 button as two answer will just dissapear:
+- On the main game page, you will find an engaging background featuring spotlight effects and a gradient from light to dark blue. The page includes the following key elements:
   
-      - 50:50 button: This button when pressed will make 2 wrong answers dissapear.
-        ![fifty fifty button](docs/readme_images/50_50_img.png)
-        ![fifty fifty - Results](docs/readme_images/fiftyresults.png)
-      - Ask the audience button: This button when pressed will show a bar chart to show the results of the audience votes with a letter on each bar to show which answer it represents the bars are animated so they rise slowly to there final position it does not always give the right answer.
-        ![ask the audiene button and results](docs/readme_images/asktheaudienceresults.png)
-      - Phone A friend button: This button when pressed will show a paragraph  of text representing the fake caller's anwers 
-        ![phone a friend button and results](docs/readme_images/asktheaudienceresults.png)
 
-      - After each button is pressed and user goes to the next question a red x will be on the button to show it has been used.
-        ![life line buttons with red x](docs/readme_images/life_line_buttons_redx.png)
+- Life Lines box
+
+  - The Life lines box has 3 life lines and when each button is pressed it will show the results inside the box under the buttons except for the 50:50 button as two answer will just dissapear:
+
+  - 50:50 button: This button when pressed will make 2 wrong answers dissapear.
+    ![fifty fifty button](docs/readme_images/50_50_img.png)
+    ![fifty fifty - Results](docs/readme_images/fiftyresults.png)
+  - Ask the audience button: This button when pressed will show a bar chart to show the results of the audience votes with a letter on each bar to show which answer it represents the bars are animated so they rise slowly to there final position it does not always give the right answer.
+    ![ask the audiene button and results](docs/readme_images/asktheaudienceresults.png)
+  - Phone A friend button: This button when pressed will show a paragraph  of text representing the fake caller's anwers 
+    ![phone a friend button and results](docs/readme_images/asktheaudienceresults.png)
+
+  - After each button is pressed and user goes to the next question a red x will be on the button to show it has been used.
+    ![life line buttons with red x](docs/readme_images/life_line_buttons_redx.png)
 
 
- - Menu button
+- Menu button
 
   - The menu button is between the mute/sound button and the logo in the center of the page when pressed it shows the menu screen but it does not stop the timer so the user cant use it to pause the game and google the question.
   ![life line buttons with red x](docs/readme_images/life_line_buttons_redx.png)
 
- - Timer
+- Timer
 
   - On the main game page, you'll find the timer positioned below the menu button in the center of the screen. The timer is set to 30 seconds for each question and is represented as a numerical countdown in the center. Encircling the timer, there is a dynamic circle animation that visually illustrates the remaining time, gradually shrinking as the seconds pass. This animation adds excitement and urgency to the game, prompting users to make quick decisions during their gameplay. 
   ![life line buttons with red x](docs/readme_images/life_line_buttons_redx.png)
 
- - Prize's box
+- Prize's box
 
   - On the main game page, the prize section is located at the top right corner, presented as a list ranging from €500 to €1 million. As the user progresses through the game and answers questions correctly, the corresponding prize amount will be highlighted with a green background, indicating the current level they are on.
   ![prize section](docs/readme_images/life_line_buttons_redx.png)
 
-  - There are three milestone prizes that hold special significance in the game:
+- There are three milestone prizes that hold special significance in the game:
 
-    - €5,000 Milestone: The user reaches this milestone when they score 50 points. Upon reaching this milestone, the prize amount will be highlighted in orange.
-  ![pop up for €5000](docs/readme_images/life_line_buttons_redx.png)
+  - €5,000 Milestone: The user reaches this milestone when they score 50 points. Upon reaching this milestone, the prize amount will be highlighted in orange.
+![pop up for €5000](docs/readme_images/life_line_buttons_redx.png)
 
-    - €50,000 Milestone: When the user achieves 500 points, they will hit this milestone, and the prize amount will be displayed in orange.
-  ![pop up for €50,000](docs/readme_images/life_line_buttons_redx.png)
+  - €50,000 Milestone: When the user achieves 500 points, they will hit this milestone, and the prize amount will be displayed in orange.
+![pop up for €50,000](docs/readme_images/life_line_buttons_redx.png)
 
-    - €1 Million Milestone: Reaching the ultimate goal of 1000 points will unlock the €1 million prize, also indicated with an orange background.
-  ![pop up for €1 milllion](docs/readme_images/life_line_buttons_redx.png)
+  - €1 Million Milestone: Reaching the ultimate goal of 1000 points will unlock the €1 million prize, also indicated with an orange background.
+![pop up for €1 milllion](docs/readme_images/life_line_buttons_redx.png)
 
- -  When the user reaches any of these milestone prizes, a pop-up notification will appear, congratulating them on their achievement. The pop-up will display the prize amount they are currently on and the score they have obtained. For the €500 and €50,000 milestones, two buttons will be available:
+-  When the user reaches any of these milestone prizes, a pop-up notification will appear, congratulating them on their achievement. The pop-up will display the prize amount they are currently on and the score they have obtained. For the €500 and €50,000 milestones, two buttons will be available:
 
- - "Continue" button: If the user clicks this button, they can proceed with the game and continue playing from the current milestone.
+- "Continue" button: If the user clicks this button, they can proceed with the game and continue playing from the current milestone.
 
- - "Save" button: By clicking this button, the user can choose to exit the game, and their progress will be saved at the current milestone. When they return to the game, they will resume from where they left off.
-  ![pop up for €5000](docs/readme_images/life_line_buttons_redx.png)
+- "Save" button: By clicking this button, the user can choose to exit the game, and their progress will be saved at the current milestone. When they return to the game, they will resume from where they left off.
+![pop up for €5000](docs/readme_images/life_line_buttons_redx.png)
 
- - Upon reaching the €1 million milestone, a special pop-up will appear, announcing the user's victory in winning the grand prize. The pop-up will provide two options:
+- Upon reaching the €1 million milestone, a special pop-up will appear, announcing the user's victory in winning the grand prize. The pop-up will provide two options:
 
- - "Play Again" button: If the user wants to play again and aim for higher scores, they can click this button and restart the game.
+- "Play Again" button: If the user wants to play again and aim for higher scores, they can click this button and restart the game.
 
- - "Quit" button: Clicking this button will allow the user to gracefully exit the game after their triumph.
-  ![pop up for €5000](docs/readme_images/life_line_buttons_redx.png)
+- "Quit" button: Clicking this button will allow the user to gracefully exit the game after their triumph.
+![pop up for €5000](docs/readme_images/life_line_buttons_redx.png)
 
 These features and notifications enhance the excitement and engagement of the game while providing the user with clear feedback on their progress and achievements.
 
 
-- __Question and 4 answer boxs__
+- Question and 4 answer boxs
 
- - On the main game page, the question and four answer choices are displayed at the bottom of the screen. When the user selects an answer by clicking on it, they will instantly receive feedback on whether their choice was correct or incorrect.
+  - On the main game page, the question and four answer choices are displayed at the bottom of the screen. When the user selects an answer by clicking on it, they will instantly receive feedback on whether their choice was correct or incorrect.
 
- - If the user's answer is correct:
+  - If the user's answer is correct:
 
- - They will be notified immediately that their answer is correct.
- - The game will automatically proceed to the next question, presenting them with another opportunity to answer and continue their progress.
+    - They will be notified immediately that their answer is correct.
+    - The game will automatically proceed to the next question, presenting them with another opportunity to answer and continue their progress.
 
- - If the user's answer is wrong:
+  - If the user's answer is wrong:
 
- - A pop-up notification will appear, informing them that the game is over for this session.
- - The pop-up will reveal the correct answer to the question they just attempted.
- - This swift feedback system allows users to quickly know their performance, learn from their mistakes, and continue playing or start a new game with improved knowledge. It keeps the gameplay engaging and encourages users to challenge themselves to achieve better results in subsequent attempts.
-  ![Question and 4 answer boxs](docs/readme_images/life_line_buttons_redx.png)
+    - A pop-up notification will appear, informing them that the game is over for this session.
+    - The pop-up will reveal the correct answer to the question they just attempted.
+    - This swift feedback system allows users to quickly know their performance, learn from their mistakes, and continue playing or start a new game with improved knowledge. It keeps the gameplay engaging and encourages users to challenge themselves to achieve better results in subsequent attempts.
+    ![Question and 4 answer boxs](docs/readme_images/life_line_buttons_redx.png)
+    ![wrong answer pop up](docs/readme_images/life_line_buttons_redx.png)
+
+- Footer
+
+  - On the main game page, the footer is designed to appear when the user scrolls to the bottom of the page, and it will automatically disappear when they scroll back up. The footer contains text, serving as a link to relevant information and resources.
   ![wrong answer pop up](docs/readme_images/life_line_buttons_redx.png)
-
-- __Footer__
-
- - On the main game page, the footer is designed to appear when the user scrolls to the bottom of the page, and it will automatically disappear when they scroll back up. The footer contains text, serving as a link to relevant information and resources.
-![wrong answer pop up](docs/readme_images/life_line_buttons_redx.png)
 
 
 ## Technologies

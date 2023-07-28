@@ -163,22 +163,26 @@ function menu() {
     displayScores();
     menuBoolean = true;
 }
-
+    /**
+     * check if there is a previously stored prize  
+    * set prize counter to it then changes all previous
+    * prize amounts to gray and set background of current prize amount to green 
+    * and background back to black for milestone also starts timer
+    * and calls the function that retrieve qna object
+    */
 function startGame() {
     //play the suspense sound for timer
     playAudioWithSrc("assets/sounds/suspense_sound.mp3");
     // To re-enable scrolling
     document.body.style.overflow = previousOverflow;
-        /*
-    check if there is a previously stored prize  
-    set prize counter to it then changes all previous
-    prize amounts to gray and set background of current prize amount to green
-    */
+    
     if (storedCount != null){
         prizeCounter = storedCount;
         //change background image of the prize li
         liElement[prizeCounter].style.backgroundImage = "url('assets/images/green_answer_box.png')";
     
+        //sets text to grey and background back to black for milestones for li elements before the prize
+        // the user was on when they saved the game
         for (let i = prizeCounter; i < liElement.length; i++){
             if (i === prizeCounter){
                     continue;
@@ -200,7 +204,10 @@ function startGame() {
 
 //----------Function's for database register/log in and display score--------------
 
-// Function to fetch scores from back4app
+/**
+ * Function to fetch scores from back4app and display them on the leader board
+ * 
+ *  */ 
 async function displayScores() {
     let i =0;
     let query = new Parse.Query("User");

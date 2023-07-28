@@ -202,26 +202,28 @@ input {
 #fiftyFifty {
     background: url(../images/50_50_img.png) no-repeat;
      /* Change the image when hovered */
-    &:hover {
-      background-image: url(../images/orange_50_50.png);
-    }  
+    
 }
-
+#fiftyFifty:hover {
+    background-image: url(../images/orange_50_50.png);
+  }  
 #phoneAfriend {
     background: url(../images/phone_a_friend_img.png) no-repeat;  
-    &:hover {
-        background-image: url(../images/orange_phone_friend.png);
-      }  
+
 }  
+
+#phoneAfriend:hover {
+    background-image: url(../images/orange_phone_friend.png);
+  }  
 
 #askAudience {
     background: url(../images/ask_the_audience_img.png) no-repeat;
-    &:hover {
-        background-image: url(../images/orange_ask_audience.png);
-      }  
+   
 }  
 
-
+#askAudience:hover {
+    background-image: url(../images/orange_ask_audience.png);
+  }  
 /*life line results */
 /*ask the audience results*/
 .grid {

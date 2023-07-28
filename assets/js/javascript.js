@@ -541,7 +541,14 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
     popUpActive = true;
     let popUp_element = document.getElementById("pop_up");
     popUp_element.style.display = "flex";
-    popUp_element.querySelector("h2").textContent = h2_text;
+    popUp_element.createElement("h2")
+    //  Create the <h2> element
+    const h2Element = document.createElement("h2");
+    // Set anyattributes or content 
+    h2Element.textContent = h2_text;
+    // add the <h2> element as a child to the <div>
+    targetDiv.appendChild(h2Element);
+    
     popUp_element.querySelector("p").textContent = p_text;
     popUp_element.querySelector("#btn1").textContent = btn1Text;
     popUp_element.querySelector("#btn2").textContent = btn2Text;

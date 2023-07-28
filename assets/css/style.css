@@ -265,7 +265,7 @@ input {
     align-items: center;
 }
 
-#logo {
+.logo {
     width: 150px;
     height: 150px;
     background: url(../images/wwtbam_logo.png) no-repeat center center;
@@ -465,7 +465,7 @@ footer {
        max-width: 80%;
    }
 
-   #logo {
+    .logo {
     margin: 0 10px;
     }
 
@@ -490,7 +490,7 @@ footer {
         max-width: 100%;
     }
 
-    #logo {
+    .logo {
         width: 100px;
         height: 100px;
         

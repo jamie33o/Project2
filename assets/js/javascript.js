@@ -120,9 +120,17 @@ let emailInput = document.getElementById("email-input");
 
 let instruction = document.getElementById("instructions");
 
+
 let leaderBoard = document.getElementById("leader-board");
 let outerContainer = document.getElementById("outer-container");
+
+ // Add h2 to leader borard and instructions
+ const htmlContent = '<h2 id="inst-leader" class="center"></h2>';
+ // Insert the HTML content after the befor content of the "outerContainer"
+ outerContainer.insertAdjacentHTML("afterbegin", htmlContent);
+
 let instructions_LeaderBoard = document.getElementById("inst-leader");
+
 document.getElementById("instructions-btn").addEventListener('click', function() {
     if(leaderBoard.style.display === "block") {
         leaderBoard.style.display = "none";
@@ -141,6 +149,7 @@ document.getElementById("leader-board-btn").addEventListener('click', function()
     leaderBoard.style.display = "block";
     outerContainer.style.display = "flex";
     instructions_LeaderBoard.innerHTML = "Leader Board";
+
 
     displayScores();
 });

@@ -30,7 +30,6 @@
         </div>
 
         <div id="outer-container">
-            <h2 id="inst-leader" class="center" aria-label="instructins or leader board"></h2>
             <div id="leader-board" class="container">
                 <ul id="score-list"></ul>
             </div>
@@ -102,7 +101,7 @@
             
              <!--this is a pop up that displays at certain milestones in the game-->
             <div id="pop_up" class="box">    
-                <h2 aria-label="pop up header text for game over when you win"></h2>
+                <h2></h2>
                 <p></p>
                 <button id="btn1" class="button" aria-label="play again or continue button"></button>
                 <button id="btn2" class="button" aria-label="quit or save button"></button>
@@ -130,8 +129,7 @@
                 <div class="timer-logo">
                     <div class="logo"></div>
                      <!-- Sound control buttons -->
-                <audio id="track" type="audio/mpeg"></audio>
-               
+                     <audio id="track"></audio>               
                     <button onclick="toggleMutePlay()" class="mute-play-btn" aria-label="mute and play button"></button>
                     <button onclick="menu()" class="menu-btn" aria-label="menu"></button>
                 

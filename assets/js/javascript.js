@@ -541,14 +541,15 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
     popUpActive = true;
     let popUp_element = document.getElementById("pop_up");
     popUp_element.style.display = "flex";
-    popUp_element.createElement("h2")
     //  Create the <h2> element
     const h2Element = document.createElement("h2");
     // Set anyattributes or content 
     h2Element.textContent = h2_text;
-    // add the <h2> element as a child to the <div>
-    targetDiv.appendChild(h2Element);
-    
+    // Get the reference to an existing child element 
+    const existingChild = popUp_element.firstElementChild;
+    // Insert the <h2> element before the existing child element
+    popUp_element.insertBefore(h2Element, existingChild);
+
     popUp_element.querySelector("p").textContent = p_text;
     popUp_element.querySelector("#btn1").textContent = btn1Text;
     popUp_element.querySelector("#btn2").textContent = btn2Text;
@@ -561,6 +562,7 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
         }
         popUpActive = false;
         popUp_element.style.display = "none";
+        h2Element.remove();
     });
 
     popUp_element.querySelector("#btn2").addEventListener('click',  function() {

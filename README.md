@@ -390,17 +390,110 @@ Testing was focused to ensure the following criteria were met:
 
 ### Functional Testing
 
-**Navigation Links**
+### Testing user stories
 
-Testing was performed to ensure all navigation links on the respective pages, navigated to the correct pages as per design. This was done by clicking on the navigation links on each page.
+#### Players
 
-| Navigation Link   | Page to Load    |
-| ---------------   | --------------- |
-| Home              | index.html      |
-| Gallery           | gallery.html    |
-| Question/add info | question-add-info.html    |
+User Story 1:
+As a player, I want the website to load quickly and provide a seamless and enjoyable quiz experience without any technical issues.
 
-Links on all pages navigated to the correct pages as exptected.
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+|-------------|------------|---------------------|-------------------|
+| Website Load | Player opens the website | The website loads quickly and provides a seamless and enjoyable quiz experience | Works as expected |
+
+
+User Story 2:
+As a player, I want to have a visually appealing and intuitive interface that makes it easy for me to understand and interact with the quiz.
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+|-------------|------------|---------------------|-------------------|
+| Visual Appeal	| Player views the interface | The interface is visually appealing and intuitive, making it easy to understand and interact with the quiz | Works as expected |
+
+
+User Story 3:
+
+As a player, I want to be able to see the score during the game
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+|-------------|------------|---------------------|-------------------|
+| leader board | player clicks menu and then leader board | list of user scores appear	| Works as expected |
+
+
+User Story 4:
+
+As a player, I want to be able to see my score and progress during the game
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+|-------------|------------|---------------------|-------------------|
+| prize section and score at the top of game page | Player reaches milestone | score at top of page and prize section increase | Works as expected |
+
+
+User Story 5:
+
+As a player, I want the quiz questions to be challenging and engaging, providing a variety of question types and difficulty levels.
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+|-------------|------------|---------------------|-------------------|
+| Challenging Questions | Player answers quiz questions | The quiz questions are challenging and engaging, with a variety of question types and difficulty levels | Works as expected |
+
+
+User Story 6:
+
+As a player, I want some aids if im struggling with a question
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+|-------------|------------|---------------------|-------------------|
+| Life lines | Player presses life line button | The player gets help | Works as expected |
+
+
+User Story 7:
+
+As a player, I want to be able to see the correct answers for the questions I answered incorrectly to learn and improve my knowledge.
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+|-------------|------------|---------------------|-------------------|
+| Incorrect Answers Feedback | Player answers wrong | Pop up display game over and what the correct answer was | Works as expected |
+
+
+User Story 8:
+
+As a quiz player, I want the option to play the quiz again when i aswer wrong.
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+|-------------|------------|---------------------|-------------------|
+| Replay Quiz | Player answers wrong | The player can choose to replay  | Works as expected |
+
+
+User Story 9:
+
+As a player, I want to be able to easily navigate back to the home page or explore other sections of the website after completing the quiz.
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+|-------------|------------|---------------------|-------------------|
+| menu button | Player presses menu | The player can easily navigate back to the home page or explore other sections of the website without any hassle | Works as expected |
+
+
+User Story 10:
+
+As a player, I want the game to have smooth and fluid animations and transitions, enhancing the overall visual appeal and user experience.
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+|-------------|------------|---------------------|-------------------|
+| Smooth Animations | Player interacts with various elements in the game | The game features smooth and fluid animations and transitions, enhancing the visual appeal and providing a seamless user experience | Works as expected |
+
+#### Site Owner
+
+
+User Story 11:
+
+As the site owner, I want users to see a 404 page if they enter an incorrect URL so they can be navigated back to the main game page
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+|-------------|------------|---------------------|-------------------|
+| 404 Page | The player enters an invalid game URL in their browser | A 404 Not Found page with details on how to navigate back to the game is shown | Works as expected |
+| 404 Return Home Button | The player enters an invalid game URL in their browser  | The player clicks on the Return Home button on the 404 page and is taken back to the home page to start a new game | Works as expected |
+
+
 
 **Form Testing**
 
@@ -450,10 +543,10 @@ Website behaved as expected, error message was displayed and the form did not su
 
 The JS Hint JavaScript Validation Service was used to validate the JavaScript code on the website. The results below show three code warnings related to "Functions declared within loops referencing an outer scoped variable may lead to confusing semantics". Or undeclared Variables as these are dynamic variables or are declared in the main script.js file or relate to the EmailJS. I'm flagging these for future improvement:
 
-#### javascript.js
+
 **Metrics**
 
-- There are 60 functions in this file.
+- There are 60 functions in all js file.
 - Function with the largest signature take 4 arguments, while the median is 0.
 - Largest function has 21 statements in it, while the median is 4.
 - The most complex function has a cyclomatic complexity value of 7 while the median is 1.
@@ -461,26 +554,35 @@ The JS Hint JavaScript Validation Service was used to validate the JavaScript co
 **Four warnings:**
 
 - 'async functions' is only available in ES8 (use 'esversion: 8').
-- 258	'async functions' is only available in ES8 (use 'esversion: 8').
-- 330	'async functions' is only available in ES8 (use 'esversion: 8').
-- 382	'async functions' is only available in ES8 (use 'esversion: 8').
+- 'async functions' is only available in ES8 (use 'esversion: 8').
+- 'async functions' is only available in ES8 (use 'esversion: 8').
+- 'async functions' is only available in ES8 (use 'esversion: 8').
 
 **One undefined variable**
 
-- 2	Parse
-- 3	Parse
-- 235	Parse
-- 264	Parse
-- 297	Parse
-- 301	Parse
-- 336	Parse
-- 384	Parse
+- 2	"Parse" in databse.js
 
-### Unfixed Bugs
 
-1. The form section is currently not able to be submitted as it needs javascript and python to send the data and as this website is for education purposes we have not learnt these languages yet, but will be updated in the future.
+## Bugs
 
-2. On gallery.html lighthouse results for best practices are 85% because of embeded youtube videos.
+| **Bug** | **Fix** |
+| --- | --- |
+| Bug: Music or Sound Buttons not working, or image changes but sound stays the same. | Solution: Reviewed the event listeners and sound playback functions to ensure they are properly connected. Fixed the code that handles sound playback, ensuring that the correct sound file is played when the button is clicked and that the image and sound stay synchronized. |
+| Bug: All sound not being muted on the overlay screen. | Solution: Adjusted the code responsible for muting and unmuting sounds to cover all sound elements present on the overlay screen. Ensured that the mute functionality applies to all sounds consistently. |
+| Bug: Overlay screen not showing. | Solution: Identified the code issue that prevented the overlay screen from being displayed. Corrected the code to properly trigger the display of the overlay screen when necessary. |
+| Bug: Overlay screen click to enter not working. | Solution: Reviewed the event listeners and click handlers associated with the overlay screen. Fixed the code to properly detect and respond to clicks, allowing users to enter the desired section or continue with the game as intended. |
+| Bug: Popup not working. | Solution: Examined the code associated with the popup functionality, including event listeners and animation triggers. Identified and resolved any code issues that prevented the popup from displaying or functioning as intended. |
+| Bug: Popup not closing. | Solution: Inspected the code responsible for closing the popup upon user interaction or completion of a specific action. Fixed any issues that prevented the popup from closing, ensuring that it can be dismissed when needed. |
+| Bug: JSON questions not loading. | Solution: Reviewed the code responsible for fetching and parsing JSON data for quiz questions. Identified and fixed any issues related to data retrieval, parsing, or data structure compatibility, ensuring that the questions load successfully. |
+| Bug: Timer animation not changing. | Solution: Examined the code that updates the timer animation during the quiz. Corrected any issues with calculating or updating the timer animation value to reflect the timer progress accurately. |
+| Bug: Life line results being empty, showing no results. | Solution: Investigated the code responsible for populating and displaying the results. Identified and fixed any issues that prevented the proper rendering of results data, ensuring that the results shows the relevant information. |
+| Bug: Register/log in form not submitting. | Solution: Reviewed the code associated with the form, including form validation and submission handling. Fixed any issues that prevented the form from being submitted successfully, allowing users to provide feedback as intended. |
+| Bug: Image links missing "." before the "/". | Solution: Scanned the codebase to identify missing periods (".") before the forward slashes ("/") in image URLs. Added the missing periods to ensure the image links point to the correct locations. |
+| Bug: "play() failed because the user didn't interact with the document first" error. | Solution: Updated the code that triggers sound playback to address the error and ensure sound can be played without requiring prior user interaction with the document. |
+
+[Back to Table of Contents](#table-of-contents)
+
+
 
 
 ## Deployment

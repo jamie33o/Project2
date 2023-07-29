@@ -407,7 +407,7 @@ ul {
 #answer_a_btn, #answer_b_btn, #answer_c_btn, #answer_d_btn {
     display:flex;
     justify-content: left;
-    padding-left: 60px;
+    padding-left: 70px;
 }
 .button {
     display: flex;

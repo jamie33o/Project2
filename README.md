@@ -1,4 +1,4 @@
-![Logo](docs/readme_images/wwtbam_logo.png)
+<img src="docs/readme_images/wwtbam_logo.png" alt="logo" width="200"/>
 
 Welcome to, 
 

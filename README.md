@@ -1,4 +1,4 @@
-![Logo](assets/images/logo.png)
+![Logo](docs/readme_images/wwtbam_logo.png)
 
 Welcome to, 
 
@@ -338,7 +338,9 @@ Samsung Galaxy Tablet
   - No errors were found when passing through the official [(Jigsaw) validator](http://jigsaw.w3.org/css-validator/validator?lang=en&profile=css3svg&uri=https%3A%2F%2Fjamie33o.github.io%2Fhistory-of-michael-collins%2F&usermedium=all&vextwarning=&warning=1)
 
 ![W3C validator homepage](docs/testing/w3c-validator-homepage.png)
-
+![W3C validator question/add info](docs/testing/w3c-validator-question-add-info.png)
+![W3C validator gallery](docs/testing/w3c-validator-question-gallery.png)
+![W3C jigsaw validator css](docs/testing/w3c-validator-css.png)
 
 
 ### Accessibility

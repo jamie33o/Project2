@@ -18,7 +18,16 @@ body {
     height: 100%;
 }
 
-/*main:- center of page*/
+/*main*/
+.username-n-score{
+position: absolute;
+top: -40px;
+border: 1px solid var(--border);
+padding: 5px;
+background-color: var(--dark-blue);
+
+}
+
 main {
      display: flex;
     flex-direction: column;
@@ -392,8 +401,14 @@ ul {
     flex-wrap: wrap;
     justify-content: center;
     max-width: 100%;
+    
 }
 
+#answer_a_btn, #answer_b_btn, #answer_c_btn, #answer_d_btn {
+    display:flex;
+    justify-content: left;
+    padding-left: 60px;
+}
 .button {
     display: flex;
     align-items: center;

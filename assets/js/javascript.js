@@ -217,7 +217,6 @@ function startGame() {
     questionCounter = 0;
 }
 
-
 //----------Function's for database register/log in and display score--------------
 
 /**
@@ -285,6 +284,8 @@ async function displayScores() {
     }
   }
 
+  readThenUpdate(0);
+
   function readThenUpdate(score) {
     const currentUser = Parse.User.current();
     if (currentUser) {
@@ -295,6 +296,7 @@ async function displayScores() {
         query.first().then(function (object) {
         if (object) {
             update(object, score);
+           
         } else {
             console.log("Nothing found, please try again");
         }
@@ -306,13 +308,16 @@ async function displayScores() {
 
 function update(foundObject, score) {
     let newScore = foundObject.get("score") + score;
-    foundObject.set('score', newScore);
+    displayUserNameNscore(foundObject.get("username"),newScore);
 
+    if(score > 0){
+    foundObject.set('score', newScore);
     foundObject.save().then(function (object) {
       console.log('score updated! Username: ' + object.get("username") + ' and new score: ' + object.get("score"));
     }).catch(function(error) {
       console.log('Error: ' + error.message);
     });
+}
 }
 
 async function logIn() {
@@ -339,6 +344,11 @@ async function logIn() {
         console.log("Error: " + error.code + " " + error.message);
       }
     }
+}
+
+function displayUserNameNscore(username,score){
+    let userScoreDiv = document.querySelector(".username-n-score p");
+    userScoreDiv.innerHTML = `${username}: ${score} points`;
 }
  
 // Function to check if a user is logged in
@@ -450,6 +460,9 @@ function nextQuestion() {
  */
 function checkAnswer(buttonText) {
     if(!popUpActive){
+        // remove's the A: , B: , C:, D: from the button text
+        buttonText= buttonText.substring(buttonText.indexOf(" ") + 1);
+
         if (buttonText === correctAnswer){
             if (questionCounter <= 9){
                 nextQuestion();       
@@ -484,10 +497,10 @@ function update_QnA_content(questionText, wrongAnswers, correctAnswer) {
     const answersArray = [wrongAnswers[0],wrongAnswers[1],wrongAnswers[2],correctAnswer];
     shuffledAnswers = shuffleArray(answersArray);
     //update the content of the <p> elements for the answers a,b,c,d
-    button_A.textContent = shuffledAnswers[0];
-    button_B.textContent = shuffledAnswers[1];
-    button_C.textContent = shuffledAnswers[2];
-    button_D.textContent = shuffledAnswers[3];
+    button_A.textContent = "A: " + shuffledAnswers[0];
+    button_B.textContent = "B: " + shuffledAnswers[1];
+    button_C.textContent = "C: " + shuffledAnswers[2];
+    button_D.textContent = "D: " + shuffledAnswers[3];
     // Update the content of the <p> element with the question id
     questionElement.textContent = questionText;
 }

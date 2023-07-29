@@ -213,8 +213,8 @@ ___
 <img src="docs/readme_images/phone_a_friend_img.png" alt="phone a friend button img" width="100"/>
 
   - After each button is pressed and user goes to the next question a red x will be on the button to show it has been used.
-    
-<img src="docs/readme_images/redX_50_50_img.png"  alt="fifty fifty button image"width="100"/>
+  
+<img src="docs/readme_images/redX_50_50_img.png" alt="fifty fifty button image" width="100"/>
 <img src="docs/readme_images/redX_ask_the_audience_img.png" alt="ask the audience button image" width="100"/>
 <img src="docs/readme_images/redX_phone_a_friend_img.png" alt="phone a friend button image" width="100"/>
 
@@ -229,7 +229,7 @@ ___
 
   - On the main game page, you'll find the timer positioned below the menu button in the center of the screen. The timer is set to 30 seconds for each question and is represented as a numerical countdown in the center. Encircling the timer, there is a dynamic circle animation that visually illustrates the remaining time, gradually shrinking as the seconds pass. This animation adds excitement and urgency to the game, prompting users to make quick decisions during their gameplay. 
 
-<img src="docs/readme_images/timer_screenshot.png" alt="timer image" width="100"/>
+<img src="docs/readme_images/timer_screenshot.png" alt="timer image" width="200"/>
 
 - Prize's box
 

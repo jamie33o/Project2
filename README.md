@@ -361,18 +361,187 @@ Samsung Galaxy Tablet
 ### Accessibility
 
 [Wave Accessibility](https://wave.webaim.org/report#/https://jamie33o.github.io/wwtbam-quiz-game) tool was used throughout development and for final testing of the deployed website to check for any aid accessibility testing.
+
 ![wave Accessibility](docs/readme_images/wave1.png) ![wave Accessibility](docs/readme_images/wave2.png)
+
 Testing was focused to ensure the following criteria were met:
 
-All forms have associated labels so that this is read out on a screen reader to users
-Color contrasts meet a minimum ratio as specified in WCAG 2.1 Contrast Guidelines
-Heading levels are not missed or skipped to ensure the importance of content is relayed correctly to the end user
-All content is contained within landmarks to ensure ease of use for assistive technology, allowing the user to navigate by page regions
-All not textual content had alternative text or titles so descriptions are read out to screen readers
-HTML page lang attribute has been set
-Aria properties have been implemented correctly
-WCAG 2.1 Coding best practices being followed
+- All forms have associated labels so that this is read out on a screen reader to users
+- Color contrasts meet a minimum ratio as specified in WCAG 2.1 Contrast Guidelines
+- Heading levels are not missed or skipped to ensure the importance of content is relayed correctly to the end user
+- All content is contained within landmarks to ensure ease of use for assistive technology, allowing the user to navigate by page regions
+- All not textual content had alternative text or titles so descriptions are read out to screen readers
+- HTML page lang attribute has been set
+- Aria properties have been implemented correctly
+- WCAG 2.1 Coding best practices being followed
 
 
-Manual tests were also performed to ensure the website was accessible as possible and an accessibility issue was identified.
+- Manual tests were also performed to ensure the website was accessible as possible and an accessibility issue was identified.
 
+  - Issue #1: Some buttons had no text
+
+    - Fix: added aria-label.
+
+
+### LightHouse Testing
+
+![index.html](docs/readme_images/lighthouse.png)
+
+
+### Functional Testing
+
+**Navigation Links**
+
+Testing was performed to ensure all navigation links on the respective pages, navigated to the correct pages as per design. This was done by clicking on the navigation links on each page.
+
+| Navigation Link   | Page to Load    |
+| ---------------   | --------------- |
+| Home              | index.html      |
+| Gallery           | gallery.html    |
+| Question/add info | question-add-info.html    |
+
+Links on all pages navigated to the correct pages as exptected.
+
+**Form Testing**
+
+The form on the home page was tested to ensure it functioned as expected when correct data was input and when incorrect data was input. The following test scenarios were covered:
+
+_Scenario One - Correct Inputs_
+
+Steps to test:
+
+1. Navigate to [History of Michael Collins - Questions/Add info](https://jamie33o.github.io/history-of-michael-collins/questions-add-info.html)
+2. Scroll down to the form and input the following data:
+   - Name: John doe
+   - Email: doe.john@test.com
+   - Comment: This is a test.
+3. Click Submit
+4. User should be redirected to thank-you.html confirmation page
+
+Expected:
+
+Form submits with no warnings or errors and user is redirected to contact.html confirmation page.
+
+Actual:
+
+Website behaved as expected with no errors or warnings and redirected to contact.html.
+
+_Scenario Two - Missing Required Field_
+
+Steps to test:
+
+1. Navigate to [History of Michael Collins - Questions/Add info](https://jamie33o.github.io/history-of-michael-collins/questions-add-info.html)
+2. Scroll down to the form and input the following data:
+   - Name:
+   - Email: doe.john@test.com
+   - Comment: This is a test.
+3. Click Submit
+
+Expected:
+
+The form does not submit and an Error is displayed to tell the user that the field is required.
+
+Actual:
+
+Website behaved as expected, error message was displayed and the form did not submit.
+
+
+### JavaScript Validation
+
+The JS Hint JavaScript Validation Service was used to validate the JavaScript code on the website. The results below show three code warnings related to "Functions declared within loops referencing an outer scoped variable may lead to confusing semantics". Or undeclared Variables as these are dynamic variables or are declared in the main script.js file or relate to the EmailJS. I'm flagging these for future improvement:
+
+#### javascript.js
+**Metrics**
+
+- There are 60 functions in this file.
+- Function with the largest signature take 4 arguments, while the median is 0.
+- Largest function has 21 statements in it, while the median is 4.
+- The most complex function has a cyclomatic complexity value of 7 while the median is 1.
+
+**Four warnings:**
+
+- 'async functions' is only available in ES8 (use 'esversion: 8').
+- 258	'async functions' is only available in ES8 (use 'esversion: 8').
+- 330	'async functions' is only available in ES8 (use 'esversion: 8').
+- 382	'async functions' is only available in ES8 (use 'esversion: 8').
+
+**One undefined variable**
+
+- 2	Parse
+- 3	Parse
+- 235	Parse
+- 264	Parse
+- 297	Parse
+- 301	Parse
+- 336	Parse
+- 384	Parse
+
+### Unfixed Bugs
+
+1. The form section is currently not able to be submitted as it needs javascript and python to send the data and as this website is for education purposes we have not learnt these languages yet, but will be updated in the future.
+
+2. On gallery.html lighthouse results for best practices are 85% because of embeded youtube videos.
+
+
+## Deployment
+
+### Version Control
+The site was created using the Visual Studio code editor and pushed to github to the remote repository ‘history-of-michael-collins’.
+
+The following git commands were used throughout development to push code to the remote repo:
+
+- git add <file> - This command was used to add the file(s) to the staging area before they are committed.
+
+- git commit -m “commit message” - This command was used to commit changes to the local repository queue ready for the final step.
+
+- git push - This command was used to push all committed code to the remote repository on github.
+
+### Deployment to Github Pages
+- The site was deployed to GitHub pages. The steps to deploy are as follows:
+  - In the GitHub repository, navigate to the Settings tab
+  - From the menu on left select 'Pages'
+  - From the source section drop-down menu, select the Branch: main
+  - Click 'Save'
+  - A live link will be displayed in a green banner when published successfully.
+
+The live link can be found here - https://jamie33o.github.io/history-of-michael-collins/ 
+
+
+
+### Clone the Repository Code Locally
+- Navigate to the GitHub Repository you want to clone to use locally:
+  - Click on the code drop down button
+  - Click on HTTPS
+  - Copy the repository link to the clipboard
+  - Open your IDE of choice (git must be installed for the next steps)
+  - Type git clone copied-git-url into the IDE terminal
+  - The project will now of been cloned on your local machine for use.
+
+## Credits 
+
+Here we credit everywhere we have got content for the website and any code that was taken from other sources.
+
+### Content 
+
+- The text for the Home page was taken [wikipedia](https://en.wikipedia.org/wiki/Michael_Collins_(Irish_leader)).
+- The icons in the footer were taken from [Font Awesome](https://fontawesome.com/)
+
+### Media
+
+- Videos in the gallery where taken from Youtube here is the links to eace channel in order
+ 1. [Michael Collins House Museum](https://www.youtube.com/@michaelcollinshouse)
+ 2. [Diolún Ó hUigínn](https://www.youtube.com/@Dioluin)
+ 3. [Documentales Olvidados](https://www.youtube.com/@Documentalesolvidado)
+
+- The images in the gallery were taken from these pages in order
+ 1. [Michael collins statue in cork](https://laracurtis.blogspot.com/2021/04/michael-collins-ireland-history-michael.html)
+ 2. [Micheal collins giving a speech](https://www.pinterest.jp/pin/museum-all-about-michael-collins-to-open-on-easter-saturday--128915608061888154/)
+ 3. [Michael collins being interviewed by press](https://www.pinterest.com/pin/421086633909672221/)
+ 4. [An eerie last photo of collins, worried about the camera's shutter noise as he's grabbing for his gun](https://www.pinterest.com/pin/454300681146697950/)
+
+### Code 
+
+- Part of the code in the footer was taken from the love running walktrough tutorial on Code Institue.
+- Part of the code in the form section was taken from love running walktrough tutorial on Code Institue.
+
+Thank you for visiting the History Michael Collins website! We hope that this website enriches your understanding of this remarkable figure and his significant contributions to Irish history.

@@ -327,7 +327,7 @@ All pages were tested to ensure responsiveness on screen sizes from 320px and up
 
 Steps to test:
 
-1. Open browser and navigate to [Who wants to be a millionaire](https://jamie33o.github.io/Project2/ )
+1. Open browser and navigate to [Who wants to be a millionaire](https://wave.webaim.org/report#/https://jamie33o.github.io/wwtbam-quiz-game)
 2. Open the developer tools (right click and inspect)
 3. Set to responsive and decrease width to 320px
 4. Set the zoom to 50%
@@ -354,14 +354,14 @@ Samsung Galaxy Tablet
 - CSS
   - No errors were found when passing through the official [(Jigsaw) validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fjamie33o.github.io%2Fwwtbam-quiz-game&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
 
-![W3C validator homepage](docs/testing/html.png)
-![W3C jigsaw validator css](docs/testing/css.png)
+![W3C validator homepage](docs/readme_images/html.png)
+![W3C jigsaw validator css](docs/readme_images/css.png)
 
 
 ### Accessibility
 
-[Wave Accessibility](https://wave.webaim.org/) tool was used throughout development and for final testing of the deployed website to check for any aid accessibility testing.
-
+[Wave Accessibility](https://wave.webaim.org/report#/https://jamie33o.github.io/wwtbam-quiz-game) tool was used throughout development and for final testing of the deployed website to check for any aid accessibility testing.
+![wave Accessibility](docs/readme_images/wave1.png) ![wave Accessibility](docs/readme_images/wave2.png)
 Testing was focused to ensure the following criteria were met:
 
 All forms have associated labels so that this is read out on a screen reader to users

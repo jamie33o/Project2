@@ -8,26 +8,26 @@ Parse.serverURL = "https://parseapi.back4app.com/";
 //the 4 answer button elements for the answer's with an event listener to triger checkanswer function 
 //and pass in the the text content of the button
 const button_A = document.getElementById("answer_a_btn");
-button_A.addEventListener("click", (evt) => checkAnswer(button_A.textContent));
+button_A.addEventListener("click", () => checkAnswer(button_A.textContent));
 
 const button_B = document.getElementById("answer_b_btn");
-button_B.addEventListener("click", (evt) => checkAnswer(button_B.textContent));
+button_B.addEventListener("click", () => checkAnswer(button_B.textContent));
 
 const button_C = document.getElementById("answer_c_btn");
-button_C.addEventListener("click", (evt) => checkAnswer(button_C.textContent));
+button_C.addEventListener("click", () => checkAnswer(button_C.textContent));
 
 const button_D = document.getElementById("answer_d_btn");
-button_D.addEventListener("click", (evt) => checkAnswer(button_D.textContent));
+button_D.addEventListener("click", () => checkAnswer(button_D.textContent));
 
 //event listeners for the lifeline buttons 
 const fiftyFifty_btn = document.getElementById("fiftyFifty");
-fiftyFifty_btn.addEventListener("click", (evt) => fiftyFifty());
+fiftyFifty_btn.addEventListener("click", () => fiftyFifty());
 
 const phoneAfriend_btn = document.getElementById("phoneAfriend");
-phoneAfriend_btn.addEventListener("click", (evt) => phoneAfriend());
+phoneAfriend_btn.addEventListener("click", () => phoneAfriend());
 
 const askAudience_btn = document.getElementById("askAudience");
-askAudience_btn.addEventListener("click", (evt) => askAudience());
+askAudience_btn.addEventListener("click", () => askAudience());
 
 /**start button on menu overlay */
 const start_btn = document.getElementById("start");
@@ -55,8 +55,6 @@ let prize;
 /**boolean to restart timer*/
 let restartTimer;
 
-/**used to stop current audio when new one is starting */
-let currentAudio = null;
 /**boolean to let sound play if false or not if true  */
 let mute = true;
 
@@ -89,7 +87,7 @@ let shuffledAnswers = [];
 let usedLifeLines = [];
 
 /**lifelines button array */
-let lifeline_btns = [phoneAfriend_btn,fiftyFifty_btn,askAudience_btn]
+let lifeline_btns = [phoneAfriend_btn,fiftyFifty_btn,askAudience_btn];
 
 //-------Global selectors-------
 
@@ -127,6 +125,15 @@ let outerContainer = document.getElementById("outer-container");
  // Add h2 to leader borard and instructions
  const htmlContent = '<h2 id="inst-leader" class="center"></h2>';
  
+// Loop through the NodeList and add the event listener to each element using forEach
+mutePlayButton.forEach(btn => {
+    btn.addEventListener('click', toggleMutePlay);
+  });
+
+ document.getElementById("register").addEventListener('click',  register);
+ document.getElementById("log-in").addEventListener('click',  logIn);
+ 
+ document.getElementById("menu-btn").addEventListener('click',  menu);
 
 let instructions_LeaderBoard_h2;
 
@@ -291,7 +298,7 @@ async function displayScores() {
     if (currentUser) {
         const currentUsername = currentUser.get("username"); // Get the current user's username
 
-        query = new Parse.Query("User");
+        let query = new Parse.Query("User");
         query.equalTo("username", currentUsername);
         query.first().then(function (object) {
         if (object) {
@@ -354,9 +361,9 @@ function displayUserNameNscore(username,score){
 // Function to check if a user is logged in
 function checkUserLogin() {
     const sessionToken = localStorage.getItem('sessionToken'); // Fetch the session token from local storage
+    // To disable scrolling
+    document.body.style.overflow = "hidden";
     if (sessionToken) {
-        // To disable scrolling
-        document.body.style.overflow = "hidden";
         //plays the start theme
         playAudioWithSrc("assets/sounds/start_theme.mp3");
         //event listener of the start up overlay
@@ -364,10 +371,9 @@ function checkUserLogin() {
         signUp.style.display = "none";
       }else {
         signUp.style.display = "flex";
-        // To disable scrolling
-        document.body.style.overflow = "hidden";
       }
-}
+    }
+
 checkUserLogin();
 
 /**this function checks if the user is logged in
@@ -432,7 +438,7 @@ function retrieve_QnA() {
         nextQuestion();
     })
     .catch(error => {
-        questionElement.textContent = `Error fetching question: ${error}`
+        questionElement.textContent = `Error fetching question: ${error}`;
     });
 }
 
@@ -595,7 +601,7 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
                 localStorage.setItem("prizeCounter", prizeCounter);
                 
         }
-        sessionStorage.setItem("startScreen", 'true')
+        sessionStorage.setItem("startScreen", 'true');
         location.reload();
     }); 
 }
@@ -622,13 +628,13 @@ function timer() {
             }else if(timerCount === 0){
                 clearInterval(intervalTimer);
                 gameOver();
-                playAudioWithSrc("assets/sounds/lose.mp3")
+                playAudioWithSrc("assets/sounds/lose.mp3");
             }else{
                 timerCount--;
                 number.innerHTML = timerCount;
             }
         }
-    },1000)
+    },1000);
 }
      
 /**
@@ -647,7 +653,7 @@ function restartAnimation () {
  * and ask if they would like to play again or quit
  */
 function gameOver() {
-    popUp("Game Over!!!", `Hard luck the correct answer was "${correctAnswer}"...Would you like to play again?`, "PLAY AGAIN", "QUIT" )
+    popUp("Game Over!!!", `Hard luck the correct answer was "${correctAnswer}"...Would you like to play again?`, "PLAY AGAIN", "QUIT" );
 }
 
 //---------------life lines sections----------------
@@ -681,7 +687,7 @@ function hideResults(button) {
         //keeps the button that is pressed disabled and enable the others
         usedLifeLines.push(button);
         // Create a new array with elements from array1 that are not present in array2
-        let unusedLifeLines =  lifeline_btns.filter((element) => !usedLifeLines.includes(element))
+        let unusedLifeLines =  lifeline_btns.filter((element) => !usedLifeLines.includes(element));
         unusedLifeLines.forEach((element) => {
                 element.disabled = false;
             
@@ -751,25 +757,32 @@ function askAudience() {
 }
 
 /**This function is for the 50/50 lifeline button
- * it gets rid of two wrong questions
+ * it hides two wrong answer
  */
 function fiftyFifty() {
     playAudioWithSrc("assets/sounds/life-lines.mp3");
+    let buttonTxtafter = [];
 
     fiftyFifty_btn.style.backgroundImage = `url('assets/images/green_50_50.png')`;
 
+    let answerButtonsArray = [button_A,button_B,button_C,button_D];
+    answerButtonsArray.forEach((element) => {
+            let buttonTxt = element.textContent;
+            buttonTxtafter.push(buttonTxt.substring(buttonTxt.indexOf(" ") + 1));
+      });
+   
     for(let i = 0;i <= 1;i++){
         switch(wrongAnswers[i]){
-            case button_A.textContent:
+            case buttonTxtafter[0]:
                 button_A.textContent = "";
                 break;
-            case button_B.textContent:
+            case buttonTxtafter[1]:
                 button_B.textContent = "";
                 break;
-            case button_C.textContent:
+            case buttonTxtafter[2]:
                 button_C.textContent = "";
                 break;
-            case button_D.textContent:
+            case buttonTxtafter[3]:
                 button_D.textContent = "";
                 break;
         }

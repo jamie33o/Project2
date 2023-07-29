@@ -338,26 +338,24 @@ Website is responsive on all screen sizes and no images are pixelated or stretch
 
 Actual:
 
-Website behaved as expected with the exception of some images been to large at 320px.
+Website behaved as expected with the exception of some images stretch.
 
 Website was also opened on the following devices and no responsive issues were seen:
 
 Oukitel C21 Pro
 TCL 30 Pro
-iPhone SE
+iPhone SXR
 Samsung Galaxy Tablet
 
 ### Validator Testing 
 
 - HTML
-  - No errors were returned when passing through the official [W3C validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fjamie33o.github.io%2Fhistory-of-michael-collins%2F)
+  - No errors were returned when passing through the official [W3C validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fjamie33o.github.io%2Fwwtbam-quiz-game%2F)
 - CSS
-  - No errors were found when passing through the official [(Jigsaw) validator](http://jigsaw.w3.org/css-validator/validator?lang=en&profile=css3svg&uri=https%3A%2F%2Fjamie33o.github.io%2Fhistory-of-michael-collins%2F&usermedium=all&vextwarning=&warning=1)
+  - No errors were found when passing through the official [(Jigsaw) validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fjamie33o.github.io%2Fwwtbam-quiz-game&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
 
-![W3C validator homepage](docs/testing/w3c-validator-homepage.png)
-![W3C validator question/add info](docs/testing/w3c-validator-question-add-info.png)
-![W3C validator gallery](docs/testing/w3c-validator-question-gallery.png)
-![W3C jigsaw validator css](docs/testing/w3c-validator-css.png)
+![W3C validator homepage](docs/testing/html.png)
+![W3C jigsaw validator css](docs/testing/css.png)
 
 
 ### Accessibility

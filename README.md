@@ -1,4 +1,4 @@
-<img src="docs/readme_images/wwtbam_logo.png" alt="logo" width="200"/>
+<img src="docs/readme_images/wwtbam_logo.png" alt="logo" width="100"/>
 
 Welcome to, 
 
@@ -153,38 +153,39 @@ On the menu screen, located at the top center of the page, visitors will immedia
 
 #### Welcome Overlay menu Screen/Page
   
-![Welcome Overlay Screen/Page](docs/readme_images/menu.png)
+![Welcome Overlay Screen/Page](docs/readme_images/overlay_menu_screenshot.png)
 
 - On the main game page, you will be greeted with a captivating background featuring spotlight effects and a gradient of light to dark blue. The following essential elements are also present on this page:
   
 - Register/Log in form
 
   - Register/Log in Form: Users can easily access the registration and login form, allowing them to participate in the game and keep track of their progress.
-  ![Get in Touch](docs/readme_images/register-form.png)
+  ![Get in Touch](docs/readme_images/form-screenshot.png)
 
 - Logo
 
   - The Logo: The game's logo is prominently displayed, giving users a clear visual identity of the game they are engaging with.
 
-  ![Get in Touch](docs/readme_images/register-form.png)
+<img src="docs/readme_images/wwtbam_logo.png" alt="logo" width="100"/>
+
 
 - Sound mute/unmute toggle icon
 
   - Sound Mute/Unmute Toggle Icon: Users have the option to control the sound by toggling between mute and unmute, ensuring a customizable audio experience.
 
-  ![Get in Touch](docs/readme_images/register-form.png)
+  <img src="docs/readme_images/menu.png" alt="logo" width="100"/>
 
 - Instruction's
 
   - Instructions Button: For newcomers or those needing a refresher, an "Instructions" button is readily available. Clicking on it will provide clear guidelines on how to play the game.
 
-  ![How to Play](docs/readme_images/instructions.png)
+  ![How to Play](docs/readme_images/instruction_screenshot.png)
 
 - Leader Board
 
   - Leaderboard Button: To encourage competitiveness and track user scores, a "Leaderboard" button is provided. Players can check their standings among others who have participated in the game.
 
-  ![How to Play](docs/readme_images/leader-board.png)
+  ![How to Play](docs/readme_images/leaderboard_screenshot.png)
 
 ___
 
@@ -200,8 +201,9 @@ ___
   - The Life lines box has 3 life lines and when each button is pressed it will show the results inside the box under the buttons except for the 50:50 button as two answer will just dissapear:
 
   - 50:50 button: This button when pressed will make 2 wrong answers dissapear.
-    ![fifty fifty button](docs/readme_images/50_50_img.png)
-    ![fifty fifty - Results](docs/readme_images/fiftyresults.png)
+  
+    <img src="docs/readme_images/50_50_img.png" alt="fifty fifty button" width="100"/>
+
   - Ask the audience button: This button when pressed will show a bar chart to show the results of the audience votes with a letter on each bar to show which answer it represents the bars are animated so they rise slowly to there final position it does not always give the right answer.
     ![ask the audiene button and results](docs/readme_images/asktheaudienceresults.png)
   - Phone A friend button: This button when pressed will show a paragraph  of text representing the fake caller's anwers 

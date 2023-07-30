@@ -46,14 +46,19 @@ ___
   - [Responsiveness](#responsiveness)
   - [Validator Testing](#validator-testing)
   - [Accessibility](#accessibility)
-  - [Lighthouse Testing](#lighthouse-testing)
-  - [Functional Testing](#functional-testing)
-  - [Unfixed Bugs](#unfixed-bugs)
+  - [LightHouse Testing](#lighthouse-testing)
+  - [Testing user stories](#testing-user-stories)
+    - [Players](#players)
+    - [Site Owner](#site-owner)
+  - [Form Testing](#form-testing)
+  - [JavaScript Validation](#javascript-validation)
+  - [Metrics](#metrics)
+  - [Bugs](#bugs)
 - [Deployment](#deployment)
+- [Clone the Repository Code Locally](#clone-the-repository-code-locally)
 - [Credits](#credits)
       
 
-     - [Wireframes](#wireframes)
 ___
 
 ## Project Goals
@@ -140,8 +145,20 @@ The aim of this site is to provide the look and feel similar to the tv show. Wit
 
 - __Wireframes__
 
-Homepage
+Start overlay
+
+![wireframe design for game page large screen](docs/wireFrames/game-screen-large-wf.png.png)
+![wireframe design for game page phone](docs/wireframes/game-screen-small-wf.png)
+
+Game page
+
+![wireframe design for startscree laptop](docs/wireframes/start-screen-large-wf.pngy.png)
+![wireframe design for start screen phone](docs/wireframes/start-screen-small-wf.png)
+
+[Back to Table of Contents](#table-of-contents)
+
 ___
+
 
 ## Features
 
@@ -186,7 +203,7 @@ On the menu screen, located at the top center of the page, visitors will immedia
 
   ![How to Play](docs/readme_images/leaderboard_screenshot.png)
 
-___
+[Back to Table of Contents](#table-of-contents)
 
 #### Quiz Page
 
@@ -319,6 +336,8 @@ These features and notifications enhance the excitement and engagement of the ga
 - balsamiq
   - wireframes were created using balsamiq from [balsamiq.com](https://balsamiq.com/wireframes/desktop/#)
 
+[Back to Table of Contents](#table-of-contents)
+
 ## Testing 
 
 ### Responsiveness
@@ -382,13 +401,12 @@ Testing was focused to ensure the following criteria were met:
 
     - Fix: added aria-label.
 
+[Back to Table of Contents](#table-of-contents)
 
 ### LightHouse Testing
 
 ![index.html](docs/readme_images/lighthouse.png)
 
-
-### Functional Testing
 
 ### Testing user stories
 
@@ -538,6 +556,7 @@ Actual:
 
 Website behaved as expected, error message was displayed and the form did not submit.
 
+[Back to Table of Contents](#table-of-contents)
 
 ### JavaScript Validation
 
@@ -562,6 +581,7 @@ The JS Hint JavaScript Validation Service was used to validate the JavaScript co
 
 - 2	"Parse" in databse.js
 
+[Back to Table of Contents](#table-of-contents)
 
 ## Bugs
 
@@ -617,31 +637,30 @@ The live link can be found here - https://jamie33o.github.io/wwtbam-quiz-game
   - Type git clone copied-git-url into the IDE terminal
   - The project will now of been cloned on your local machine for use.
 
+[Back to Table of Contents](#table-of-contents)
+
 ## Credits 
 
 Here we credit everywhere we have got content for the website and any code that was taken from other sources.
 
 ### Content 
 
-- The text for the Home page was taken [wikipedia](https://en.wikipedia.org/wiki/Michael_Collins_(Irish_leader)).
-- The icons in the footer were taken from [Font Awesome](https://fontawesome.com/)
+### Images
 
-### Media
-
-- Videos in the gallery where taken from Youtube here is the links to eace channel in order
- 1. [Michael Collins House Museum](https://www.youtube.com/@michaelcollinshouse)
- 2. [Diolún Ó hUigínn](https://www.youtube.com/@Dioluin)
- 3. [Documentales Olvidados](https://www.youtube.com/@Documentalesolvidado)
-
-- The images in the gallery were taken from these pages in order
- 1. [Michael collins statue in cork](https://laracurtis.blogspot.com/2021/04/michael-collins-ireland-history-michael.html)
- 2. [Micheal collins giving a speech](https://www.pinterest.jp/pin/museum-all-about-michael-collins-to-open-on-easter-saturday--128915608061888154/)
- 3. [Michael collins being interviewed by press](https://www.pinterest.com/pin/421086633909672221/)
- 4. [An eerie last photo of collins, worried about the camera's shutter noise as he's grabbing for his gun](https://www.pinterest.com/pin/454300681146697950/)
+- The questions and answer's were got from  [trivia api](https://the-trivia-api.com/).
+- The life line image for the buttons were taken from [millionaire.fandom.com](https://millionaire.fandom.com/wiki/)
+- The menu icon and the sound icons were taken from [https://www.flaticon.com/free-icons/sound-on](https://www.flaticon.com/free-icons/sound-on)
+- The answer's and question background were got from [hiclipart](https://www.hiclipart.com/free-transparent-background-png-clipart-hzgpa)
+- The logo was got from [devianart](https://www.deviantart.com/gabe0530/art/Who-Wants-To-Be-A-Millionaire-PH-Logo-Remake-681103990)
 
 ### Code 
 
-- Part of the code in the footer was taken from the love running walktrough tutorial on Code Institue.
-- Part of the code in the form section was taken from love running walktrough tutorial on Code Institue.
+- The javascript code for the footer was got from stack overflow
+- Some of the javascript code for the database was got from stack overflow
+- The javascript for the shuffling of the answers was got from stack overflow
 
-Thank you for visiting the History Michael Collins website! We hope that this website enriches your understanding of this remarkable figure and his significant contributions to Irish history.
+### Audio References
+* All sound's were got from - [soundboard](https://www.soundboard.com/sb/onemilliondollars)
+
+
+[Back to Table of Contents](#table-of-contents)

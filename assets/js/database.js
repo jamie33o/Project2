@@ -13,8 +13,8 @@ const username = document.getElementById("username");
 const signUp = document.getElementById("sign-up");
 
 /**for email text content */
-let emailInput = document.getElementById("email-input");
-
+let emailInputDiv = document.getElementById("email-input");
+let emailInputText = document.getElementById("email");
 document.getElementById("register").addEventListener('click',  register);
 document.getElementById("log-in").addEventListener('click',  logIn);
 
@@ -49,14 +49,22 @@ async function displayScores() {
   // Function to add a new user to the scores.json file
   async function register() {
 
-    if(emailInput.style.display === "none"){
-        emailInput.style.display = "flex";
-    }else{
-     // Creates a new Parse "User" object, which is created by default in your Parse app
+    if(emailInputDiv.style.display === "none"){
+        emailInputDiv.style.display = "flex";
+    }else if (username.value === "" || emailInputText.value === "" || password.value === "") {
+          alert("Please fill in all fields.");
+        } else if (password.value.length <= 4) {
+          alert("Password must be at least 5 characters long.");
+        } else if (!emailInputText.value.includes("@") || !emailInputText.value.includes(".")) {
+          alert("Please enter a valid email address.");
+        } else {
+          // All conditions are met, proceed with further actions.
+          
+             // Creates a new Parse "User" object, which is created by default in your Parse app
         let user = new Parse.User();
         // Set the input values to the new "User" object
         user.set("username", username.value);
-        user.set("email", document.getElementById("email").value);
+        user.set("email", emailInputText.value);
         user.set("password", password.value);
         
         try {
@@ -80,6 +88,7 @@ async function displayScores() {
         } catch (error) {
             alert(`Error: ${error.message}`);
         }
+    
     }
   }
 
@@ -120,8 +129,8 @@ function update(foundObject, score) {
 }
 
 async function logIn() {
-    if (emailInput.style.display === "" || emailInput.style.display === "flex") {
-      emailInput.style.display = "none";
+    if (emailInputDiv.style.display === "" || emailInputDiv.style.display === "flex") {
+      emailInputDiv.style.display = "none";
     } else {
       try {
         // Log in the user using Parse.User.logIn()

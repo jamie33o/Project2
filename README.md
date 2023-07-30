@@ -120,14 +120,23 @@ The aim of this site is to provide the look and feel similar to the tv show. Wit
 
 - __Wireframes__
 
-Start overlay page
+- Start overlay page
+  - laptop screen
 
-![wireframe design for game page large screen](docs/wireFrames/game-screen-large-wf.png)
+![wireframe design for game page large screen](docs/wireframes/game-screen-large-wf.png)
+
+  - phone screen
+
 ![wireframe design for game page phone](docs/wireframes/game-screen-small-wf.png)
 
-Game page
+-Game page
+
+  - laptop screen 
 
 ![wireframe design for startscree laptop](docs/wireframes/start-screen-large-wf.png)
+
+  - phone screen 
+
 ![wireframe design for start screen phone](docs/wireframes/start-screen-small-wf.png)
 
 [Back to Table of Contents](#table-of-contents)

@@ -79,8 +79,6 @@ ___
 
   [Back to Table of Contents](#table-of-contents)
 
-___
-
 - __User Stories__
 
   - The players of the game are the primary users of this website with site owner being a secondary user:
@@ -122,14 +120,14 @@ The aim of this site is to provide the look and feel similar to the tv show. Wit
 
 - __Wireframes__
 
-Start overlay
+Start overlay page
 
-![wireframe design for game page large screen](docs/wireFrames/game-screen-large-wf.png.png)
+![wireframe design for game page large screen](docs/wireFrames/game-screen-large-wf.png)
 ![wireframe design for game page phone](docs/wireframes/game-screen-small-wf.png)
 
 Game page
 
-![wireframe design for startscree laptop](docs/wireframes/start-screen-large-wf.pngy.png)
+![wireframe design for startscree laptop](docs/wireframes/start-screen-large-wf.png)
 ![wireframe design for start screen phone](docs/wireframes/start-screen-small-wf.png)
 
 [Back to Table of Contents](#table-of-contents)
@@ -490,7 +488,7 @@ As the site owner, I want users to see a 404 page if they enter an incorrect URL
 
 
 
-**Form Testing**
+#### Form Testing
 
 The Registration form on the menu overlay page was tested to ensure it functioned as expected when correct data was input and when incorrect data was input. The following test scenarios were covered:
 

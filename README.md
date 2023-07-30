@@ -121,6 +121,7 @@ The aim of this site is to provide the look and feel similar to the tv show. Wit
 - __Wireframes__
 
 - Start overlay page
+
   - laptop screen
 
 ![wireframe design for game page large screen](docs/wireframes/game-screen-large-wf.png)
@@ -129,7 +130,7 @@ The aim of this site is to provide the look and feel similar to the tv show. Wit
 
 ![wireframe design for game page phone](docs/wireframes/game-screen-small-wf.png)
 
--Game page
+- Game page
 
   - laptop screen 
 
@@ -626,8 +627,6 @@ The live link can be found here - https://jamie33o.github.io/wwtbam-quiz-game
 ## Credits 
 
 Here we credit everywhere we have got content for the website and any code that was taken from other sources.
-
-### Content 
 
 ### Images
 

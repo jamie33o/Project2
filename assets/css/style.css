@@ -404,6 +404,11 @@ ul {
     
 }
 
+.error-page {
+    width: 80%;
+    margin: auto auto;
+}
+
 #answer_a_btn, #answer_b_btn, #answer_c_btn, #answer_d_btn {
     display:flex;
     justify-content: left;

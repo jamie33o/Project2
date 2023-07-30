@@ -8,7 +8,7 @@ Welcome to,
 
 Welcome to the "Who Wants To Be A Millionaire" game! This interactive quiz game replicates the famous TV show. The objective is to correctly answer a series of increasingly difficult multiple-choice questions and progress towards winning one million (virtual) dollars! The game is designed for educational purposes and will not be monetized
 
-The live link can be found here - https://jamie33o.github.io/Project2/ 
+The live link can be found here - https://jamie33o.github.io/wwtbam-quiz-game/ 
 
 ![ScreenShot](docs/readme_images/responsive_screenshot.png)
 ___
@@ -497,38 +497,38 @@ As the site owner, I want users to see a 404 page if they enter an incorrect URL
 
 **Form Testing**
 
-The form on the home page was tested to ensure it functioned as expected when correct data was input and when incorrect data was input. The following test scenarios were covered:
+The Registration form on the menu overlay page was tested to ensure it functioned as expected when correct data was input and when incorrect data was input. The following test scenarios were covered:
 
 _Scenario One - Correct Inputs_
 
 Steps to test:
 
-1. Navigate to [History of Michael Collins - Questions/Add info](https://jamie33o.github.io/history-of-michael-collins/questions-add-info.html)
+1. Navigate to [who wants to be a millionaire](https://jamie33o.github.io/wwtbam-quiz-game)
 2. Scroll down to the form and input the following data:
-   - Name: John doe
+   - Username: John.doe
    - Email: doe.john@test.com
-   - Comment: This is a test.
-3. Click Submit
-4. User should be redirected to thank-you.html confirmation page
+   - Password: 12345.
+3. Click register
+4. User should get alert logged in succesfully
 
 Expected:
 
-Form submits with no warnings or errors and user is redirected to contact.html confirmation page.
+Form submits with no warnings or errors and user is notified that they are logged in sucessfully.
 
 Actual:
 
-Website behaved as expected with no errors or warnings and redirected to contact.html.
+Website behaved as expected with no errors or warnings.
 
 _Scenario Two - Missing Required Field_
 
 Steps to test:
 
-1. Navigate to [History of Michael Collins - Questions/Add info](https://jamie33o.github.io/history-of-michael-collins/questions-add-info.html)
+1. Navigate to [who wants to be a millionaire](https://jamie33o.github.io/wwtbam-quiz-game)
 2. Scroll down to the form and input the following data:
    - Name:
    - Email: doe.john@test.com
-   - Comment: This is a test.
-3. Click Submit
+   - Password: 12345.
+3. Click register
 
 Expected:
 
@@ -546,7 +546,7 @@ The JS Hint JavaScript Validation Service was used to validate the JavaScript co
 
 **Metrics**
 
-- There are 60 functions in all js file.
+- There are 60 functions in all js files.
 - Function with the largest signature take 4 arguments, while the median is 0.
 - Largest function has 21 statements in it, while the median is 4.
 - The most complex function has a cyclomatic complexity value of 7 while the median is 1.
@@ -583,8 +583,6 @@ The JS Hint JavaScript Validation Service was used to validate the JavaScript co
 [Back to Table of Contents](#table-of-contents)
 
 
-
-
 ## Deployment
 
 ### Version Control
@@ -606,7 +604,7 @@ The following git commands were used throughout development to push code to the 
   - Click 'Save'
   - A live link will be displayed in a green banner when published successfully.
 
-The live link can be found here - https://jamie33o.github.io/history-of-michael-collins/ 
+The live link can be found here - https://jamie33o.github.io/wwtbam-quiz-game 
 
 
 

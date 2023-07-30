@@ -97,6 +97,8 @@ start_btn.addEventListener("click", function(){
         }
     }else {
         prizeCounter = 13;
+        liElement[prizeCounter].style.backgroundImage = "url('assets/images/green_answer_box.png')";
+
     }
     retrieve_QnA();
     timer();

@@ -39,10 +39,10 @@ async function displayScores() {
               scoreList.appendChild(listItem);
             });        
         } else {
-           console.log("Nothing found, please try again");
+          alert(`Error saving score please log in again.`);
         }
     }).catch(function(error){
-        console.log("Error: " + error.code + " " + error.message);       
+      alert(`Error displaying score please log in again. Error message: `+ error.message);
     });
   }
 
@@ -80,9 +80,7 @@ async function displayScores() {
             setUserSessionToken(sessionToken);    
             // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
             alert(
-                `New user created with success! ObjectId: ${
-                user.id
-                }, ${user.get("username")}`
+                `New user created with success! Username: ${user.get("username")}`
             );
             }
         } catch (error) {
@@ -106,10 +104,10 @@ async function displayScores() {
             update(object, score);
            
         } else {
-            console.log("Nothing found, please try again");
+          alert(`Error saving score please log in again. Error message: `+ error.message);
         }
         }).catch(function (error) {
-        console.log("Error: " + error.code + " " + error.message);
+          alert(`Error saving score please log in again. Error message: `+ error.message);
         });
   }
 }
@@ -121,17 +119,21 @@ function update(foundObject, score) {
     if(score > 0){
     foundObject.set('score', newScore);
     foundObject.save().then(function (object) {
-      console.log('score updated! Username: ' + object.get("username") + ' and new score: ' + object.get("score"));
     }).catch(function(error) {
-      console.log('Error: ' + error.message);
+      alert(`Error saving score please log in again. Error message: `+ error.message);
     });
-}
+  } 
 }
 
 async function logIn() {
     if (emailInputDiv.style.display === "" || emailInputDiv.style.display === "flex") {
       emailInputDiv.style.display = "none";
-    } else {
+    } else if (username.value === "" || password.value === "") {
+      alert("Please fill in all fields.");
+    } else if (password.value.length <= 4) {
+      alert("Password must be at least 5 characters long.");
+    } else 
+      // All conditions are met, proceed with further actions.
       try {
         // Log in the user using Parse.User.logIn()
         const user = await Parse.User.logIn(username.value, password.value);
@@ -145,13 +147,11 @@ async function logIn() {
 
         // Hide the signup form
         signUp.style.display = "none";
-  
-        // Log the user login success
-        console.log('User logged in successfully with name: ' + user.get("username") + ' and email: ' + user.get("email"));
+
+        alert(`Hey ` + user.get("username") + ` you are Logged in`);
       } catch (error) {
-        console.log("Error: " + error.code + " " + error.message);
+        alert(`Hey ${username.value} you are not Logged in, Error: ${error.message}`);
       }
-    }
 }
 
 function displayUserNameNscore(username,score){
@@ -169,11 +169,14 @@ function checkUserLogin() {
         playAudioWithSrc("assets/sounds/start_theme.mp3");
         //event listener of the start up overlay
         setUserSessionToken(sessionToken);
+        
         signUp.style.display = "none";
+       alert("Logged in Successfully");
       }else {
         signUp.style.display = "flex";
+        localStorage.setItem("startScreen", 'true');
       }
-    }
+}
 
 checkUserLogin();
 

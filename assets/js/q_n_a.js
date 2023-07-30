@@ -87,7 +87,7 @@ function checkAnswer(buttonText) {
             incrementPrize();
             restartTimer = true;
         }else {
-            //gameOver();
+            gameOver();
         }
         hideResultsBool = true;
     }

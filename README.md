@@ -545,7 +545,7 @@ Website behaved as expected, error message was displayed and the form did not su
 
 ### JavaScript Validation
 
-The JS Hint JavaScript Validation Service was used to validate the JavaScript code on the website. The results below show three code warnings related to "Functions declared within loops referencing an outer scoped variable may lead to confusing semantics". Or undeclared Variables as these are dynamic variables or are declared in the main script.js file or relate to the EmailJS. I'm flagging these for future improvement:
+The JS Hint JavaScript Validation Service was used to validate the JavaScript code on the website. The results below show 4 code warnings related to 'async functions' is only available in ES8 (use 'esversion: 8')". There is 1 undeclared Variables as these are dynamic variables or are declared in the main script.js file or relate to the EmailJS. I'm flagging these for future improvement:
 
 
 **Metrics**
@@ -639,7 +639,7 @@ Here we credit everywhere we have got content for the website and any code that 
 ### Code 
 
 - The javascript code for the footer was got from stack overflow
-- Some of the javascript code for the database was got from stack overflow
+- Some of the javascript code for the database was got from back4app
 - The javascript for the shuffling of the answers was got from stack overflow
 
 ### Audio References

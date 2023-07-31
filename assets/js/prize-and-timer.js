@@ -1,6 +1,7 @@
 
 //---------Global variables----------
 
+// counter for the prize section
 let prizeCounter;
 /**stores prize text */
 let prize;

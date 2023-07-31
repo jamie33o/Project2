@@ -19,7 +19,7 @@ if(localStorage.getItem("startScreen") === "false"){
     startGame();
 }
 
-
+//event listener for instructions button
 document.getElementById("instructions-btn").addEventListener('click', function() {
     if(leaderBoard.style.display === "block") {
         leaderBoard.style.display = "none";
@@ -34,7 +34,7 @@ document.getElementById("instructions-btn").addEventListener('click', function()
     instructions_LeaderBoard_h2.innerHTML = "Instruction's";
 
 });
-
+//event listener for leader board button
 document.getElementById("leader-board-btn").addEventListener('click', function() {
     if(instruction.style.display === "block") {
         instruction.style.display = "none";
@@ -50,6 +50,7 @@ document.getElementById("leader-board-btn").addEventListener('click', function()
     displayScores();
 });
 
+// event listener for done button on instructions and leaderboard pop up
 document.getElementById("done").addEventListener('click', function() {
    outerContainer.style.display = "none";
    leaderBoard.style.display = "none";
@@ -58,7 +59,7 @@ document.getElementById("done").addEventListener('click', function() {
    instructions_LeaderBoard_h2.remove();
 });
 
-/**start button on menu overlay */
+/**start button on menu overlay and event listener for it */
 const start_btn = document.getElementById("start");
 start_btn.addEventListener("click", function(){
     if(!menuBoolean){

@@ -13,7 +13,7 @@
     }
 });
 
-//-------function for start menu---------
+//-------function for start menu button---------
 
 document.getElementById("menu-btn").addEventListener('click',  menu);
 

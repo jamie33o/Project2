@@ -46,7 +46,9 @@ async function displayScores() {
     });
   }
 
-  // Function to add a new user to the scores.json file
+ /**
+  * this function saves new user username, password and email to back4app database
+  */
   async function register() {
     if(emailInputDiv.style.display === "none"){
         emailInputDiv.style.display = "flex";
@@ -90,7 +92,10 @@ async function displayScores() {
   }
 
   readThenUpdate(0);
-
+/**
+ * This function gets the current user object from the data base then calls the update function to update the score
+ * @param {number} score - this is the points the user got for reaching a milestone 
+ */
   function readThenUpdate(score) {
     const currentUser = Parse.User.current();
     if (currentUser) {
@@ -111,6 +116,12 @@ async function displayScores() {
   }
 }
 
+/**
+ * This function adds the users stored points on the data base with the points they got for reaching a milestone and
+ * then saves the new score to the database
+ * @param {object} foundObject - this is the current user object
+ * @param {number} score - this is the points the user got for reaching a milestone
+ */
 function update(foundObject, score) {
     let newScore = foundObject.get("score") + score;
     displayUserNameNscore(foundObject.get("username"),newScore);
@@ -124,6 +135,10 @@ function update(foundObject, score) {
   } 
 }
 
+/**
+ * this function gets the username and password from the input fields and checks 
+ * the against the objects in the database if they exist it logs the user in
+ */
 async function logIn() {
     if (emailInputDiv.style.display === "" || emailInputDiv.style.display === "flex") {
       emailInputDiv.style.display = "none";
@@ -158,7 +173,9 @@ function displayUserNameNscore(username,score){
     userScoreDiv.innerHTML = `${username}: ${score} points`;
 }
  
-// Function to check if a user is logged in
+/** 
+ *  This Function checks if a user is logged in by checking session token in local storage
+ * */
 function checkUserLogin() {
     const sessionToken = localStorage.getItem('sessionToken'); // Fetch the session token from local storage
     // To disable scrolling

@@ -40,8 +40,6 @@ const liElement = document.querySelectorAll("#prizes ul li");
 /**used to Retrieve prizecounter from local storage */ 
 let storedCount = localStorage.getItem("prizeCounter");
 
-
-
 //------------functions for prize section-------------
 
 /**

@@ -35,9 +35,7 @@ function hideResults(button) {
             phoneAfriendResults.style.display = "none";
             button.style.backgroundImage = "url('assets/images/redX_phone_a_friend_img.png')";
     }
-        
-        clearInterval(resultsDissapear);
-
+    
         hideResultsBool = false;
         //keeps the button that is pressed disabled and enable the others
         usedLifeLines.push(button);
@@ -47,6 +45,7 @@ function hideResults(button) {
                 element.disabled = false;
             
           });
+          clearInterval(resultsDissapear);
     }
    },1000);
 }
@@ -67,7 +66,8 @@ function phoneAfriend() {
     let answer = randomNumber > 50 ? correctAnswer : wrongAnswers[0];
     phoneAfriend_btn.style.backgroundImage = `url('assets/images/green_phone_friend.png')`;
     phoneAfriendResults.innerHTML = `Hi im ${randomNumber}% sure the answer is "${answer}"`;   
-
+    
+    hideResultsBool = false;
     hideResults(phoneAfriend_btn);
 }
 
@@ -108,6 +108,8 @@ function askAudience() {
         document.head.appendChild(style);
 
     }
+    hideResultsBool = false;
+
     hideResults(askAudience_btn);
 }
 
@@ -142,6 +144,7 @@ function fiftyFifty() {
                 break;
         }
     }
+    hideResultsBool = false;
     hideResults(fiftyFifty_btn);    
 }
 

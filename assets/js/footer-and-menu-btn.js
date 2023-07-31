@@ -25,4 +25,5 @@ function menu() {
     start_btn.innerHTML = "Continue";
     displayScores();
     menuBoolean = true;
+    document.body.style.overflow = "hidden";
 }

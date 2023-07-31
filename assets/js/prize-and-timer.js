@@ -24,9 +24,6 @@ let menuBoolean;
 */
 let hideResultsBool;
 
-/**store the current value of the CSS overflow property of the <body> */
-const previousOverflow = document.body.style.overflow;
-
 //------Global arrays------
 
 /**array of used usedLifeLines */

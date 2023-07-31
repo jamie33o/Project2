@@ -8,7 +8,10 @@ let outerContainer = document.getElementById("outer-container");
 
  // Add h2 to leader borard and instructions
  const htmlContent = '<h2 id="inst-leader" class="center"></h2>';
- 
+
+ /**store the current value of the CSS overflow property of the <body> */
+const previousOverflow = document.body.style.overflow;
+
 // Loop through the NodeList and add the event listener to each element using forEach
 mutePlayButton.forEach(btn => {
     btn.addEventListener('click', toggleMutePlay);
@@ -17,6 +20,8 @@ mutePlayButton.forEach(btn => {
 // if user clicks play again dont show start screen and start game
 if(localStorage.getItem("startScreen") === "false"){
     startGame();
+}else {
+    document.body.style.overflow;
 }
 
 //event listener for instructions button
@@ -66,6 +71,8 @@ start_btn.addEventListener("click", function(){
         startGame();
         menuBoolean = false;
     }
+     // To disable scrolling
+     document.body.style.overflow = previousOverflow;
     document.querySelector("#overlay").style.display = "none";
 });
 
@@ -81,7 +88,6 @@ start_btn.addEventListener("click", function(){
     //play the suspense sound for timer
     playAudioWithSrc("assets/sounds/suspense_sound.mp3");
     // To re-enable scrolling
-    document.body.style.overflow = previousOverflow;
     document.querySelector("#overlay").style.display = "none";
     if (storedCount != null){
         prizeCounter = storedCount;

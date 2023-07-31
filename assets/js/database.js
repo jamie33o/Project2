@@ -178,8 +178,7 @@ function displayUserNameNscore(username,score){
  * */
 function checkUserLogin() {
     const sessionToken = localStorage.getItem('sessionToken'); // Fetch the session token from local storage
-    // To disable scrolling
-    document.body.style.overflow = "hidden";
+    
     if (sessionToken) {
         //plays the start theme
         playAudioWithSrc("assets/sounds/start_theme.mp3");

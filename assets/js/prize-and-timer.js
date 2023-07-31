@@ -115,7 +115,6 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
  
     popUp_element.querySelector("#btn1").addEventListener('click',  function() {
         if (btn1Text === "PLAY AGAIN") {
-            localStorage.setItem("startScreen", 'false');//stops the start screen from showing if user playing again
             localStorage.setItem("prizeCounter", 13);//resets prize to first one when game over win the million
             location.reload();
         }

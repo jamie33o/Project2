@@ -48,7 +48,6 @@ async function displayScores() {
 
   // Function to add a new user to the scores.json file
   async function register() {
-
     if(emailInputDiv.style.display === "none"){
         emailInputDiv.style.display = "flex";
     }else if (username.value === "" || emailInputText.value === "" || password.value === "") {
@@ -169,12 +168,12 @@ function checkUserLogin() {
         playAudioWithSrc("assets/sounds/start_theme.mp3");
         //event listener of the start up overlay
         setUserSessionToken(sessionToken);
-        
+        localStorage.setItem("startScreen", 'false');
         signUp.style.display = "none";
-       alert("Logged in Successfully");
       }else {
-        signUp.style.display = "flex";
         localStorage.setItem("startScreen", 'true');
+        signUp.style.display = "flex";
+        alert("Please log in!!!");
       }
 }
 

@@ -14,6 +14,10 @@ mutePlayButton.forEach(btn => {
     btn.addEventListener('click', toggleMutePlay);
   });
 
+// if user clicks play again dont show start screen and start game
+if(localStorage.getItem("startScreen") === "false"){
+    startGame();
+}
 
 
 document.getElementById("instructions-btn").addEventListener('click', function() {
@@ -77,7 +81,7 @@ start_btn.addEventListener("click", function(){
     playAudioWithSrc("assets/sounds/suspense_sound.mp3");
     // To re-enable scrolling
     document.body.style.overflow = previousOverflow;
-    
+    document.querySelector("#overlay").style.display = "none";
     if (storedCount != null){
         prizeCounter = storedCount;
         //change background image of the prize li

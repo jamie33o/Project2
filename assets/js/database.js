@@ -185,15 +185,15 @@ function checkUserLogin() {
         //event listener of the start up overlay
         setUserSessionToken(sessionToken);
         localStorage.setItem("startScreen", 'false');
-        signUp.style.display = "none";
+        return true;
       }else {
         localStorage.setItem("startScreen", 'true');
-        signUp.style.display = "flex";
-        alert("Please log in!!!");
+        alert("Please register or log in!!!");
+        return false;
       }
 }
 
-checkUserLogin();
+
 
 /**this function checks if the user is logged in
  * if they are not it shows the sign up/log in form otherwise it doesnt

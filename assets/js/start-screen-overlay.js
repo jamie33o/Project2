@@ -67,13 +67,17 @@ document.getElementById("done").addEventListener('click', function() {
 /**start button on menu overlay and event listener for it */
 const start_btn = document.getElementById("start");
 start_btn.addEventListener("click", function(){
+   if(checkUserLogin()){
     if(!menuBoolean){
         startGame();
         menuBoolean = false;
     }
      // To disable scrolling
-     document.body.style.overflow = previousOverflow;
+    document.body.style.overflow = previousOverflow;
     document.querySelector("#overlay").style.display = "none";
+}else{
+    signUp.style.display = "flex";
+}
 });
 
 

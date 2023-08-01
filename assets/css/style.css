@@ -408,6 +408,11 @@ ul {
 .error-page {
     width: 80%;
     margin: auto auto;
+    border: 5px solid var(--dark-blue);
+    border-radius: 20px;
+    box-shadow: 13px 16px 6px 6px var(--border),
+            inset 16px 16px 6px 6px var(--border);
+    padding: 10px;
 }
 
 #answer_a_btn, #answer_b_btn, #answer_c_btn, #answer_d_btn {
@@ -544,7 +549,7 @@ footer {
     .bars li {
         width: 12px;
     }
-
+    
     /*box for lifelines and prizes*/
     .box {
         width: 100px;

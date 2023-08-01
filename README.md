@@ -142,6 +142,12 @@ The aim of this site is to provide the look and feel similar to the tv show. Wit
 
 [Back to Table of Contents](#table-of-contents)
 
+
+- __Flowchart__ 
+
+![Flowchart](docs/readme_images/flowchart.png)
+
+
 ___
 
 

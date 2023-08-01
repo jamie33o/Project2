@@ -1,3 +1,4 @@
+/* variables */
 :root {
     --dark-blue: rgb(2,	14,	36);
     --border: lightblue;
@@ -18,7 +19,7 @@ body {
     height: 100%;
 }
 
-/*main*/
+/* current username and score at the top of game page */
 .username-n-score{
     position: absolute;
     top: -40px;
@@ -163,6 +164,8 @@ p ,button{
 input {
     background-color: black;
     border: 1px solid var(--border);
+    height: 30px;
+    width: 100%;
 }
 
 .inputs-style {
@@ -286,7 +289,7 @@ input {
     border-radius: 50%;
     box-shadow: 0px 0px 3px 4px var(--dark-blue);
 }
-
+/* menu button */
 .menu-btn {
     width: 30px;
     height:30px;
@@ -432,7 +435,7 @@ ul {
     background-image: url(../images/orange_answer_box.png);
 }
 
-/*pop up window*/
+/*pop up window for mile stone and game over*/
 #pop_up {
     display: none;
     align-items: center;

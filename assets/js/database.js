@@ -46,6 +46,23 @@ async function displayScores() {
     });
   }
 
+  /**
+   * checks if user password contains letters and numbers
+   * @param {password} password - users password
+   * @returns 
+   */
+  function isPasswordValid(passwordTextValue) {
+    // Regular expressions to check for at least one letter and one number
+    const letterRegex = /[a-zA-Z]/;
+    const numberRegex = /\d/;
+  
+    // Check if the password contains at least one letter and one number
+    const hasLetter = letterRegex.test(passwordTextValue);
+    const hasNumber = numberRegex.test(passwordTextValue);
+  
+    return hasLetter && hasNumber;
+  }
+
  /**
   * this function saves new user username, password and email to back4app database
   */
@@ -54,14 +71,14 @@ async function displayScores() {
         emailInputDiv.style.display = "flex";
     }else if (username.value === "" || emailInputText.value === "" || password.value === "") {
           alert("Please fill in all fields.");
-        } else if (password.value.length <= 4) {
-          alert("Password must be at least 5 characters long.");
+        } else if (password.value.length <= 4 || !isPasswordValid(password.value)) {
+          alert("Password must be at least 5 characters long and contain at least one letter and number.");
         } else if (!emailInputText.value.includes("@") || !emailInputText.value.includes(".")) {
           alert("Please enter a valid email address.");
         } else {
           // All conditions are met, proceed with further actions.
           
-             // Creates a new Parse "User" object, which is created by default in your Parse app
+          // Creates a new Parse "User" object, which is created by default in your Parse app
         let user = new Parse.User();
         // Set the input values to the new "User" object
         user.set("username", username.value);
@@ -85,7 +102,7 @@ async function displayScores() {
             );
             }
         } catch (error) {
-            alert(`Error: ${error.message}`);
+            alert(`Error: ${error.message}!!! Please try again....`);
         }
     
     }

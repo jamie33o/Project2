@@ -40,6 +40,22 @@ const liElement = document.querySelectorAll("#prizes ul li");
 /**used to Retrieve prizecounter from local storage */ 
 let storedCount = localStorage.getItem("prizeCounter");
 
+
+//prize section
+let prizeBox = document.getElementById("prizes");
+
+//button for displaying and and hiding prize section on smaller devices
+let showPrizes = document.querySelector(".prizes-show-hide");
+showPrizes.addEventListener("click", function() {
+    if(prizeBox.style.display === "flex"){
+        prizeBox.style.display = "none";
+    }else {
+            prizeBox.style.display = "flex";
+            lifeLinesBox.style.display = "none";
+
+    }
+})
+
 //------------functions for prize section-------------
 
 /**

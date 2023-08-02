@@ -90,6 +90,8 @@ async function displayScores() {
             user = await user.save();
             if (user !== null) {
                 signUp.style.display = "none";
+                start_btn.innerHTML = "Start";
+
             // Get the session token from the user object
             const sessionToken = user.getSessionToken();
 
@@ -178,6 +180,7 @@ async function logIn() {
 
         // Hide the signup form
         signUp.style.display = "none";
+        start_btn.innerHTML = "Start";
 
         alert(`Hey ` + user.get("username") + ` you are Logged in`);
       } catch (error) {
@@ -202,15 +205,13 @@ function checkUserLogin() {
         //event listener of the start up overlay
         setUserSessionToken(sessionToken);
         localStorage.setItem("startScreen", 'false');
-        return true;
       }else {
+        start_btn.innerHTML = "Log in/Register";
         localStorage.setItem("startScreen", 'true');
-        alert("Please register or log in!!!");
-        return false;
       }
 }
 
-
+checkUserLogin();
 
 /**this function checks if the user is logged in
  * if they are not it shows the sign up/log in form otherwise it doesnt

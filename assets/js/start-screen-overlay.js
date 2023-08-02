@@ -67,7 +67,7 @@ document.getElementById("done").addEventListener('click', function() {
 /**start button on menu overlay and event listener for it */
 const start_btn = document.getElementById("start");
 start_btn.addEventListener("click", function(){
-   if(checkUserLogin()){
+   if(!start_btn.textContent != "Log in/Register"){
     if(!menuBoolean){
         startGame();
         menuBoolean = false;

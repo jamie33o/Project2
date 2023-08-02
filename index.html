@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-32x32.png">
     <!-- Stylesheet import -->
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- This is the minified production version of Parse JS -->
+    <!-- This is the minified production version of Parse JS from back4app -->
     <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
 
     <title>Who wants to be a millionaire</title>
@@ -108,7 +108,7 @@
                 <button id="btn2" class="button" aria-label="quit or save button"></button>
             </div>  
             <!--this is life line section has 3 different line line to help the user answer a question-->
-            <div id="life_lines" class="box">            
+            <div id="life-lines" class="box">            
                 <div class="lf-buttons">
                     <button id="fiftyFifty" aria-label="fifty Fifty button"></button>
                     <button id="phoneAfriend" aria-label="phone A friend button"></button>
@@ -130,10 +130,11 @@
                 <div class="timer-logo">
                     <div class="logo"></div>
                      <!-- Sound control buttons -->
-                     <audio id="track"></audio>               
-                    <button class="mute-play-btn" aria-label="mute and play button"></button>
-                    <button id="menu-btn" class="menu-btn" aria-label="menu"></button>
-                
+                     <audio id="track"></audio>     
+                     <div class="menu-mute">         
+                        <button class="mute-play-btn" aria-label="mute and play button"></button>
+                        <button id="menu-btn" class="menu-btn" aria-label="menu"></button>
+                    </div> 
                     <div id="timer">
                         <div class="outer">
                             <div class="inner">
@@ -154,6 +155,9 @@
                         </svg>
                     </div> 
                     </div>
+                    <button class="life-line-show-hide" aria-label="life-line-show-hide">Life lines</button>
+                    <button class="prizes-show-hide" aria-label="prizes-show-hide">Prizes</button>
+
                 </div>
 
                 <!--these are the prizes the user can win-->

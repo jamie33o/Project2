@@ -16,6 +16,19 @@ const lifeLineResults = document.getElementById("life_line_results");
 const grid = document.querySelector(".grid");
 let phoneAfriendResults = document.querySelector(".phoneAfriendResults");
 
+let lifeLinesBox = document.getElementById("life-lines")
+//button for displaying and and hiding prize section on smaller devices
+let showLifeLines = document.querySelector(".life-line-show-hide");
+showLifeLines.addEventListener("click", function() {
+    if(lifeLinesBox.style.display === "flex"){
+        lifeLinesBox.style.display = "none";
+    }else {
+        lifeLinesBox.style.display = "flex";
+        prizeBox.style.display = "none";
+
+    }
+})
+
 /**
  * This function makes the lifeline results and the button of
  * the selected life line dissapear

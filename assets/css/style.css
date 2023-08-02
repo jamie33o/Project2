@@ -175,6 +175,21 @@ input {
     align-items: center;
 }
 
+.swap-position {
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    justify-content: space-evenly;
+}
+
+.btn-no-background {
+    background-color: transparent;
+}
+.btn-no-background:hover {
+    text-decoration: underline;
+    color: orange;
+}
+
 /*main section*/
 .flex-row {
     display: flex;

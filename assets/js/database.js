@@ -15,9 +15,16 @@ const signUp = document.getElementById("sign-up");
 /**for email text content */
 let emailInputDiv = document.getElementById("email-input");
 let emailInputText = document.getElementById("email");
-document.getElementById("register").addEventListener('click',  register);
-document.getElementById("log-in").addEventListener('click',  logIn);
+//register buttton and event listener
+let registerBtn = document.getElementById("register");
+registerBtn.addEventListener('click',  register);
+//log in button and event listener
+let logInBtn = document.getElementById("log-in");
+logInBtn.addEventListener('click',  logIn);
 
+
+// sign up form p element
+let signUp_Pelement = document.querySelector("#sign-up p");
 /**
  * Function to fetch scores from back4app and display them on the leader board
  * 
@@ -69,6 +76,17 @@ async function displayScores() {
   async function register() {
     if(emailInputDiv.style.display === "none"){
         emailInputDiv.style.display = "flex";
+        signUp_Pelement.innerHTML = "Register";
+
+        if(!registerBtn.classList.contains("button")){
+          registerBtn.classList.add("button");
+          registerBtn.classList.remove("btn-no-background");
+
+        }
+          logInBtn.classList.add("btn-no-background");
+          logInBtn.classList.remove("button");
+
+        document.querySelector(".swap-position").style.flexDirection = "column";
     }else if (username.value === "" || emailInputText.value === "" || password.value === "") {
           alert("Please fill in all fields.");
         } else if (password.value.length <= 4 || !isPasswordValid(password.value)) {
@@ -147,7 +165,7 @@ function update(foundObject, score) {
 
     if(score > 0){
     foundObject.set('score', newScore);
-    foundObject.save().then(function (object) {
+    foundObject.save().then(function () {
     }).catch(function(error) {
       alert(`Error saving score please log in again. Error message: `+ error.message);
     });
@@ -161,6 +179,17 @@ function update(foundObject, score) {
 async function logIn() {
     if (emailInputDiv.style.display === "" || emailInputDiv.style.display === "flex") {
       emailInputDiv.style.display = "none";
+
+      signUp_Pelement.innerHTML = "Log in";
+
+      if(!logInBtn.classList.contains("button")){
+        logInBtn.classList.add("button");
+        logInBtn.classList.remove("btn-no-background");
+
+      }
+      registerBtn.classList.remove("button");
+      registerBtn.classList.add("btn-no-background");
+      document.querySelector(".swap-position").style.flexDirection = "column-reverse";
     } else if (username.value === "" || password.value === "") {
       alert("Please fill in all fields.");
     } else if (password.value.length <= 4) {

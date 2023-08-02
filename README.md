@@ -572,6 +572,8 @@ The JS Hint JavaScript Validation Service was used to validate the JavaScript co
 
 - 2	"Parse" in databse.js
 
+Parse is part of back4app database which is bein installed in the head section of the index.html 
+
 [Back to Table of Contents](#table-of-contents)
 
 ## Bugs
@@ -644,9 +646,9 @@ Here we credit everywhere we have got content for the website and any code that 
 
 ### Code 
 
-- The javascript code for the footer was got from stack overflow
-- Some of the javascript code for the database was got from back4app
-- The javascript for the shuffling of the answers was got from stack overflow
+- The Idea and some of the javascript code for the footer was got from [stack overflow](https://stackoverflow.com/questions/3898130/check-if-a-user-has-scrolled-to-the-bottom-not-just-the-window-but-any-element)
+- Some of the javascript code for the database was got from [back4app](https://www.back4app.com/docs/javascript/parse-javascript-sdk)
+- The javascript for the shuffling of the answers was got from [stack overflow](https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array)
 
 ### Audio References
 * All sound's were got from - [soundboard](https://www.soundboard.com/sb/onemilliondollars)

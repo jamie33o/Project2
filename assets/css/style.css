@@ -125,6 +125,7 @@ p ,button{
 .instrucions-ol p{
     font-size: 1em;
     font-family: 'Times New Roman', Times, serif;
+    text-align: left;
 }
 
 #score-list li{

@@ -587,7 +587,7 @@ footer p ,footer a{
     }
 }
 
-@media screen and (max-height: 800px) {
+@media screen and (max-height: 800px) and (max-width: 700px) {
 
 .timer-logo {
     flex-direction: column;

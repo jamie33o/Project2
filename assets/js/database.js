@@ -22,6 +22,10 @@ registerBtn.addEventListener('click',  register);
 let logInBtn = document.getElementById("log-in");
 logInBtn.addEventListener('click',  logIn);
 
+//x button to hide sign up form
+document.getElementById("close-sign-up").addEventListener('click',  function(){
+signUp.style.display = "none";
+});
 
 // sign up form p element
 let signUp_Pelement = document.querySelector("#sign-up p");

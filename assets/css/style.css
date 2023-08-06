@@ -62,9 +62,10 @@ p ,button{
     flex-direction: column;
     justify-content:center;
     align-items: center;
-    z-index: 1;
+    z-index: 2;
 }
 
+/* leader board and instructions pop up */
 #instructions {
     display:none;
 }
@@ -73,7 +74,6 @@ p ,button{
     display:none;
 }
 
-/* leader board and instructions pop up */
 #outer-container {
     position: absolute;
     display: none;
@@ -164,6 +164,21 @@ p ,button{
     z-index: 5;
 }
 
+#close-sign-up {
+    width: 40px;
+    height: 40px;
+    background: url(../images/close-button.png) no-repeat;
+    background-size: contain;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+}
+
+#close-sign-up:hover {
+background-color: white;
+border-radius: 50%;
+}
+
 input {
     background-color: black;
     border: 1px solid var(--border);
@@ -182,12 +197,15 @@ input {
     display: flex;
     flex-direction: column;
     height: 150px;
+    width: 100%;
     justify-content: space-evenly;
+    align-items: center;
 }
 
 .btn-no-background {
     background-color: transparent;
 }
+
 .btn-no-background:hover {
     text-decoration: underline;
     color: orange;
@@ -236,6 +254,7 @@ input {
     background-size: contain;
   
 }  
+
 #phoneAfriend:hover {
     background-image: url(../images/orange_phone_friend.png);
 }  
@@ -308,8 +327,8 @@ input {
     border: 1px solid white;
     border-radius: 50%;
     box-shadow: 0px 0px 3px 4px var(--dark-blue);
-    z-index: -1;
 }
+
 /* menu button */
 .menu-btn {
     width: 30px;
@@ -431,7 +450,6 @@ ul {
     flex-wrap: wrap;
     justify-content: center;
     max-width: 100%;
-    
 }
 
 .error-page {
@@ -449,6 +467,7 @@ ul {
     justify-content: left;
     padding-left: 70px;
 }
+
 .button {
     display: flex;
     align-items: center;
@@ -476,9 +495,9 @@ ul {
     flex-direction: column;
     justify-content: space-evenly;
     position: absolute;
-    width: 100%;
+    width: 95%;
     height: 100%;
-    background-color:var(--dark-blue);
+    background-color: var(--dark-blue);
     text-align: center;
     z-index: 3;
 }
@@ -615,6 +634,7 @@ footer p ,footer a{
     justify-content: space-between;
     width: 65%;
     bottom: 0;
+    
 }
 
 #life-lines, #prizes {
@@ -624,7 +644,7 @@ footer p ,footer a{
     width: 200px;
     background-color: var(--dark-blue);
     flex-direction: column;
-    z-index: 0;
+    z-index: 1;
 }
 
 .lf-buttons {
@@ -633,11 +653,11 @@ footer p ,footer a{
 }
 
 #prizes {
-right: -215px;
+    right: -215px;
 }
 
 #life-lines {
-left: -215px;
+    left: -215px;
 }
 
 .prizes-show-hide, .life-line-show-hide {

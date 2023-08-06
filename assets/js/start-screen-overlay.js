@@ -1,9 +1,14 @@
+
+//instructions pop up
 let instruction = document.getElementById("instructions");
 
+//instructions and leader board h2 tag
 let instructions_LeaderBoard_h2;
 
+//leader bord pop up
 let leaderBoard = document.getElementById("leader-board");
 
+//outer container for leader-board and instruction pop up
 let outerContainer = document.getElementById("outer-container");
 
  // Add h2 to leader borard and instructions
@@ -16,14 +21,16 @@ const previousOverflow = document.body.style.overflow;
 mutePlayButton.forEach(btn => {
     btn.addEventListener('click', toggleMutePlay);
   });
-
+  
 // if user clicks play again dont show start screen and start game
 if(localStorage.getItem("startScreen") === "false"){
     startGame();
+    localStorage.setItem("startScreen", "true");
 }else {
     document.body.style.overflow;
+    //plays the start theme
+    playAudioWithSrc("assets/sounds/start_theme.mp3");
 }
-
 //event listener for instructions button
 document.getElementById("instructions-btn").addEventListener('click', function() {
     if(leaderBoard.style.display === "block") {
@@ -39,6 +46,7 @@ document.getElementById("instructions-btn").addEventListener('click', function()
     instructions_LeaderBoard_h2.innerHTML = "Instruction's";
 
 });
+
 //event listener for leader board button
 document.getElementById("leader-board-btn").addEventListener('click', function() {
     if(instruction.style.display === "block") {

@@ -233,14 +233,10 @@ function checkUserLogin() {
     const sessionToken = localStorage.getItem('sessionToken'); // Fetch the session token from local storage
     
     if (sessionToken) {
-        //plays the start theme
-        playAudioWithSrc("assets/sounds/start_theme.mp3");
         //event listener of the start up overlay
         setUserSessionToken(sessionToken);
-        localStorage.setItem("startScreen", 'false');
       }else {
         start_btn.innerHTML = "Log in/Register";
-        localStorage.setItem("startScreen", 'true');
       }
 }
 

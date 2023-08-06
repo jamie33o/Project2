@@ -141,6 +141,7 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
         if (btn1Text === "PLAY AGAIN") {
             localStorage.setItem("prizeCounter", 13);//resets prize to first one when game over win the million
             location.reload();
+            localStorage.setItem("startScreen", "false")
         }
         popUpActive = false;
         popUp_element.style.display = "none";

@@ -29,7 +29,7 @@ body {
 }
 
 main {
-     display: flex;
+    display: flex;
     flex-direction: column;
     width: 100%;
     height: fit-content;
@@ -38,6 +38,7 @@ main {
     max-width: 70%;
     position: relative;
     margin-bottom: 200px;
+    overflow-x: hidden;
 }
 
 .center {
@@ -216,23 +217,24 @@ input {
     margin-bottom: 30px;
 }
 
-#life-lines button{
+#fiftyFifty, #phoneAfriend, #askAudience {
     background-color: transparent;
     width: 60px;
     height: 50px;
-    background-size: contain;
 }
 
 #fiftyFifty {
     background: url(../images/50_50_img.png) no-repeat;
-     /* Change the image when hovered */
+    background-size: contain;
 }
 #fiftyFifty:hover {
     background-image: url(../images/orange_50_50.png);
   }  
 
 #phoneAfriend {
-    background: url(../images/phone_a_friend_img.png) no-repeat;  
+    background: url(../images/phone_a_friend_img.png) no-repeat;
+    background-size: contain;
+  
 }  
 #phoneAfriend:hover {
     background-image: url(../images/orange_phone_friend.png);
@@ -240,6 +242,7 @@ input {
 
 #askAudience {
     background: url(../images/ask_the_audience_img.png) no-repeat;
+    background-size: contain;
 }  
 #askAudience:hover {
     background-image: url(../images/orange_ask_audience.png);
@@ -305,6 +308,7 @@ input {
     border: 1px solid white;
     border-radius: 50%;
     box-shadow: 0px 0px 3px 4px var(--dark-blue);
+    z-index: -1;
 }
 /* menu button */
 .menu-btn {
@@ -332,6 +336,7 @@ input {
     width: 80px;
     height: 80px;
     position: relative;
+    z-index: -1;
 }
 
 .outer {
@@ -608,19 +613,18 @@ footer p ,footer a{
     margin: auto;
     flex-direction: row;
     justify-content: space-between;
-    width: 90%;
-    top: -30px;
+    width: 65%;
+    bottom: 0;
 }
 
 #life-lines, #prizes {
-    display: none;
+    display: flex;
     position: absolute;
     height: 400px;
     width: 200px;
     background-color: var(--dark-blue);
-    margin: auto auto;
     flex-direction: column;
-    z-index: 2;
+    z-index: 0;
 }
 
 .lf-buttons {
@@ -629,31 +633,37 @@ footer p ,footer a{
 }
 
 #prizes {
-right: 40px;
+right: -215px;
 }
 
 #life-lines {
-left: 40px;
+left: -215px;
 }
 
 .prizes-show-hide, .life-line-show-hide {
     position: absolute;
     display: flex;
-    background-color: transparent;
-    border: 1px solid var(--border);
-    
+    background-color: rgba(248, 248, 249, 0.7);
+    border: 3px solid var(--border);
+    border-radius: 10px 10px 0 0;
     padding: 5px;
+    top: 60px;    
+    color: #000;
 }
+
+.username-n-score{
+    top:0;
+ }
+
+
 .prizes-show-hide {
-    right:-20px;
-    bottom: 30px;
+    left:-62px;
     rotate: 270deg;
 }
+
 .life-line-show-hide {
-    left: -40px;
+    right:-85px;
     rotate: 90deg;
-    bottom: 50px;
-    
 }
 
 

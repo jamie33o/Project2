@@ -33,15 +33,40 @@ let prizeBox = document.getElementById("prizes");
 
 //button for displaying and and hiding prize section on smaller devices
 let showPrizes = document.querySelector(".prizes-show-hide");
-showPrizes.addEventListener("click", function() {
-    if(prizeBox.style.display === "flex"){
-        prizeBox.style.display = "none";
-    }else {
-            prizeBox.style.display = "flex";
-            lifeLinesBox.style.display = "none";
+showPrizes.addEventListener("click", animatePrizeBox);
 
+function animatePrizeBox(lifelineOpenning) {
+
+    let pbComputedStyles = window.getComputedStyle(prizeBox);
+    let  rightValue = parseInt(pbComputedStyles.getPropertyValue("right"), 10);
+    if (rightValue === -215 && lifelineOpenning) {
+        if(lifelineOpenning){
+            animateLifeLinesBox(false);
+        }
+        
+        prizeBox.animate(
+            [
+                { right: "-215px" },
+                { right: "3px" }
+            ],
+            {
+                duration: 1000, // 1000ms (1 second)
+                fill: "forwards" // Retain the final animation state
+            }
+        );
+    } else if(rightValue === 3){
+        prizeBox.animate(
+            [
+                { right: "3px" },
+                { right: "-215px" }
+            ],
+            {
+                duration: 1000, // 1000ms (1 second)
+                fill: "forwards" // Retain the initial animation state
+            }
+        );
     }
-})
+}
 
 //------------functions for prize section-------------
 

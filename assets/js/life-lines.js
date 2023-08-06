@@ -29,17 +29,44 @@ const lifeLineResults = document.getElementById("life_line_results");
 const grid = document.querySelector(".grid");
 let phoneAfriendResults = document.querySelector(".phoneAfriendResults");
 
-let lifeLinesBox = document.getElementById("life-lines")
+let lifeLinesBox = document.getElementById("life-lines");
+
+  
 //button for displaying and and hiding prize section on smaller devices
 let showLifeLines = document.querySelector(".life-line-show-hide");
-showLifeLines.addEventListener("click", function() {
-    if(lifeLinesBox.style.display === "flex"){
-        lifeLinesBox.style.display = "none";
-    }else {
-        lifeLinesBox.style.display = "flex";
-        prizeBox.style.display = "none";
+showLifeLines.addEventListener("click", animateLifeLinesBox);
+
+function animateLifeLinesBox(prizeBoxOpenning) {
+    let lfComputedStyles = window.getComputedStyle(lifeLinesBox);
+    let leftValue = parseInt(lfComputedStyles.getPropertyValue("left"), 10);
+   if (leftValue === -215 && prizeBoxOpenning) {
+    if(prizeBoxOpenning){
+        animatePrizeBox(false);
     }
-})
+    lifeLinesBox.animate(
+        [
+            { left: "-215px" },
+            { left: "3px" }
+        ],
+        {
+            duration: 1000, // 1000ms (1 second)
+            fill: "forwards" // Retain the final animation state
+        }
+    );
+} else if (leftValue === 3){
+    lifeLinesBox.animate(
+        [
+            { left: "3px" },
+            { left: "-215px" }
+        ],
+        {
+            duration: 1000, // 1000ms (1 second)
+            fill: "forwards" // Retain the initial animation state
+        }
+    );
+}
+
+}
 
 /**
  * This function makes the lifeline results and the button of

@@ -11,6 +11,19 @@ const askAudience_btn = document.getElementById("askAudience");
 askAudience_btn.addEventListener("click", () => askAudience());
 
 
+//------Global arrays------
+
+/**array of used usedLifeLines */
+let usedLifeLines = [];
+
+/**lifelines button array */
+let lifeline_btns = [phoneAfriend_btn,fiftyFifty_btn,askAudience_btn];
+
+/**boolean that is set to trough when correct 
+*answer is clicked to hide the results of the lifeline
+*/
+let hideResultsBool;
+
 //---------------life lines sections----------------
 const lifeLineResults = document.getElementById("life_line_results");
 const grid = document.querySelector(".grid");
@@ -25,7 +38,6 @@ showLifeLines.addEventListener("click", function() {
     }else {
         lifeLinesBox.style.display = "flex";
         prizeBox.style.display = "none";
-
     }
 })
 

@@ -17,6 +17,7 @@
 
 </head>
 <body>
+    <!-- start page overlay -->
     <header id="overlay">
         <div class="flex-column">
             <div class="logo"></div>
@@ -24,16 +25,18 @@
             <p class="center">Welcome to</p>
             <h1 class="center">Who Want's To Be A Millionaire?</h1>
             <button id="start" class="button" aria-label="Start button">Start</button>
-            <button id="instructions-btn" class="button" aria-label="Instruction's button">Instruction's</button>
-            <button id="leader-board-btn" class="button" aria-label="leader board button">Leader Board</button>
+            <button id="instructions-btn" class="button">Instruction's</button>
+            <button id="leader-board-btn" class="button">Leader Board</button>
 
         </div>
 
         <div id="outer-container">
+            <!-- this is for the leader board pop up -->
             <div id="leader-board" class="container">
                 <ul id="score-list"></ul>
             </div>
 
+            <!-- Instructions pop up -->
             <div id="instructions" class="container">
                 
                 <ol class="instrucions-ol">
@@ -99,6 +102,7 @@
     <main>     
        
         <div class="flex-row"> 
+            <!-- username and score at top of game page -->
             <div class="username-n-score">
              <p></p>
             </div>
@@ -108,7 +112,7 @@
                 <button id="btn1" class="button" aria-label="play again or continue button"></button>
                 <button id="btn2" class="button" aria-label="quit or save button"></button>
             </div>  
-            <!--this is life line section has 3 different line line to help the user answer a question-->
+            <!--this is life line section has 3 different life lines to help the user answer a question-->
             <div id="life-lines" class="box">            
                 <div class="lf-buttons">
                     <button id="fiftyFifty" aria-label="fifty Fifty button"></button>
@@ -128,6 +132,7 @@
                 </div>
             </div>
         
+            <!-- timer, logo, menu and mute button section -->
                 <div class="timer-logo">
                     <div class="logo"></div>
                      <!-- Sound control buttons -->
@@ -156,6 +161,7 @@
                         </svg>
                     </div> 
                     </div>
+                    <!-- buttons for small screens to show and hide the prize and life line section -->
                     <button class="life-line-show-hide" aria-label="life-line-show-hide">Life lines</button>
                     <button class="prizes-show-hide" aria-label="prizes-show-hide">Prizes</button>
 

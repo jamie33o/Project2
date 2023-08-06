@@ -19,19 +19,6 @@ let popUpActive = false;
  */
 let menuBoolean;
 
-/**boolean that is set to trough when correct 
-*answer is clicked to hide the results of the lifeline
-*/
-let hideResultsBool;
-
-//------Global arrays------
-
-/**array of used usedLifeLines */
-let usedLifeLines = [];
-
-/**lifelines button array */
-let lifeline_btns = [phoneAfriend_btn,fiftyFifty_btn,askAudience_btn];
-
 //-------Global selectors-------
 
 /**Select the <li> element you want to update */ 

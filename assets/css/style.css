@@ -72,6 +72,7 @@ p ,button{
     display:none;
 }
 
+/* leader board and instructions pop up */
 #outer-container {
     position: absolute;
     display: none;
@@ -146,7 +147,7 @@ p ,button{
     width: 100%;
 }
 
-/*sign up*/
+/*register/log in form*/
 #sign-up {
     position: absolute;
     display: none;
@@ -590,15 +591,25 @@ footer p ,footer a{
 @media screen and (max-height: 800px) and (max-width: 500px) {
 
 .timer-logo {
-    flex-direction: column;
-    width: 70%;
-    height: 210px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    width: 100%;
+    height: 160px;
     margin: 0;
+}
+.logo {
+    width: 85px;
+    height: 85px;
 }
 .menu-mute {
     position: absolute;
+    margin: auto;
     flex-direction: row;
-    width: 100%;
+    justify-content: space-between;
+    width: 90%;
+    top: -30px;
 }
 
 #life-lines, #prizes {
@@ -643,6 +654,11 @@ left: 40px;
     rotate: 90deg;
     bottom: 50px;
     
+}
+
+
+#pop_up {
+    height: 140%;
 }
 
 }

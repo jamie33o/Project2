@@ -38,7 +38,6 @@ main {
     max-width: 70%;
     position: relative;
     margin-bottom: 200px;
-    overflow-x: hidden;
 }
 
 .center {
@@ -613,6 +612,12 @@ footer p ,footer a{
 }
 
 @media screen and (max-height: 800px) and (max-width: 500px) {
+
+main {
+    overflow-x: hidden;
+
+}
+
 
 .timer-logo {
     flex-direction: row;

@@ -27,7 +27,7 @@ if(localStorage.getItem("startScreen") === "false"){
     startGame();
     localStorage.setItem("startScreen", "true");
 }else {
-    document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     //plays the start theme
     playAudioWithSrc("assets/sounds/start_theme.mp3");
 }

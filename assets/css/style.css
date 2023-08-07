@@ -665,7 +665,6 @@ footer p ,footer a{
 @media screen and (max-height: 800px) and (max-width: 500px) {
 main {
     overflow-x: hidden;
-
 }
 
 .timer-logo {
@@ -742,7 +741,7 @@ main {
 
 
 #pop_up {
-    height: 140%;
+    height: 145%;
 }
 
 }

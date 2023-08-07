@@ -17,6 +17,29 @@ body {
     background-repeat: repeat-x;
     background-color: var(--dark-blue);
     height: 100%;
+    position: relative;
+}
+
+#notification {
+    display: flex;
+    width: 80%;
+    max-height: fit-content;
+    height: 100px;
+    padding: 5px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -255px;
+    left: 50%;
+    margin-left: -40%;
+    z-index: 5;
+    border: 2px solid var(--border);
+    background-color: var(--dark-blue);
+    border-radius: 20px;
+}
+#notification p{
+    font-size: 1.2em;
 }
 
 /* current username and score at the top of game page */
@@ -147,8 +170,8 @@ p ,button{
     width: 100%;
 }
 
-/*register/log in form*/
-#sign-up {
+/*register/log in and feedback form */
+.form {
     position: absolute;
     display: none;
     flex-direction: column;

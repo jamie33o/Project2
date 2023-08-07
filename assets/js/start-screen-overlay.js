@@ -126,4 +126,5 @@ start_btn.addEventListener("click", function(){
     retrieve_QnA();
     timer();
     questionCounter = 0;
+    showNotification("30 second Timer started", "success")
 }

@@ -16,7 +16,7 @@ const signUp = document.getElementById("sign-up");
 let emailInputDiv = document.getElementById("email-input");
 let emailInputText = document.getElementById("email");
 //register buttton and event listener
-let registerBtn = document.getElementById("register");
+let registerBtn = document.getElementById("register-btn");
 registerBtn.addEventListener('click',  register);
 //log in button and event listener
 let logInBtn = document.getElementById("log-in");
@@ -50,10 +50,10 @@ async function displayScores() {
               scoreList.appendChild(listItem);
             });        
         } else {
-          alert(`Error saving score please log in again.`);
+          showNotification(`Error saving score please log in again.`, "error");
         }
     }).catch(function(error){
-      alert(`Error displaying score please log in again. Error message: `+ error.message);
+      showNotification(`Error displaying score please log in again. Error message: `+ error.message, "error");
     });
   }
 
@@ -92,11 +92,11 @@ async function displayScores() {
 
         document.querySelector(".swap-position").style.flexDirection = "column";
     }else if (username.value === "" || emailInputText.value === "" || password.value === "") {
-          alert("Please fill in all fields.");
+          showNotification("Please fill in all fields.", "error")
         } else if (password.value.length <= 4 || !isPasswordValid(password.value)) {
-          alert("Password must be at least 5 characters long and contain at least one letter and number.");
+          showNotification("Password must be at least 5 characters long and contain at least one letter and number.","error")
         } else if (!emailInputText.value.includes("@") || !emailInputText.value.includes(".")) {
-          alert("Please enter a valid email address.");
+          showNotification("Please enter a valid email address.", "error");
         } else {
           // All conditions are met, proceed with further actions.
           
@@ -121,12 +121,10 @@ async function displayScores() {
             localStorage.setItem('sessionToken', sessionToken);  
             setUserSessionToken(sessionToken);    
             // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
-            alert(
-                `New user created with success! Username: ${user.get("username")}`
-            );
+            showNotification(`New user created with success! Username: ${user.get("username")}`, "succcess");
             }
         } catch (error) {
-            alert(`Error: ${error.message}!!! Please try again....`);
+            showNotification(`Error: ${error.message}!!! Please try again....`, "error");
         }
     
     }
@@ -149,10 +147,10 @@ async function displayScores() {
             update(object, score);
            
         } else {
-          alert(`Error saving score please log in again. Error message: `+ error.message);
+          showNotification(`Error saving score please log in again. Error message: `+ error.message, "error");
         }
         }).catch(function (error) {
-          alert(`Error saving score please log in again. Error message: `+ error.message);
+          showNotification(`Error saving score please log in again. Error message: `+ error.message, "error");
         });
   }
 }
@@ -171,7 +169,7 @@ function update(foundObject, score) {
     foundObject.set('score', newScore);
     foundObject.save().then(function () {
     }).catch(function(error) {
-      alert(`Error saving score please log in again. Error message: `+ error.message);
+      showNotification(`Error saving score please log in again. Error message: `+ error.message, "error");
     });
   } 
 }
@@ -195,9 +193,9 @@ async function logIn() {
       registerBtn.classList.add("btn-no-background");
       document.querySelector(".swap-position").style.flexDirection = "column-reverse";
     } else if (username.value === "" || password.value === "") {
-      alert("Please fill in all fields.");
+      showNotification("Please fill in all fields.", "error");
     } else if (password.value.length <= 4) {
-      alert("Password must be at least 5 characters long.");
+      showNotification("Password must be at least 5 characters long.","error");
     } else 
       // All conditions are met, proceed with further actions.
       try {
@@ -215,9 +213,9 @@ async function logIn() {
         signUp.style.display = "none";
         start_btn.innerHTML = "Start";
 
-        alert(`Hey ` + user.get("username") + ` you are Logged in`);
+        showNotification(`Hey ` + user.get("username") + ` you are Logged in`, "success");
       } catch (error) {
-        alert(`Hey ${username.value} you are not Logged in, Error: ${error.message}`);
+        showNotification(`Hey ${username.value} you are not Logged in, Error: ${error.message}`, "error");
       }
 }
 
@@ -250,7 +248,7 @@ async function setUserSessionToken(sessionToken){
         await Parse.User.become(sessionToken); // Set up the user session using the session token
         return true;
     } catch (error) {
-        console.error('Error setting up user session:', error);
+        showNotification('Error setting up user session:', error, "error");
         // Handle any errors if token is invalid or expired
     }
 }

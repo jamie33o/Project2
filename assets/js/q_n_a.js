@@ -78,6 +78,7 @@ function checkAnswer(buttonText) {
         buttonText= buttonText.substring(buttonText.indexOf(" ") + 1);
 
         if (buttonText === correctAnswer){
+            showNotification("CORRECT!!!", "success")
             if (questionCounter <= 9){
                 nextQuestion();       
             }else {

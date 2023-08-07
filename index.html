@@ -17,6 +17,9 @@
 
 </head>
 <body>
+    <!-- Notification message div -->
+    <div id="notification">
+    </div>
     <!-- start page overlay -->
     <header id="overlay">
         <div class="flex-column">
@@ -27,7 +30,7 @@
             <button id="start" class="button" aria-label="Start button">Start</button>
             <button id="instructions-btn" class="button">Instruction's</button>
             <button id="leader-board-btn" class="button">Leader Board</button>
-
+            <button id="feedback-btn" class="button">Leave Feedback</button>
         </div>
 
         <div id="outer-container">
@@ -75,13 +78,18 @@
             <button id="done" class="button" aria-label="Done button">Done</button>
 
         </div>
+        <div id="feedback" class="form">
+            <p>Please leave feedback on your experience with our game or if you have found any issues.... Thank you.....</p>
+            <label for="multiLineInput">Feedback:</label><br>
+            <textarea id="multiLineInput" rows="20" cols="40"></textarea> 
+        </div>
         
-        <div id="sign-up">
+        <div id="sign-up" class="form">
             <button id="close-sign-up" aria-label="close button for sign up form"></button>
             <p>Register</p>
             <div class="inputs-style" id="email-input">
                 <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Email" name="email" required>
+                <input type="email" id="email" placeholder="Email" name="email" >
             </div>
             <div class="inputs-style">
                 <label for="username">Username</label>
@@ -93,7 +101,7 @@
                 <input type="password" id="password" placeholder="Password" name="password" required>
             </div>
             <div class="swap-position">
-                <button id="register" class="button">Register</button>
+                <button id="register-btn" class="button">Register</button>
                 <button id="log-in" class="btn-no-background">Log in</button>
             </div>
         </div>
@@ -238,6 +246,7 @@
     </footer>
     
     <!-- script -->
+    <script src="assets/js/notify.js"></script>
     <script src="assets/js/audio.js"></script>
     <script src="assets/js/q_n_a.js"></script>
     <script src="assets/js/life-lines.js"></script>

@@ -161,14 +161,18 @@ On the menu screen, located at the top center of the page, visitors will immedia
 
 #### Welcome Overlay menu Screen/Page
   
-![Welcome Overlay Screen/Page](docs/readme_images/overlay_menu_screenshot.png)
 
 - On the main game page, you will be greeted with a captivating background featuring spotlight effects and a gradient of light to dark blue. The following essential elements are also present on this page:
-  
+
+![Welcome Overlay Screen/Page](docs/readme_images/menu-screen1.png)   ![Welcome Overlay Screen/Page](docs/readme_images/menu-screen2.png)
+
+
 - Register/Log in form
 
   - Register/Log in Form: Users can easily access the registration and login form, allowing them to participate in the game and keep track of their progress.
-  ![Get in Touch](docs/readme_images/form_screenshot.png)
+
+  ![Log in](docs/readme_images/login-screenshot.png)   ![Register](docs/readme_images/register-screenshot.png)
+
 
 - Logo 
 
@@ -186,13 +190,20 @@ On the menu screen, located at the top center of the page, visitors will immedia
 
   - Instructions Button: For newcomers or those needing a refresher, an "Instructions" button is readily available. Clicking on it will provide clear guidelines on how to play the game.
 
-  ![How to Play](docs/readme_images/instruction_screenshot.png)
+![How to Play](docs/readme_images/instruction_screenshot.png)
   
 - Leader Board
 
   - Leaderboard Button: To encourage competitiveness and track user scores, a "Leaderboard" button is provided. Players can check their standings among others who have participated in the game.
+ 
+![Leader board](docs/readme_images/leaderboard_screenshot.png)
 
-  ![How to Play](docs/readme_images/leaderboard_screenshot.png)
+- Feedback form
+
+  - Feedback form: We have a feedback form so users can notify us of any issues or complaints and let us know about there experience with the game.
+
+![Feedback form](docs/readme_images/form-screenshot.png.)
+
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -281,7 +292,7 @@ These features and notifications enhance the excitement and engagement of the ga
   - On the main game page, the question and four answer choices are displayed at the bottom of the screen. When the user selects an answer by clicking on it, they will instantly receive feedback on whether their choice was correct or incorrect.
 
 ![Question and 4 answer boxs](docs/readme_images/answer_question_boxs.png)
-  
+
   - If the user's answer is correct:
 
     - They will be notified immediately that their answer is correct.

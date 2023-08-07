@@ -186,7 +186,7 @@ p ,button{
     z-index: 5;
 }
 
-#close-sign-up {
+.close-form-btn {
     width: 40px;
     height: 40px;
     background: url(../images/close-button.png) no-repeat;
@@ -196,9 +196,9 @@ p ,button{
     top: 5%;
 }
 
-#close-sign-up:hover {
-background-color: white;
-border-radius: 50%;
+.close-form-btn:hover {
+    background-color: white;
+    border-radius: 50%;
 }
 
 input {
@@ -206,6 +206,16 @@ input {
     border: 1px solid var(--border);
     height: 30px;
     width: 100%;
+    font-size: 1.3em;
+}
+
+textarea{
+    background-color: black;
+    border: 1px solid var(--border);
+    width: 80%;
+    height: 30%;
+    font-size: 1.3em;
+
 }
 
 .inputs-style {

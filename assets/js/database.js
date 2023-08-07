@@ -29,6 +29,86 @@ signUp.style.display = "none";
 
 // sign up form p element
 let signUp_Pelement = document.querySelector("#sign-up p");
+
+const sessionToken = localStorage.getItem('sessionToken'); // Fetch the session token from local storage
+
+//feedback form div
+const feedbackForm = document.getElementById("feedback");
+
+//feedback button
+document.getElementById("feedback-btn").addEventListener("click", function(){
+  if(sessionToken){
+    feedbackForm.style.display = "flex";
+    const user = Parse.User.current();
+    // Set the user's email and username as the default values for the form fields
+    document.getElementById("feedback-email").value = user.get("email");
+    document.getElementById("feedback-username").value = user.get("username");    
+  }else {
+    showNotification("Please Log In First!!!", "error")
+  }
+});
+
+document.getElementById("close-feedback").addEventListener("click", function(){
+    feedbackForm.style.display = "none";
+});
+
+//when submit feedback is clicked it checks everything is valid then calls submit feedback 
+//and passed the input fields content to it
+document.getElementById("submit-feedback").addEventListener("click", async function() {
+  event.preventDefault(); // Prevent the default form submission behavior
+  const formData = new FormData(feedbackForm);
+
+  const username = formData.get('feedback-username');
+  const email = formData.get('feedback-email');
+  const feedbackText = formData.get('feedback-text');
+
+// Check if required fields are filled
+if (!email || !username || !feedbackText) {
+  showNotification("Please fill in all fields.","error");
+  return;
+}
+
+if (!email.includes("@") || !email.includes(".")) {
+  showNotification("Please enter a valid email address.","error");
+  return;
+}
+  try {
+    await submitFeedback(username,email,feedbackText);
+  } catch (error) {
+    showNotification('Error submitting feedback. Please try again later.', "error");
+  }
+});
+
+ /**
+  * this function save the users feedback with username and email to database then 
+  * at a later date i will will set up server side code to send feedback to my email trough SMPT
+  * @param {username} username - current users username
+  * @param {email} email - users email
+  * @param {text} feedbackText - feedback text
+  */
+ async function submitFeedback(username,email,feedbackText) {
+  // Create a new Parse object for the "Feedback" class
+  const Feedback = Parse.Object.extend('feedback');
+  const feedbackObject = new Feedback();
+
+  // Set the form data as object properties
+  feedbackObject.set('username', username);
+  feedbackObject.set('email', email);
+  feedbackObject.set('feedback', feedbackText);
+
+  try {
+    // Save the feedback data to the "Feedback" class in the database
+    await feedbackObject.save();
+    showNotification("Feedback submitted....\nThank you...", "success");
+    feedbackForm.reset();
+    feedbackForm.style.display = "none";
+  } catch (error) {
+    console.error('Error submitting feedback:', error);
+
+    showNotification('Error submitting feedback. \nPlease try again later.', "error");
+  }
+}
+
 /**
  * Function to fetch scores from back4app and display them on the leader board
  * 
@@ -53,7 +133,7 @@ async function displayScores() {
           showNotification(`Error saving score please log in again.`, "error");
         }
     }).catch(function(error){
-      showNotification(`Error displaying score please log in again. Error message: `+ error.message, "error");
+      showNotification(`Error displaying score please log in again. \nError message: `+ error.message, "error");
     });
   }
 
@@ -115,16 +195,16 @@ async function displayScores() {
                 start_btn.innerHTML = "Start";
 
             // Get the session token from the user object
-            const sessionToken = user.getSessionToken();
+            sessionToken = user.getSessionToken();
 
             // Store the session token in local storage
             localStorage.setItem('sessionToken', sessionToken);  
             setUserSessionToken(sessionToken);    
             // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
-            showNotification(`New user created with success! Username: ${user.get("username")}`, "succcess");
+            showNotification(`New user created with success! \nUsername: ${user.get("username")}`, "succcess");
             }
         } catch (error) {
-            showNotification(`Error: ${error.message}!!! Please try again....`, "error");
+            showNotification(`Error: ${error.message}!!! \nPlease try again....`, "error");
         }
     
     }
@@ -169,7 +249,7 @@ function update(foundObject, score) {
     foundObject.set('score', newScore);
     foundObject.save().then(function () {
     }).catch(function(error) {
-      showNotification(`Error saving score please log in again. Error message: `+ error.message, "error");
+      showNotification(`Error saving score please log in again. \nError message: `+ error.message, "error");
     });
   } 
 }
@@ -203,7 +283,7 @@ async function logIn() {
         const user = await Parse.User.logIn(username.value, password.value);
   
         // Get the session token from the user object
-        const sessionToken = user.getSessionToken();
+        sessionToken = user.getSessionToken();
   
         // Store the session token in local storage
         localStorage.setItem('sessionToken', sessionToken);
@@ -215,7 +295,7 @@ async function logIn() {
 
         showNotification(`Hey ` + user.get("username") + ` you are Logged in`, "success");
       } catch (error) {
-        showNotification(`Hey ${username.value} you are not Logged in, Error: ${error.message}`, "error");
+        showNotification(`Hey ${username.value} you are not Logged in,\n Error: ${error.message}`, "error");
       }
 }
 
@@ -228,7 +308,6 @@ function displayUserNameNscore(username,score){
  *  This Function checks if a user is logged in by checking session token in local storage
  * */
 function checkUserLogin() {
-    const sessionToken = localStorage.getItem('sessionToken'); // Fetch the session token from local storage
     
     if (sessionToken) {
         //event listener of the start up overlay
@@ -248,7 +327,7 @@ async function setUserSessionToken(sessionToken){
         await Parse.User.become(sessionToken); // Set up the user session using the session token
         return true;
     } catch (error) {
-        showNotification('Error setting up user session:', error, "error");
+        showNotification('Error setting up user session:\n'+ error, "error");
         // Handle any errors if token is invalid or expired
     }
 }

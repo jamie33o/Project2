@@ -97,7 +97,7 @@ function incrementPrize() {
         readThenUpdate(prize === "€5,000" ? 50 : 500);
       }else if (prize === "Million"){
         playAudioWithSrc('assets/sounds/million_sound.mp3');
-        popUp(`Congratulations!!!`, `You have WON!! Congradulations you are a millionaire!!! 1000 points will be added to your score!!`, "PLAY AGAIN", "QUIT");
+        popUp(`Congratulations!!!`, `You have WON!! \nCongradulations you are a millionaire!!!\n 1000 points will be added to your score!!`, "PLAY AGAIN", "QUIT");
         readThenUpdate(1000);
     }
    
@@ -210,7 +210,7 @@ function restartAnimation () {
  * and ask if they would like to play again or quit
  */
 function gameOver() {
-    popUp("Game Over!!!", `Hard luck the correct answer was "${correctAnswer}"...Would you like to play again?`, "PLAY AGAIN", "QUIT" );
+    popUp("Game Over!!!", `Hard luck the correct answer was "${correctAnswer}"...\nWould you like to play again?`, "PLAY AGAIN", "QUIT" );
 }
 
 

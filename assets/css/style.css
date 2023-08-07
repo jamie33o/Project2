@@ -20,6 +20,19 @@ body {
     position: relative;
 }
 
+.center {
+    text-align: center;
+}
+
+p ,button{
+    font-size: 1.2em;
+    font-family: 'Courier New', Courier;
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+}
 /* drop down to alert user of important info */
 #notification {
     display: flex;
@@ -53,6 +66,7 @@ body {
     background-color: var(--dark-blue);
 }
 
+/* game section */
 main {
     display: flex;
     flex-direction: column;
@@ -65,14 +79,12 @@ main {
     margin-bottom: 200px;
 }
 
-.center {
-    text-align: center;
-}
-
-p ,button{
-    font-size: 1.2em;
-    font-family: 'Courier New', Courier;
-    text-align: center;
+/*top half of game section*/
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    position: relative;
 }
 
 /*overlay at the start of the game */
@@ -89,6 +101,19 @@ p ,button{
     z-index: 2;
 }
 
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: fit-content;
+    width: 100%;
+}
+
+.flex-column > * {
+    margin: 3px;
+}
+
 /* leader board and instructions pop up */
 #instructions {
     display:none;
@@ -98,6 +123,7 @@ p ,button{
     display:none;
 }
 
+/* for leader board and instructions */
 #outer-container {
     position: absolute;
     display: none;
@@ -161,19 +187,6 @@ p ,button{
     margin-top: 10px;
     border: 1px solid white;
     padding: 5px;
-}
-
-.flex-column {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    height: fit-content;
-    width: 100%;
-}
-
-.flex-column > * {
-    margin: 3px;
 }
 
 /*register/log in and feedback form */
@@ -250,14 +263,6 @@ textarea{
 .btn-no-background:hover {
     text-decoration: underline;
     color: orange;
-}
-
-/*main section*/
-.flex-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    position: relative;
 }
 
 /*box for lifelines and prizes*/
@@ -461,11 +466,7 @@ svg {
     background-size: contain;
 }
 
-/*game.html */
-ul {
-    list-style: none;
-}
-
+/* question and answers */
 .question_box {
     display: flex;
     justify-content: center;
@@ -493,16 +494,6 @@ ul {
     max-width: 100%;
 }
 
-.error-page {
-    width: 80%;
-    margin: auto auto;
-    border: 5px solid var(--dark-blue);
-    border-radius: 20px;
-    box-shadow: 13px 16px 6px 6px var(--border),
-            inset 16px 16px 6px 6px var(--border);
-    padding: 10px;
-}
-
 #answer_a_btn, #answer_b_btn, #answer_c_btn, #answer_d_btn {
     display:flex;
     justify-content: left;
@@ -527,6 +518,17 @@ ul {
 
 .button:hover {
     background-image: url(../images/orange_answer_box.png);
+}
+
+/* 404 page */
+.error-page {
+    width: 80%;
+    margin: auto auto;
+    border: 5px solid var(--dark-blue);
+    border-radius: 20px;
+    box-shadow: 13px 16px 6px 6px var(--border),
+            inset 16px 16px 6px 6px var(--border);
+    padding: 10px;
 }
 
 /*pop up window for mile stone and game over*/
@@ -571,6 +573,7 @@ footer p ,footer a{
     display: none;
 }
 
+/* media query for devices with 900px width and less */
 @media screen and (max-width: 900px) {
     main {
        max-width: 80%;
@@ -595,6 +598,7 @@ footer p ,footer a{
     }
   
 }
+/* media query for devices with 650px width and less */
 
 @media screen and (max-width: 650px) {
     main{
@@ -653,13 +657,12 @@ footer p ,footer a{
     }
 }
 
+/* media query for devices with 500px width and less and height less than 800px */
 @media screen and (max-height: 800px) and (max-width: 500px) {
-
 main {
     overflow-x: hidden;
 
 }
-
 
 .timer-logo {
     flex-direction: row;

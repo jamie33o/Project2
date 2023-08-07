@@ -4,7 +4,6 @@
 Parse.initialize("IhNUqCfsmmW0MvFQ3TioMfv9gw54kNxzUgvmJKVl", "iIvlL1BIiVkZFmbzjClkWhbzbZVuCQA7ASADL7i4"); 
 Parse.serverURL = "https://parseapi.back4app.com/";
 
-
 /**for password text content on form */
 const password = document.getElementById("password");
 /**for username text content on form */
@@ -13,13 +12,15 @@ const username = document.getElementById("username");
 const signUp = document.getElementById("sign-up");
 
 /**for email text content */
-let emailInputDiv = document.getElementById("email-input");
-let emailInputText = document.getElementById("email");
+const emailInputDiv = document.getElementById("email-input");
+const emailInputText = document.getElementById("email");
+
 //register buttton and event listener
-let registerBtn = document.getElementById("register-btn");
+const registerBtn = document.getElementById("register-btn");
 registerBtn.addEventListener('click',  register);
+
 //log in button and event listener
-let logInBtn = document.getElementById("log-in");
+const logInBtn = document.getElementById("log-in");
 logInBtn.addEventListener('click',  logIn);
 
 //x button to hide sign up form
@@ -28,7 +29,7 @@ signUp.style.display = "none";
 });
 
 // sign up form p element
-let signUp_Pelement = document.querySelector("#sign-up p");
+const signUp_Pelement = document.querySelector("#sign-up p");
 
 const sessionToken = localStorage.getItem('sessionToken'); // Fetch the session token from local storage
 
@@ -212,6 +213,7 @@ async function displayScores() {
   }
 
   readThenUpdate(0);
+
 /**
  * This function gets the current user object from the data base then calls the update function to update the score
  * @param {number} score - this is the points the user got for reaching a milestone 
@@ -221,7 +223,7 @@ async function displayScores() {
     if (currentUser) {
         const currentUsername = currentUser.get("username"); // Get the current user's username
 
-        let query = new Parse.Query("User");
+        const query = new Parse.Query("User");
         query.equalTo("username", currentUsername);
         query.first().then(function (object) {
         if (object) {
@@ -309,7 +311,6 @@ function displayUserNameNscore(username,score){
  *  This Function checks if a user is logged in by checking session token in local storage
  * */
 function checkUserLogin() {
-    
     if (sessionToken) {
         //event listener of the start up overlay
         setUserSessionToken(sessionToken);

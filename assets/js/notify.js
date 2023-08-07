@@ -1,3 +1,8 @@
+/**
+ * This function creates an animated drop down notification
+ * @param {text} message - text shown in the drop down notification
+ * @param {message type} type - type of message success/error changes color of background
+ */
 function showNotification(message, type) {
     const notificationDiv = document.getElementById("notification");
     notificationDiv.style.display = "flex"

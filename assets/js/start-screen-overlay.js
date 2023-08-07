@@ -1,20 +1,20 @@
 
 //instructions pop up
-let instruction = document.getElementById("instructions");
+const instruction = document.getElementById("instructions");
 
 //instructions and leader board h2 tag
 let instructions_LeaderBoard_h2;
 
 //leader bord pop up
-let leaderBoard = document.getElementById("leader-board");
+const leaderBoard = document.getElementById("leader-board");
 
 //outer container for leader-board and instruction pop up
-let outerContainer = document.getElementById("outer-container");
+const outerContainer = document.getElementById("outer-container");
 
- // Add h2 to leader borard and instructions
- const htmlContent = '<h2 id="inst-leader" class="center"></h2>';
+// Add h2 to leader borard and instructions
+const htmlContent = '<h2 id="inst-leader" class="center"></h2>';
 
- /**store the current value of the CSS overflow property of the <body> */
+/**store the current value of the CSS overflow property of the <body> */
 const previousOverflow = document.body.style.overflow;
 
 // Loop through the NodeList and add the event listener to each element using forEach
@@ -31,6 +31,7 @@ if(localStorage.getItem("startScreen") === "false"){
     //plays the start theme
     playAudioWithSrc("assets/sounds/start_theme.mp3");
 }
+
 //event listener for instructions button
 document.getElementById("instructions-btn").addEventListener('click', function() {
     if(leaderBoard.style.display === "block") {
@@ -44,7 +45,6 @@ document.getElementById("instructions-btn").addEventListener('click', function()
     //get the h2 that was added by class and add text
     instructions_LeaderBoard_h2 = document.getElementById("inst-leader");
     instructions_LeaderBoard_h2.innerHTML = "Instruction's";
-
 });
 
 //event listener for leader board button
@@ -88,7 +88,6 @@ start_btn.addEventListener("click", function(){
 }
 });
 
-
  /**
      * check if there is a previously stored prize  
     * set prize counter to it then changes all previous
@@ -97,11 +96,13 @@ start_btn.addEventListener("click", function(){
     * and calls the function that retrieve qna object
     */
  function startGame() {
+    /**used to Retrieve prizecounter from local storage */ 
+    const storedCount = localStorage.getItem("prizeCounter");
     //play the suspense sound for timer
     playAudioWithSrc("assets/sounds/suspense_sound.mp3");
     // To re-enable scrolling
     document.querySelector("#overlay").style.display = "none";
-    if (storedCount != null){
+    if (storedCount > 0){
         prizeCounter = storedCount;
         //change background image of the prize li
         liElement[prizeCounter].style.backgroundImage = "url('assets/images/green_answer_box.png')";
@@ -118,6 +119,7 @@ start_btn.addEventListener("click", function(){
                 liElement[i].style.backgroundImage = "url('assets/images/answer_box.png')";
             }
         }
+        localStorage.setItem("prizeCounter", 0);
     }else {
         prizeCounter = 13;
         liElement[prizeCounter].style.backgroundImage = "url('assets/images/green_answer_box.png')";

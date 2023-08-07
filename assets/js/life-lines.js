@@ -25,18 +25,27 @@ let lifeline_btns = [phoneAfriend_btn,fiftyFifty_btn,askAudience_btn];
 let hideResultsBool;
 
 //---------------life lines sections----------------
+//div that holds the life line results
 const lifeLineResults = document.getElementById("life_line_results");
+//bar chart grid for ask the audience reults
 const grid = document.querySelector(".grid");
-let phoneAfriendResults = document.querySelector(".phoneAfriendResults");
+//phone a friend results
+const phoneAfriendResults = document.querySelector(".phoneAfriendResults");
 
-let lifeLinesBox = document.getElementById("life-lines");
+//life lines dive
+const lifeLinesBox = document.getElementById("life-lines");
 
   
 //button for displaying and and hiding prize section on smaller devices
-let showLifeLines = document.querySelector(".life-line-show-hide");
+const showLifeLines = document.querySelector(".life-line-show-hide");
 showLifeLines.addEventListener("click", animateLifeLinesBox);
 
+/**
+ * This function animates the life lines section coming into view and exiting when user presses the prize button
+ * @param {boolean} prizeBoxOpenning - boolean to check if prize section is showing
+ */
 function animateLifeLinesBox(prizeBoxOpenning) {
+    //gets the current css value of left position
     let lfComputedStyles = window.getComputedStyle(lifeLinesBox);
     let leftValue = parseInt(lfComputedStyles.getPropertyValue("left"), 10);
    if (leftValue === -215 && prizeBoxOpenning) {
@@ -112,7 +121,7 @@ function hideResults(button) {
  * then the hide results function is called to hide the button and results
  */
 function phoneAfriend() {
-    playAudioWithSrc("assets/sounds/life-lines.mp3");
+    playAudioWithSrc("assets/sounds/life-line-sound.mp3");
 
     const randomNumber = Math.floor(Math.random() * 100) + 1;
     let answer = randomNumber > 50 ? correctAnswer : wrongAnswers[0];
@@ -129,7 +138,7 @@ function phoneAfriend() {
  * then hide results is called again to hide the button and the results
  */
 function askAudience() {
-    playAudioWithSrc("assets/sounds/life-lines.mp3");
+    playAudioWithSrc("assets/sounds/life-line-sound.mp3");
     grid.style.display = "grid";
     lifeLineResults.style.display = "flex";
     //show the life line div again after display none
@@ -169,7 +178,7 @@ function askAudience() {
  * it hides two wrong answer
  */
 function fiftyFifty() {
-    playAudioWithSrc("assets/sounds/life-lines.mp3");
+    playAudioWithSrc("assets/sounds/life-line-sound.mp3");
     let buttonTxtafter = [];
 
     fiftyFifty_btn.style.backgroundImage = `url('assets/images/green_50_50.png')`;

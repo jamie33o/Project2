@@ -23,10 +23,6 @@ let menuBoolean;
 
 /**Select the <li> element you want to update */ 
 const liElement = document.querySelectorAll("#prizes ul li");
-  
-/**used to Retrieve prizecounter from local storage */ 
-let storedCount = localStorage.getItem("prizeCounter");
-
 
 //prize section
 let prizeBox = document.getElementById("prizes");
@@ -35,8 +31,12 @@ let prizeBox = document.getElementById("prizes");
 let showPrizes = document.querySelector(".prizes-show-hide");
 showPrizes.addEventListener("click", animatePrizeBox);
 
+/**
+ * This function animates the prize section coming into view and exiting when user presses the prize button
+ * @param {boolean} lifelineOpenning - boolean to check if lifeline section is showing
+ */
 function animatePrizeBox(lifelineOpenning) {
-
+    //gets the current css value of right position
     let pbComputedStyles = window.getComputedStyle(prizeBox);
     let  rightValue = parseInt(pbComputedStyles.getPropertyValue("right"), 10);
     if (rightValue === -215 && lifelineOpenning) {
@@ -91,13 +91,17 @@ function incrementPrize() {
     //checks if user reaches a take home prize
     if(prize === "€5,000" || prize ==="€50,000") {
         // Call the playSound function and pass the URL of the sound file
-        playAudioWithSrc('assets/sounds/milestone_prize.mp3');
+        setTimeout(() => {
+            playAudioWithSrc('assets/sounds/milestone_prize.mp3');
+        }, 1200); 
         popUp(`WELL DONE!!!`, `You have reached ${prize}!!! \n ${prize === "€5,000" ? "50" : "500"} points will be added to your score!!! \n Would you like to continue or save your progress and come back later
         ?`, "CONTINUE", "SAVE");
         readThenUpdate(prize === "€5,000" ? 50 : 500);
       }else if (prize === "Million"){
-        playAudioWithSrc('assets/sounds/million_sound.mp3');
-        popUp(`Congratulations!!!`, `You have WON!! \nCongradulations you are a millionaire!!!\n 1000 points will be added to your score!!`, "PLAY AGAIN", "QUIT");
+        setTimeout(() => {
+            playAudioWithSrc('assets/sounds/million_sound.mp3');
+        }, 1200); 
+        popUp(`Congratulations!!!`, `You have WON!! \n Congratulations you are a millionaire!!! \n 1000 points will be added to your score!!`, "PLAY AGAIN", "QUIT");
         readThenUpdate(1000);
     }
    
@@ -164,7 +168,6 @@ function popUp(h2_text, p_text, btn1Text, btn2Text) {
 }
 
 //-----------Timer function section-----------
-let intervalTimer;
 /**
  * This function creates a 30second timer that restarts each time the user
  * answers a question if it goes to 0 its game over
@@ -173,12 +176,14 @@ function timer() {
     let number = document.getElementById("number");
     let timerCount = 30;
     restartAnimation();
-     intervalTimer = setInterval(() => {
+    let  intervalTimer = setInterval(() => {
         if(!popUpActive) {
             if (restartTimer){
                 timerCount = 30;
                 number.innerHTML = 30; 
-                playAudioWithSrc("assets/sounds/suspense_sound.mp3");
+                setTimeout(() => {
+                    playAudioWithSrc("assets/sounds/suspense_sound.mp3");
+                }, 1000); 
                 // Set the animation back to its original value
                 restartAnimation();
                 restartTimer = false;

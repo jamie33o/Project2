@@ -732,12 +732,12 @@ main {
 
 .prizes-show-hide {
     left:-62px;
-    rotate: 270deg;
+    transform: rotate(270deg);
 }
 
 .life-line-show-hide {
     right:-85px;
-    rotate: 90deg;
+    transform: rotate(90deg);
 }
 
 

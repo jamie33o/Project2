@@ -114,6 +114,10 @@ main {
     margin: 3px;
 }
 
+#log-out {
+    display: none;
+}
+
 /* leader board and instructions pop up */
 #instructions {
     display:none;

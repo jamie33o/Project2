@@ -26,4 +26,6 @@ function menu() {
     displayScores();
     menuBoolean = true;
     document.body.style.overflow = "hidden";
+    logOut_btn.style.display = "none";
+    feedback_btn.style.display = "none";
 }

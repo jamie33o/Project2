@@ -23,6 +23,10 @@ registerBtn.addEventListener('click',  register);
 const logInBtn = document.getElementById("log-in");
 logInBtn.addEventListener('click',  logIn);
 
+//logout button and event listener
+const logOut_btn = document.getElementById("log-out");
+logOut_btn.addEventListener("click", logout);
+
 //x button to hide sign up form
 document.getElementById("close-sign-up").addEventListener('click',  function(){
 signUp.style.display = "none";
@@ -31,13 +35,14 @@ signUp.style.display = "none";
 // sign up form p element
 const signUp_Pelement = document.querySelector("#sign-up p");
 
-const sessionToken = localStorage.getItem('sessionToken'); // Fetch the session token from local storage
+let sessionToken = localStorage.getItem('sessionToken'); // Fetch the session token from local storage
 
 //feedback form div
 const feedbackForm = document.getElementById("feedback");
 
 //feedback button
-document.getElementById("feedback-btn").addEventListener("click", function(){
+const feedback_btn = document.getElementById("feedback-btn");
+feedback_btn.addEventListener("click", function(){
   if(sessionToken){
     feedbackForm.style.display = "flex";
     const user = Parse.User.current();
@@ -195,15 +200,18 @@ async function displayScores() {
             if (user !== null) {
                 signUp.style.display = "none";
                 start_btn.innerHTML = "Start";
+                // show log out btn
+                logOut_btn.style.display = "flex";
+                //show feedback form btn
+                feedback_btn.style.display = "flex";
+                // Get the session token from the user object
+                sessionToken = user.getSessionToken();
 
-            // Get the session token from the user object
-            sessionToken = user.getSessionToken();
-
-            // Store the session token in local storage
-            localStorage.setItem('sessionToken', sessionToken);  
-            setUserSessionToken(sessionToken);    
-            // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
-            showNotification(`New user created with success! \nUsername: ${user.get("username")}`, "succcess");
+                // Store the session token in local storage
+                localStorage.setItem('sessionToken', sessionToken);  
+                setUserSessionToken(sessionToken);    
+                // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
+                showNotification(`New user created with success! \n Username: ${username.value}`, "succcess");
             }
         } catch (error) {
             showNotification(`Error: ${error.message}!!! \nPlease try again....`, "error");
@@ -212,7 +220,6 @@ async function displayScores() {
     }
   }
 
-  readThenUpdate(0);
 
 /**
  * This function gets the current user object from the data base then calls the update function to update the score
@@ -238,6 +245,8 @@ async function displayScores() {
   }
 }
 
+readThenUpdate(0);
+
 /**
  * This function adds the users stored points on the data base with the points they got for reaching a milestone and
  * then saves the new score to the database
@@ -251,6 +260,7 @@ function update(foundObject, score) {
     if(score > 0){
     foundObject.set('score', newScore);
     foundObject.save().then(function () {
+
     }).catch(function(error) {
       showNotification(`Error saving score please log in again. \nError message: `+ error.message, "error");
     });
@@ -263,6 +273,7 @@ function update(foundObject, score) {
  */
 async function logIn() {
     if (emailInputDiv.style.display === "" || emailInputDiv.style.display === "flex") {
+      
       emailInputDiv.style.display = "none";
 
       signUp_Pelement.innerHTML = "Log in";
@@ -294,7 +305,12 @@ async function logIn() {
 
         // Hide the signup form
         signUp.style.display = "none";
+        //change start btn text to start
         start_btn.innerHTML = "Start";
+        // show log out btn
+        logOut_btn.style.display = "flex";
+        //show feedback form btn
+        feedback_btn.style.display = "flex";
 
         showNotification(`Hey ` + user.get("username") + ` you are Logged in`, "success");
       } catch (error) {
@@ -302,6 +318,31 @@ async function logIn() {
       }
 }
 
+async function logout() {
+  try {
+    // Call the Parse.User.logOut() method to log out the current user
+    await Parse.User.logOut();
+    
+    // Clear the session token from local storage
+    localStorage.removeItem('sessionToken');
+    
+    start_btn.innerHTML = "Log in/Register";
+    logOut_btn.style.display = "none";
+    feedback_btn.style.display = "none";
+    clearInterval(intervalTimer);
+    // Notify the user that they've been logged out
+    showNotification("Logged out successfully.", "success");
+  } catch (error) {
+    showNotification(`Error during logout: ${error.message}`, "error");
+  }
+}
+
+
+/**
+ * This function shows the user score at the the top of the page
+ * @param {text} username - current user username
+ * @param {integer} score - user current score
+ */
 function displayUserNameNscore(username,score){
     let userScoreDiv = document.querySelector(".username-n-score p");
     userScoreDiv.innerHTML = `${username}: ${score} points`;
@@ -314,7 +355,11 @@ function checkUserLogin() {
     if (sessionToken) {
         //event listener of the start up overlay
         setUserSessionToken(sessionToken);
+        logOut_btn.style.display = "flex";
+        feedback_btn.style.display = "flex";
       }else {
+        logOut_btn.style.display = "none";
+        feedback_btn.style.display = "none";
         start_btn.innerHTML = "Log in/Register";
       }
 }

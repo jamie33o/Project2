@@ -7,7 +7,8 @@ let prizeCounter;
 let prize;
 /**boolean to restart timer*/
 let restartTimer;
-
+// interval timer in timer function
+let intervalTimer;
 /**boolean to let sound play if false or not if true  */
 let mute = true;
 
@@ -176,7 +177,7 @@ function timer() {
     let number = document.getElementById("number");
     let timerCount = 30;
     restartAnimation();
-    let  intervalTimer = setInterval(() => {
+    intervalTimer = setInterval(() => {
         if(!popUpActive) {
             if (restartTimer){
                 timerCount = 30;

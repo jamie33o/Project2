@@ -4,13 +4,22 @@ Welcome to,
 
 # Who Wants To Be A Millionaire
 
+The live link can be found here - [Who wants to be a millionaire](https://jamie33o.github.io/wwtbam-quiz-game/)
+
+![ScreenShot](docs/readme_images/responsive_screenshot.png)
+
+(Developer: Jamie O'Neill)
+
 ## Introduction
 
 Welcome to the "Who Wants To Be A Millionaire" game! This interactive quiz game replicates the famous TV show. The objective is to correctly answer a series of increasingly difficult multiple-choice questions and progress towards winning one million (virtual) dollars! The game is designed for educational purposes and will not be monetized
 
-The live link can be found here - https://jamie33o.github.io/wwtbam-quiz-game/ 
 
-![ScreenShot](docs/readme_images/responsive_screenshot.png)
+![GitHub last commit](https://img.shields.io/github/last-commit/jamie33O/wwtbam-quiz-game?color=red)
+![GitHub contributors](https://img.shields.io/github/contributors/jamie33O/wwtbam-quiz-game?color=orange)
+![GitHub language count](https://img.shields.io/github/languages/count/jamie33O/wwtbam-quiz-game?color=yellow)
+![GitHub top language](https://img.shields.io/github/languages/top/jamie33O/wwtbam-quiz-game?color=green)
+![W3C Validation](https://img.shields.io/w3c-validation/html?color=blueviolet&targetUrl=https://jamie33o.github.io/wwtbam-quiz-game/)
 ___
 
 ## Table of Contents

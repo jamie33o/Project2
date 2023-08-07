@@ -167,9 +167,13 @@ p ,button{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-    height: 500px;
+    justify-content: space-around;
+    height: fit-content;
     width: 100%;
+}
+
+.flex-column > * {
+    margin: 3px;
 }
 
 /*register/log in and feedback form */

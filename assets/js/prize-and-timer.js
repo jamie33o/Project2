@@ -205,8 +205,8 @@ function timer() {
 function restartAnimation () {
     const element = document.querySelector("circle");
     element.animate(
-              { strokeDashoffset: [-219, 0] },
-              { duration: 30000, easing: 'linear', fill: 'backwards' }
+              { strokeDashoffset: [0, -219] },
+              { duration: 30000, easing: 'linear', fill: 'forwards' }
             );
 }
 

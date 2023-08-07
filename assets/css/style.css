@@ -443,15 +443,17 @@ circle {
     stroke-dasharray: 472;
     stroke-dashoffset: 0;  
     stroke-linecap: round;
+    
 }
 
 svg {
     position: absolute;
     left: 0;
-    top: 0;
+    top: -30px;
     width: 110px;
     height: 110px;
     overflow:visible;
+    transform: rotate(-90deg);
 }
 
 /*Prizes section*/

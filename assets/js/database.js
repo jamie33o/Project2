@@ -48,14 +48,15 @@ document.getElementById("feedback-btn").addEventListener("click", function(){
   }
 });
 
-document.getElementById("close-feedback").addEventListener("click", function(){
-    feedbackForm.style.display = "none";
+document.getElementById("close-feedback").addEventListener("click", function(evt){
+  evt.preventDefault();
+  feedbackForm.style.display = "none";
 });
 
 //when submit feedback is clicked it checks everything is valid then calls submit feedback 
 //and passed the input fields content to it
-document.getElementById("submit-feedback").addEventListener("click", async function() {
-  event.preventDefault(); // Prevent the default form submission behavior
+document.getElementById("submit-feedback").addEventListener("click", async function(evt) {
+  evt.preventDefault(); // Prevent the default form submission behavior
   const formData = new FormData(feedbackForm);
 
   const username = formData.get('feedback-username');

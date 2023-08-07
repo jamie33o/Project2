@@ -20,9 +20,10 @@ body {
     position: relative;
 }
 
+/* drop down to alert user of important info */
 #notification {
     display: flex;
-    width: 80%;
+    width: 60%;
     max-height: fit-content;
     height: 100px;
     padding: 5px;
@@ -32,12 +33,13 @@ body {
     position: absolute;
     top: -255px;
     left: 50%;
-    margin-left: -40%;
+    margin-left: -30%;
     z-index: 5;
     border: 2px solid var(--border);
     background-color: var(--dark-blue);
     border-radius: 20px;
 }
+
 #notification p{
     font-size: 1.2em;
 }
@@ -101,9 +103,9 @@ p ,button{
     display: none;
     flex-direction: column;
     justify-content: space-evenly;
-    top: 0;
-    margin: 10px 10px;
+    top: 50%;
     align-items: center;
+    margin-top: -43vh;
     border: 1px solid var(--border);
     border-radius: 30px;
     background-color: var(--dark-blue);
@@ -180,10 +182,14 @@ p ,button{
     border: 1px solid var(--border);
     border-radius: 30px;
     background-color: var(--dark-blue);
-    padding: 50px;
-    height: 70%;
-    width: 70%;
+    padding: 10px;
+    height: 80%;
+    width: 90%;
     z-index: 5;
+}
+.form p {
+    width: 80%;
+    margin-top: 20px;
 }
 
 .close-form-btn {
@@ -192,8 +198,8 @@ p ,button{
     background: url(../images/close-button.png) no-repeat;
     background-size: contain;
     position: absolute;
-    right: 5%;
-    top: 5%;
+    right: 1%;
+    top: 1%;
 }
 
 .close-form-btn:hover {
@@ -215,7 +221,6 @@ textarea{
     width: 80%;
     height: 30%;
     font-size: 1.3em;
-
 }
 
 .inputs-style {

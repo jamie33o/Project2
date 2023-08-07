@@ -191,7 +191,6 @@ function timer() {
             }else if(timerCount === 0){
                 clearInterval(intervalTimer);
                 gameOver();
-                playAudioWithSrc("assets/sounds/lose.mp3");
             }else{
                 timerCount--;
                 number.innerHTML = timerCount;
@@ -217,6 +216,8 @@ function restartAnimation () {
  */
 function gameOver() {
     popUp("Game Over!!!", `Hard luck the correct answer was "${correctAnswer}"...\nWould you like to play again?`, "PLAY AGAIN", "QUIT" );
+    playAudioWithSrc("assets/sounds/lose.mp3");
+
 }
 
 

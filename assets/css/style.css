@@ -33,6 +33,28 @@ p ,button{
 ul {
     list-style: none;
 }
+
+/* js required message */
+#noscript-message {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -40%;
+    z-index: 6;
+    font-size: 1.2em;
+    width: 70%;
+    min-height: 75%;
+    max-height: fit-content;
+    background-color: var(--dark-blue);
+    border: 2px solid var(--border);
+    border-radius: 30px;
+    padding: 5%;
+}
+
+#noscript-message h2 {
+    text-align: center;
+}
+
 /* drop down to alert user of important info */
 #notification {
     display: flex;
@@ -602,7 +624,9 @@ footer p ,footer a{
         margin-top: 10px;
         
     }
-  
+    #noscript-message {
+        font-size: 1em;
+    }
 }
 /* media query for devices with 650px width and less */
 

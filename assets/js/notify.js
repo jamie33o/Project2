@@ -31,8 +31,8 @@ function showNotification(message, type) {
     setTimeout(() => {
         notificationDiv.animate(
             [
-                { top: "-30px" },
-                { top: "-265px" }
+                { top: "30px" },
+                { top: "265px" }
             ],
             {
                 duration: 1000, // 1000ms (1 second)

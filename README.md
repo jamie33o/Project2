@@ -613,6 +613,12 @@ Parse is part of back4app database which is bein installed in the head section o
 | Bug: Image links missing "." before the "/". | Solution: Scanned the codebase to identify missing periods (".") before the forward slashes ("/") in image URLs. Added the missing periods to ensure the image links point to the correct locations. |
 | Bug: "play() failed because the user didn't interact with the document first" error. | Solution: Updated the code that triggers sound playback to address the error and ensure sound can be played without requiring prior user interaction with the document. |
 
+
+### Unfixed Bugs 
+
+- 
+
+
 [Back to Table of Contents](#table-of-contents)
 
 

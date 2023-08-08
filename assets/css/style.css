@@ -153,6 +153,7 @@ main {
     border-radius: 50%;
     padding: 10px;
 }
+
 #log-out:hover {
     background-color: orange;
 }

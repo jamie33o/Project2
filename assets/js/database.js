@@ -75,8 +75,13 @@ if (!email || !username || !feedbackText) {
   return;
 }
 
-if (!email.includes("@") || !email.includes(".")) {
+if (!email.includes("@") || !email.includes(".") || email.length >= 30) {
   showNotification("Please enter a valid email address.","error");
+  return;
+}
+
+if (feedbackText.length >= 300) {
+  showNotification("Feedback is too long.","error");
   return;
 }
   try {
@@ -180,9 +185,9 @@ async function displayScores() {
         document.querySelector(".swap-position").style.flexDirection = "column";
     }else if (username.value === "" || emailInputText.value === "" || password.value === "") {
           showNotification("Please fill in all fields.", "error")
-        } else if (password.value.length <= 4 || !isPasswordValid(password.value)) {
-          showNotification("Password must be at least 5 characters long and contain at least one letter and number.","error")
-        } else if (!emailInputText.value.includes("@") || !emailInputText.value.includes(".")) {
+        } else if (password.value.length <= 4 || !isPasswordValid(password.value) || password.value.length >= 15) {
+          showNotification("Password must be between 5 and 15 characters long and contain at least one letter and one number.","error")
+        } else if (!emailInputText.value.includes("@") || !emailInputText.value.includes(".") || emailInputText.value.length >= 30) {
           showNotification("Please enter a valid email address.", "error");
         } else {
           // All conditions are met, proceed with further actions.

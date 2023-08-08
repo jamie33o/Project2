@@ -145,6 +145,13 @@ main {
 
 #log-out {
     display: none;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    background-color: rgb(41, 40, 40);
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    padding: 10px;
 }
 
 /* leader board and instructions pop up */

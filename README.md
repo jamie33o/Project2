@@ -616,6 +616,7 @@ Parse is part of back4app database which is bein installed in the head section o
 
 ### Unfixed Bugs 
 
+- notification not working on overlay screen on some apple devices i think it is showing under the overlay as it works on the game screen 
 
 
 [Back to Table of Contents](#table-of-contents)

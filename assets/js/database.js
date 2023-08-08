@@ -216,7 +216,7 @@ async function displayScores() {
                 localStorage.setItem('sessionToken', sessionToken);  
                 setUserSessionToken(sessionToken);    
                 // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
-                showNotification(`New user created with success! \n Username: ${username.value}`, "succcess");
+                showNotification(`New user created with success! \n Username: ${username.value}`, "success");
             }
         } catch (error) {
             showNotification(`Error: ${error.message}!!! \nPlease try again....`, "error");

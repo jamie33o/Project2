@@ -13,7 +13,7 @@ function showNotification(message, type) {
         ],
         {
             duration: 1000, // 1000ms (1 second)
-            fill: "forwards" // Retain the final animation state
+            fill: "forwards" 
         }
     );
 
@@ -36,7 +36,7 @@ function showNotification(message, type) {
             ],
             {
                 duration: 1000, // 1000ms (1 second)
-                fill: "forwards" // Retain the final animation state
+                fill: "forwards" 
             }
         );
     }, 3000);

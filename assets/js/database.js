@@ -1,6 +1,6 @@
 //----------Function's for database register/log in and display score--------------
 
-// Initialize back4app Parse databse
+// Initialize back4app Parse databse this was got on back4app website
 Parse.initialize("IhNUqCfsmmW0MvFQ3TioMfv9gw54kNxzUgvmJKVl", "iIvlL1BIiVkZFmbzjClkWhbzbZVuCQA7ASADL7i4"); 
 Parse.serverURL = "https://parseapi.back4app.com/";
 

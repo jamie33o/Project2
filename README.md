@@ -12,7 +12,7 @@ The live link can be found here - [Who wants to be a millionaire](https://jamie3
 
 ## Introduction
 
-Welcome to the "Who Wants To Be A Millionaire" game! This interactive quiz game replicates the famous TV show. The objective is to correctly answer a series of increasingly difficult multiple-choice questions and progress towards winning one million (virtual) dollars! The game is designed for educational purposes and will not be monetized
+Welcome to the "Who Wants To Be A Millionaire" game! This interactive quiz game replicates the famous TV show. The objective is to correctly answer a series of increasingly difficult multiple-choice questions and progress towards winning one million (virtual) euro! The game is designed for educational purposes and will not be monetized
 
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/jamie33O/wwtbam-quiz-game?color=red)

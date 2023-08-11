@@ -315,11 +315,31 @@ These features and notifications enhance the excitement and engagement of the ga
   
 ![wrong answer pop up](docs/readme_images/wrong_answer_popup.png)
 
+- Error and success Notification
+
+  - Error: If the user enter's incorrect information or leave's a field empty on the log in/register or feedback form they will get an error drop down notification in red to let them know what they have done wrong.
+
+![Error notification](docs/readme_images/error-notification.png)
+
+  - success: If the user submit's login/register or feedback form correctly or answers a question correctly they will see a drop down notification to let them know it is a success or it is correct.
+
+![Error notification](docs/readme_images/success-notification.png)
+
 - Footer
 
   - On the main game page, the footer is designed to appear when the user scrolls to the bottom of the page, and it will automatically disappear when they scroll back up. The footer contains text, serving as a link to relevant information and resources.
 
 ![wrong answer pop up](docs/readme_images/footer.png)
+
+- Responsiveness
+
+  On screens that are too short to fit everything on screen the prize section and the life line section are out of view and a button to show/hide them is at the side of the screen.
+
+![game page smaller device layout](docs/readme_images/small-device-layout.png)
+
+![game page smaller device layout](docs/readme_images/small-device-layout2.png)
+
+![game page smaller device layout](docs/readme_images/small-device-layout1.png)
 
 
 ## Technologies

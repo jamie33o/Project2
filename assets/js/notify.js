@@ -27,7 +27,7 @@ function showNotification(message, type) {
         notificationDiv.style.color = "white";
     }
 
-    // Hide the notification after a short delay (e.g., 3 seconds)
+    // Hide the notification after a short delay
     setTimeout(() => {
         notificationDiv.animate(
             [

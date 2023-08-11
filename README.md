@@ -55,7 +55,6 @@ The goals of this website include:
 
   - Play a fun and interactive online quiz game.
   - Quickly understand how to play.
-  - Test their knowledge of multiple random catagories .
   - Challenge themselves by answering a series of quiz questions.
   - Play the game as often as desired with a easy "play again" option.
   - Learn interesting facts and trivia.
@@ -96,21 +95,15 @@ ___
 
 1.	As a player, I want the website to load quickly and provide a seamless and enjoyable quiz experience without any technical issues.
 2.	As a player, I want to have a visually appealing and intuitive interface that makes it easy for me to understand and interact with the quiz.
-3.	As a player, I want my score to be saved so I can compete with other Users.
-4.	As a player, I want good design This includes themed background images and background music.
+3.	As a player, I want to be able to see other players score during the game
+4.	As a player, I want to be able to see my score and progress during the game
 5.	As a player, I want the quiz questions to be challenging and engaging.
-6.	As a player, I want to be able to view my score.
+6.	As a player, I want some aids if im struggling with a question
 7.	As a player, I want to be able to see the correct answers for the questions I answered incorrectly to learn and improve my knowledge.
-8.	As a quiz player, I want the option to play the quiz again without having to log in again.
-9.	As a player, I want to be able to easily save the game when I reach a milestone so i can come back again and play from that milestone
+8.	As a quiz player, I want the option to play the quiz again when i aswer wrong.
+9.	As a player, I want to be able to easily navigate back to the home page or explore other sections of the website while playing the game.
 10.	As a player, I want the game to have smooth and fluid animations and transitions, enhancing the overall visual appeal and user experience.
-11.	As a player, I want the game to be optimized for different screen sizes and orientations, ensuring a seamless and enjoyable experience on both mobile and desktop devices.
-12.	As a player, I want the game to have a visually appealing and intuitive user interface, with clear icons and labels, to easily understand and interact with the game controls.
-13.	As a player, when I interact with buttons or elements in the game interface, I want to see appropriate effects, such as button clicks or hover effects. These effects will provide feedback and create a more engaging and responsive user experience.
-14.	As a player, I want the sound effects to be enjoyable, non-intrusive, and harmonize with the overall game aesthetics, ensuring they enhance the gameplay experience without becoming distracting or annoying.
-15.	As a who wants to be a millionaire enthusiast, I want to be able to play a Quiz to test my knowledge and have fun.
-16.	As a player, I want the game to have a progress bar or indicator to track my progress during the quiz.
-
+11.	As the site owner, I want users to see a 404 page if they enter an incorrect URL so they can be navigated back to the main game page
 
 - __Site Owner__
 
@@ -162,9 +155,9 @@ ___
 
 ## Features
 
-The website comprises three pages: a welcome overlay screen/page, a quiz page, and a 404 error page. These pages follow a user-friendly and easily navigable framed pattern, enabling visitors to swiftly access key information at the center of the screen. 
+The website comprises of three pages: a welcome overlay screen/page, a quiz page, and a 404 error page. These pages follow a user-friendly and easily navigable framed pattern, enabling visitors to swiftly access key information at the center of the screen. 
 
-On the menu screen, located at the top center of the page, visitors will immediately notice the quiz game logo. Positioned below the logo are the mute/sound button, the start button, the instructions button, and finally, the leader board button. This intuitive layout ensures that users can quickly grasp the name of the game, commence playing, understand the gameplay instructions, and conveniently toggle sound or music on or off.
+On the menu screen, located at the top center of the page, visitors will immediately notice the quiz game logo. Positioned below the logo are the mute/sound button, the login/register button, the instructions button, and finally, the leader board button. When the user is registered/logged in they will then also see the feedback button and the logout button at the top right corner. This intuitive layout ensures that users can quickly grasp the name of the game, commence playing, understand the gameplay instructions, and conveniently toggle sound or music on or off.
 
 ### Existing Features
 
@@ -176,9 +169,9 @@ On the menu screen, located at the top center of the page, visitors will immedia
 ![Welcome Overlay Screen/Page](docs/readme_images/menu-screen1.png)   ![Welcome Overlay Screen/Page](docs/readme_images/menu-screen2.png)
 
 
-- Register/Log in form
+- Register/Log in button
 
-  - Register/Log in Form: Users can easily access the registration and login form, allowing them to participate in the game and keep track of their progress.
+  - Register/Log in Button: When users press this button a form will appear and Users can easily registration and login, allowing them to participate in the game and keep track of their progress.
 
   ![Log in](docs/readme_images/login-screenshot.png)   ![Register](docs/readme_images/register-screenshot.png)
 
@@ -195,21 +188,21 @@ On the menu screen, located at the top center of the page, visitors will immedia
  <img src="docs/readme_images/no-sound.png" alt="logo" width="100"/>
  <img src="docs/readme_images/sound-on.png" alt="logo" width="100"/>
 
-- Instruction's
+- Instruction's button
 
   - Instructions Button: For newcomers or those needing a refresher, an "Instructions" button is readily available. Clicking on it will provide clear guidelines on how to play the game.
 
 ![How to Play](docs/readme_images/instruction_screenshot.png)
   
-- Leader Board
+- Leader Board button
 
-  - Leaderboard Button: To encourage competitiveness and track user scores, a "Leaderboard" button is provided. Players can check their standings among others who have participated in the game.
+  - Leaderboard Button: To encourage competitiveness and track user scores, a "Leaderboard" button is provided. Players press this to shoew the leader board and then they can check their standings among others who have participated in the game.
  
 ![Leader board](docs/readme_images/leaderboard_screenshot.png)
 
-- Feedback form
+- Feedback form button
 
-  - Feedback form: We have a feedback form so users can notify us of any issues or complaints and let us know about there experience with the game.
+  - Feedback button: We have a feedback form so users can notify us of any issues or complaints and let us know about there experience with the game.
 
 ![Feedback form](docs/readme_images/form-screenshot.png.)
 
@@ -236,7 +229,7 @@ On the menu screen, located at the top center of the page, visitors will immedia
 <img src="docs/readme_images/ask_the_audience_img.png" alt="ask the audience img" width="100"/>
 
 
-  - Phone A friend button: This button when pressed will show a paragraph  of text representing the fake caller's anwers 
+  - Phone A friend button: This button when pressed will show a paragraph of text representing the fake caller's anwers 
 
 <img src="docs/readme_images/phone_a_friend_img.png" alt="phone a friend button img" width="100"/>
 
@@ -249,7 +242,7 @@ On the menu screen, located at the top center of the page, visitors will immedia
 
 - Menu button
 
-  - The menu button is between the mute/sound button and the logo in the center of the page when pressed it shows the menu screen but it does not stop the timer so the user cant use it to pause the game and google the question.
+  - The menu button is between the mute/sound button and the logo in the center of the page when pressed it shows the menu screen but it does not stop the timer so the user can't use it to pause the game and google the answer.
     
 <img src="docs/readme_images/menu.png" alt="menu button image" width="100"/>
 
@@ -394,7 +387,7 @@ Website was also opened on the following devices and no responsive issues were s
 
 Oukitel C21 Pro
 TCL 30 Pro
-iPhone SXR
+iPhone XR
 Samsung Galaxy Tablet
 
 ### Validator Testing 
@@ -428,7 +421,7 @@ Testing was focused to ensure the following criteria were met:
 
 - Manual tests were also performed to ensure the website was accessible as possible and an accessibility issue was identified.
 
-  - Issue #1: Some buttons had no text
+  - Issue #1: Some buttons had no text so wave accessability tool was giving an error
 
     - Fix: added aria-label.
 
@@ -461,7 +454,7 @@ As a player, I want to have a visually appealing and intuitive interface that ma
 
 User Story 3:
 
-As a player, I want to be able to see the score during the game
+As a player, I want to be able to see other players score during the game
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
@@ -479,11 +472,11 @@ As a player, I want to be able to see my score and progress during the game
 
 User Story 5:
 
-As a player, I want the quiz questions to be challenging and engaging, providing a variety of question types and difficulty levels.
+As a player, I want the quiz questions to be challenging and engaging, providing a variety of question types.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| Challenging Questions | Player answers quiz questions | The quiz questions are challenging and engaging, with a variety of question types and difficulty levels | Works as expected |
+| Challenging Questions | Player answers quiz questions | The quiz questions are challenging and engagin. | Works as expected |
 
 
 User Story 6:
@@ -501,7 +494,7 @@ As a player, I want to be able to see the correct answers for the questions I an
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| Incorrect Answers Feedback | Player answers wrong | Pop up display game over and what the correct answer was | Works as expected |
+| Incorrect Answers Feedback | Player answers wrong | Pop up display game over and shows the correct answer | Works as expected |
 
 
 User Story 8:
@@ -510,12 +503,12 @@ As a quiz player, I want the option to play the quiz again when i aswer wrong.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| Replay Quiz | Player answers wrong | The player can choose to replay  | Works as expected |
+| Replay Quiz | Player answers wrong | The player can choose to play again | Works as expected |
 
 
 User Story 9:
 
-As a player, I want to be able to easily navigate back to the home page or explore other sections of the website after completing the quiz.
+As a player, I want to be able to easily navigate back to the home page or explore other sections of the website while playing the game.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
@@ -645,7 +638,7 @@ Parse is part of back4app database which is bein installed in the head section o
 ## Deployment
 
 ### Version Control
-The site was created using the Visual Studio code editor and pushed to github to the remote repository ‘history-of-michael-collins’.
+The site was created using the Visual Studio code editor and pushed to github to the remote repository ‘wwtbam-quiz-game’.
 
 The following git commands were used throughout development to push code to the remote repo:
 
